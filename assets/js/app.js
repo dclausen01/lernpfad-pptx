@@ -303,10 +303,11 @@
         var src = f.dataset.src, desc = f.dataset.desc || "";
         var img = new Image();
         img.alt = desc;
-        img.loading = "lazy";
         img.onload = function () {
           f.innerHTML = "";
-          f.appendChild(img);
+          var a = el("a", { href: src, target: "_blank", rel: "noopener", title: "Klicken zum Vergrößern" });
+          a.appendChild(img);
+          f.appendChild(a);
           f.appendChild(el("figcaption", null, esc(desc)));
         };
         img.onerror = function () {

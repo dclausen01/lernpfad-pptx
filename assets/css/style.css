@@ -265,7 +265,7 @@ figcaption { font-size: .88rem; color: var(--muted); margin-top: .35rem; }
 .sidepanel .sp-row.on { background: var(--warn-soft); font-weight: 700; border-left: 4px solid var(--hl); }
 
 /* Screenshot-Platzhalter */
-.shot img { border: 1px solid var(--border); border-radius: 8px; display: block; }
+.shot img { border: 1px solid var(--border); border-radius: 8px; display: block; cursor: zoom-in; }
 .shot .placeholder {
   border: 2px dashed var(--border); border-radius: 8px; padding: 1rem; background: var(--surface-2);
   color: var(--muted); font-size: .88rem;
