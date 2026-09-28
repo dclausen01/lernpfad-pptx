@@ -58,13 +58,15 @@
 
   // ---------- Speicher (robust, falls localStorage gesperrt ist) ----------
   var KEY = "lernpfad-praesentieren-v1";
-  var state = { done: {}, checks: {}, app: "ppt" };
+  var state = { done: {}, checks: {}, notes: {}, selfcheck: {}, app: "ppt" };
   try {
     var raw = localStorage.getItem(KEY);
     if (raw) {
       var parsed = JSON.parse(raw);
       state.done = parsed.done || {};
       state.checks = parsed.checks || {};
+      state.notes = parsed.notes || {};
+      state.selfcheck = parsed.selfcheck || {};
       state.app = parsed.app || "ppt";
     }
   } catch (e) { /* ohne Speicher weiterarbeiten */ }
@@ -171,6 +173,17 @@
   function buildFooter(mod) {
     var main = document.querySelector("main");
     var idx = moduleById(mod.id);
+
+    // Notizfeld: Was nehme ich mit?
+    var noteBox = el("div", { "class": "box note-box" });
+    noteBox.innerHTML = '<label class="box-title" for="note-' + mod.id + '">💬 Deine Notiz</label>' +
+      '<p style="margin:.2rem 0 .5rem;color:var(--muted);font-size:.92rem">Was nimmst du aus diesem Modul mit? Was war schwierig? Wo wirst du das brauchen – in der Schule, in der Ausbildung, in der Praxis?</p>';
+    var ta = el("textarea", { id: "note-" + mod.id, rows: "3", placeholder: "Zum Beispiel: Ich wusste nicht, dass …" });
+    ta.value = state.notes[mod.id] || "";
+    ta.addEventListener("input", function () { state.notes[mod.id] = ta.value; save(); });
+    noteBox.appendChild(ta);
+    main.appendChild(noteBox);
+
     var wrap = el("div", { "class": "done-wrap" });
     var btn = el("button", { "class": "btn", type: "button" });
     function paint() {
@@ -404,10 +417,58 @@
     }
     var reset = document.getElementById("reset-progress");
     if (reset) reset.addEventListener("click", function () {
-      if (confirm("Wirklich den gesamten Fortschritt (Häkchen und erledigte Module) in diesem Browser löschen?")) {
-        state.done = {}; state.checks = {}; save(); location.reload();
+      if (confirm("Wirklich den gesamten Fortschritt (Häkchen, Notizen, erledigte Module) in diesem Browser löschen?")) {
+        state.done = {}; state.checks = {}; state.notes = {}; state.selfcheck = {}; save(); location.reload();
       }
     });
+
+    // Alle Notizen als Text kopieren (z. B. zum Abgeben)
+    var copyBtn = document.getElementById("copy-notes");
+    if (copyBtn) copyBtn.addEventListener("click", function () {
+      var txt = MODULES.filter(function (m) { return (state.notes[m.id] || "").trim(); }).map(function (m) {
+        return m.id.toUpperCase() + " – " + m.title + "\n" + state.notes[m.id].trim();
+      }).join("\n\n");
+      var msg = document.getElementById("copy-notes-msg");
+      if (!txt) { msg.textContent = "Noch keine Notizen vorhanden."; return; }
+      var done = function () { msg.textContent = "Kopiert – du kannst die Notizen jetzt z. B. in ein Dokument einfügen."; };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(txt).then(done, function () { fallbackCopy(txt); done(); });
+      } else { fallbackCopy(txt); done(); }
+    });
+  }
+  function fallbackCopy(txt) {
+    var t = el("textarea"); t.value = txt; document.body.appendChild(t); t.select();
+    try { document.execCommand("copy"); } catch (e) { /* ignorieren */ }
+    document.body.removeChild(t);
+  }
+
+  // ---------- Selbstcheck auf der Startseite ----------
+  // <div id="selfcheck"> mit Radiogruppen name="q1".."q3" (Werte 0–2) und <p id="suggest">
+  function buildSelfcheck() {
+    var box = document.getElementById("selfcheck");
+    if (!box) return;
+    var qs = ["q1", "q2", "q3"];
+    function evaluate() {
+      var sum = 0, n = 0;
+      qs.forEach(function (q) { if (state.selfcheck[q] != null) { sum += +state.selfcheck[q]; n++; } });
+      if (n < 3) return;
+      var lv = sum <= 1 ? "einsteiger" : sum <= 4 ? "fortgeschrittene" : "profis";
+      var hint = {
+        einsteiger: "Starte mit E1 – auch wenn dir manches bekannt vorkommt, lohnen sich die Gestaltungstipps.",
+        fortgeschrittene: "Prüf dich zuerst mit der Checkliste im <a href=\"em-meilenstein.html\">Einsteiger-Meilenstein</a>. Klappt alles? Dann steig bei F1 ein. Sonst hol die fehlenden Module nach.",
+        profis: "Prüf dich mit den Checklisten der Meilensteine <a href=\"em-meilenstein.html\">Einsteiger</a> und <a href=\"fm-meilenstein.html\">Fortgeschrittene</a>. Sitzt alles? Dann los mit P1."
+      }[lv];
+      document.getElementById("suggest").innerHTML = "Mein Vorschlag: <b>" + LEVELS[lv].name + "</b> → <a href=\"" + LEVELS[lv].start + "\">zum Start</a>. " + hint +
+        " <br><small>Absprache mit deiner Lehrkraft geht vor – sie weiß, womit eure Klasse arbeitet.</small>";
+    }
+    qs.forEach(function (q) {
+      var radios = box.querySelectorAll('input[name="' + q + '"]');
+      for (var i = 0; i < radios.length; i++) {
+        if (state.selfcheck[q] === radios[i].value) radios[i].checked = true;
+        radios[i].addEventListener("change", function () { state.selfcheck[this.name] = this.value; save(); evaluate(); });
+      }
+    });
+    evaluate();
   }
 
   document.addEventListener("DOMContentLoaded", function () {
@@ -423,5 +484,6 @@
     buildChecks(id || currentFile());
     buildQuiz();
     buildProgress();
+    buildSelfcheck();
   });
 })();
