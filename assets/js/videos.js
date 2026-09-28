@@ -7,7 +7,7 @@
  *
  * Felder:
  *   app         "ppt" = PowerPoint 365, "oo" = OnlyOffice
- *   type        "video" | "kurs" (Microsoft-Kurzkurs mit mehreren Videos) | "hilfe" (Text + Bilder)
+ *   type        "video" | "hilfe" (Text + Bilder, teils mit eingebettetem Video)
  *   lang        "de" | "en"
  *   linkGeprueft  Datum, an dem der Link zuletzt erreichbar war
  *   freigegeben   Datum + Kürzel, wenn eine Lehrkraft den Inhalt angesehen und freigegeben hat
@@ -18,61 +18,59 @@
 window.MEDIA_CONFIG = { nurFreigegebene: false };
 
 window.MEDIA = {
-  /* ---------- Microsoft: PowerPoint-Schulung (Kurzkurse mit Videos, deutsch) ---------- */
-  "ms-schnellstart": {
-    app: "ppt", type: "kurs", lang: "de", source: "Microsoft Support",
-    title: "PowerPoint-Schulung: Schnellstart",
+  /* ---------- Microsoft Support: Hilfeseiten (deutsch, teils mit eingebetteten Videos) ---------- */
+  "ms-erstellen": {
+    app: "ppt", type: "hilfe", lang: "de", source: "Microsoft Support",
+    title: "Eine Präsentation in PowerPoint erstellen",
     url: "https://support.microsoft.com/de-de/topic/422250f8-5721-4cea-92cc-202fa7b89617",
     linkGeprueft: "2026-09-28", freigegeben: ""
   },
-  "ms-erste-schritte": {
-    app: "ppt", type: "kurs", lang: "de", source: "Microsoft Support",
-    title: "PowerPoint-Schulung: Erste Schritte",
+  "ms-was-ist-ppt": {
+    app: "ppt", type: "hilfe", lang: "de", source: "Microsoft Support",
+    title: "Was ist PowerPoint?",
     url: "https://support.microsoft.com/de-de/topic/5f9cc860-d199-4d85-ad1b-4b74018acf5b",
     linkGeprueft: "2026-09-28", freigegeben: ""
   },
-  "ms-folien-layouts": {
-    app: "ppt", type: "kurs", lang: "de", source: "Microsoft Support",
-    title: "PowerPoint-Schulung: Folien und Layouts",
-    url: "https://support.microsoft.com/de-de/topic/b9abb2a0-7aef-4257-a14e-4329c904da54",
+  "ms-folien": {
+    app: "ppt", type: "hilfe", lang: "de", source: "Microsoft Support",
+    title: "Folien hinzufügen, neu anordnen, duplizieren und löschen",
+    url: "https://support.microsoft.com/de-de/office/hinzuf%C3%BCgen-%C3%A4ndern-der-reihenfolge-duplizieren-und-l%C3%B6schen-von-folien-in-powerpoint-e35a232d-3fd0-4ee1-abee-d7d4d6da92fc",
+    linkGeprueft: "2026-09-28", freigegeben: ""
+  },
+  "ms-layout": {
+    app: "ppt", type: "hilfe", lang: "de", source: "Microsoft Support",
+    title: "Ein Folienlayout anwenden",
+    url: "https://support.microsoft.com/de-de/office/anwenden-oder-%C3%A4ndern-eines-folienlayouts-d98e245b-7cd5-4813-a893-70a3dac60971",
     linkGeprueft: "2026-09-28", freigegeben: ""
   },
   "ms-text-folien": {
-    app: "ppt", type: "kurs", lang: "de", source: "Microsoft Support",
-    title: "PowerPoint-Schulung: Text & Folien",
+    app: "ppt", type: "hilfe", lang: "de", source: "Microsoft Support",
+    title: "Folien und Text",
     url: "https://support.microsoft.com/de-de/topic/6c206169-2b17-48c5-8bd9-df38fa6049d1",
     linkGeprueft: "2026-09-28", freigegeben: ""
   },
-  "ms-bilder": {
-    app: "ppt", type: "kurs", lang: "de", source: "Microsoft Support",
-    title: "PowerPoint-Schulung: Bilder und Grafiken",
-    url: "https://support.microsoft.com/de-de/topic/5f7368d2-ee94-4b94-a6f2-a663646a07e1",
+  "ms-design": {
+    app: "ppt", type: "hilfe", lang: "de", source: "Microsoft Support",
+    title: "Farbe und Design mit Designs hinzufügen",
+    url: "https://support.microsoft.com/de-de/powerpoint/training/add-color-and-design-to-your-slides-with-themes",
     linkGeprueft: "2026-09-28", freigegeben: ""
   },
-  "ms-vorfuehren": {
-    app: "ppt", type: "kurs", lang: "de", source: "Microsoft Support",
-    title: "PowerPoint-Schulung: Vorführen von Bildschirmpräsentationen",
-    url: "https://support.microsoft.com/de-de/topic/4de90e28-487e-435c-9401-eb49a3801257",
-    linkGeprueft: "2026-09-28", freigegeben: ""
-  },
-  "ms-animation": {
-    app: "ppt", type: "kurs", lang: "de", source: "Microsoft Support",
-    title: "PowerPoint-Schulung: Animation, Video und Audio",
-    url: "https://support.microsoft.com/de-de/topic/3f8244bf-f893-4efd-a7eb-3a4845c9c971",
-    linkGeprueft: "2026-09-28", freigegeben: ""
-  },
-  "ms-teilen": {
-    app: "ppt", type: "kurs", lang: "de", source: "Microsoft Support",
-    title: "PowerPoint-Schulung: Zusammenarbeiten & Teilen",
-    url: "https://support.microsoft.com/de-de/topic/a2728f34-9a39-4af2-bc75-30edb9bc1cdd",
-    linkGeprueft: "2026-09-28", freigegeben: ""
-  },
-
-  /* ---------- Microsoft: einzelne Hilfeseiten (deutsch, teils mit Video) ---------- */
   "ms-designer": {
     app: "ppt", type: "hilfe", lang: "de", source: "Microsoft Support",
     title: "Professionelle Folienlayouts mit Designer erstellen",
     url: "https://support.microsoft.com/de-de/office/erstellen-professioneller-folienlayouts-mit-designer-53c77d7b-dc40-45c2-b684-81415eac0617",
+    linkGeprueft: "2026-09-28", freigegeben: ""
+  },
+  "ms-bilder": {
+    app: "ppt", type: "hilfe", lang: "de", source: "Microsoft Support",
+    title: "Ein Bild in PowerPoint einfügen",
+    url: "https://support.microsoft.com/de-de/topic/5f7368d2-ee94-4b94-a6f2-a663646a07e1",
+    linkGeprueft: "2026-09-28", freigegeben: ""
+  },
+  "ms-symbole": {
+    app: "ppt", type: "hilfe", lang: "de", source: "Microsoft Support",
+    title: "Symbole (Icons) einfügen",
+    url: "https://support.microsoft.com/de-de/powerpoint/insert-icons-in-microsoft-365",
     linkGeprueft: "2026-09-28", freigegeben: ""
   },
   "ms-hintergrund-entfernen": {
@@ -87,41 +85,113 @@ window.MEDIA = {
     url: "https://support.microsoft.com/de-de/office/starten-der-pr%C3%A4sentation-und-anzeigen-ihrer-notizen-in-der-referentenansicht-4de90e28-487e-435c-9401-eb49a3801257",
     linkGeprueft: "2026-09-28", freigegeben: ""
   },
+  "ms-tasten-vorfuehren": {
+    app: "ppt", type: "hilfe", lang: "de", source: "Microsoft Support",
+    title: "Tastenkombinationen zum Vorführen von Präsentationen",
+    url: "https://support.microsoft.com/de-de/office/verwenden-von-tastenkombinationen-zum-vorf%C3%BChren-von-powerpoint-pr%C3%A4sentationen-1524ffce-bd2a-45f4-9a7f-f18b992b93a0",
+    linkGeprueft: "2026-09-28", freigegeben: ""
+  },
+  "ms-probedauern": {
+    app: "ppt", type: "hilfe", lang: "de", source: "Microsoft Support",
+    title: "Probedauern: Wiedergabe testen und Anzeigedauer festlegen",
+    url: "https://support.microsoft.com/de-de/office/testen-der-wiedergabe-und-festlegen-der-anzeigedauer-einer-pr%C3%A4sentation-8424270a-d865-4aed-a321-1d2dd656381a",
+    linkGeprueft: "2026-09-28", freigegeben: ""
+  },
+  "ms-uebergaenge": {
+    app: "ppt", type: "hilfe", lang: "de", source: "Microsoft Support",
+    title: "Übergänge zwischen Folien hinzufügen, ändern oder entfernen",
+    url: "https://support.microsoft.com/de-de/topic/3f8244bf-f893-4efd-a7eb-3a4845c9c971",
+    linkGeprueft: "2026-09-28", freigegeben: ""
+  },
+  "ms-animationen": {
+    app: "ppt", type: "hilfe", lang: "de", source: "Microsoft Support",
+    title: "Text oder Objekte animieren",
+    url: "https://support.microsoft.com/de-de/office/animieren-von-text-oder-objekten-305a1c94-83b1-4778-8df5-fcf7a9b7b7c6",
+    linkGeprueft: "2026-09-28", freigegeben: ""
+  },
+  "ms-ausrichten": {
+    app: "ppt", type: "hilfe", lang: "de", source: "Microsoft Support",
+    title: "Objekte ausrichten oder anordnen",
+    url: "https://support.microsoft.com/de-de/office/ausrichten-oder-anordnen-von-objekten-bfd91078-2078-4b35-8672-f6270690b3b8",
+    linkGeprueft: "2026-09-28", freigegeben: ""
+  },
+  "ms-gruppieren": {
+    app: "ppt", type: "hilfe", lang: "de", source: "Microsoft Support",
+    title: "Formen, Bilder und Objekte gruppieren",
+    url: "https://support.microsoft.com/de-de/office/graphics-visuals/group-or-ungroup-shapes-pictures-or-other-objects",
+    linkGeprueft: "2026-09-28", freigegeben: ""
+  },
+  "ms-diagramme": {
+    app: "ppt", type: "hilfe", lang: "de", source: "Microsoft Support",
+    title: "Diagramme in Präsentationen verwenden",
+    url: "https://support.microsoft.com/de-de/office/verwenden-von-diagrammen-in-pr%C3%A4sentationen-c74616f1-a5b2-4a37-8695-fbcc043bf526",
+    linkGeprueft: "2026-09-28", freigegeben: ""
+  },
+  "ms-smartart": {
+    app: "ppt", type: "hilfe", lang: "de", source: "Microsoft Support",
+    title: "Eine SmartArt-Grafik aus einer Liste erstellen",
+    url: "https://support.microsoft.com/de-de/office/erstellen-einer-smartart-grafik-aus-einer-liste-in-powerpoint-ed299a87-43e2-4a18-a3ba-cc90c2149e33",
+    linkGeprueft: "2026-09-28", freigegeben: ""
+  },
+  "ms-links": {
+    app: "ppt", type: "hilfe", lang: "de", source: "Microsoft Support",
+    title: "Einen Link zu einer Folie hinzufügen",
+    url: "https://support.microsoft.com/de-de/office/hinzuf%C3%BCgen-eines-links-zu-einer-folie-239c6c94-d52f-480c-99ae-8b0acf7df6d9",
+    linkGeprueft: "2026-09-28", freigegeben: ""
+  },
+  "ms-folienmaster": {
+    app: "ppt", type: "hilfe", lang: "de", source: "Microsoft Support",
+    title: "Einen Folienmaster anpassen",
+    url: "https://support.microsoft.com/de-de/powerpoint/training/customize-a-slide-master",
+    linkGeprueft: "2026-09-28", freigegeben: ""
+  },
   "ms-morphen": {
     app: "ppt", type: "hilfe", lang: "de", source: "Microsoft Support",
     title: "Den Übergang „Morphen“ verwenden",
     url: "https://support.microsoft.com/de-de/office/verwenden-des-%C3%BCbergangs-morphen-in-powerpoint-8dd1c7b2-b935-44f5-a74c-741d8d9244ea",
     linkGeprueft: "2026-09-28", freigegeben: ""
   },
-  "ms-folienmaster": {
+  "ms-trigger": {
     app: "ppt", type: "hilfe", lang: "de", source: "Microsoft Support",
-    title: "Anpassen eines Folienmasters (mit Video)",
-    url: "https://support.microsoft.com/de-de/powerpoint/training/customize-a-slide-master",
-    linkGeprueft: "", freigegeben: ""
+    title: "Einen Animationseffekt auslösen (Trigger)",
+    url: "https://support.microsoft.com/de-de/powerpoint/trigger-an-animation-effect",
+    linkGeprueft: "2026-09-28", freigegeben: ""
+  },
+  "ms-aktionsschaltflaechen": {
+    app: "ppt", type: "hilfe", lang: "de", source: "Microsoft Support",
+    title: "Befehle mit Aktionsschaltflächen hinzufügen",
+    url: "https://support.microsoft.com/de-de/office/hinzuf%C3%BCgen-von-befehlen-zu-einer-pr%C3%A4sentation-mit-interaktiven-schaltfl%C3%A4chen-7db2c0f8-5424-4780-93cb-8ac2b6b5f6ce",
+    linkGeprueft: "2026-09-28", freigegeben: ""
   },
   "ms-zoom": {
     app: "ppt", type: "hilfe", lang: "de", source: "Microsoft Support",
     title: "Zoom für PowerPoint verwenden",
     url: "https://support.microsoft.com/de-de/office/verwenden-des-zooms-f%C3%BCr-powerpoint-um-ihre-pr%C3%A4sentation-zum-leben-zu-erwecken-9d6c58cd-2125-4d29-86b1-0097c7dc47d7",
-    linkGeprueft: "", freigegeben: ""
+    linkGeprueft: "2026-09-28", freigegeben: ""
   },
-  "ms-trigger": {
+  "ms-video": {
     app: "ppt", type: "hilfe", lang: "de", source: "Microsoft Support",
-    title: "Auslösen eines Animationseffekts (Trigger)",
-    url: "https://support.microsoft.com/de-de/powerpoint/trigger-an-animation-effect",
-    linkGeprueft: "", freigegeben: ""
+    title: "Eine Videodatei einfügen und wiedergeben",
+    url: "https://support.microsoft.com/de-de/office/festlegen-der-optionen-f%C3%BCr-wiedergeben-f%C3%BCr-ein-video-in-ihrer-pr%C3%A4sentation-f0d5b3f1-37ba-4a0d-9d94-f8e33cef29bf",
+    linkGeprueft: "2026-09-28", freigegeben: ""
   },
   "ms-alternativtext": {
     app: "ppt", type: "hilfe", lang: "de", source: "Microsoft Support",
     title: "Alternativtext zu Bildern, Formen und Diagrammen hinzufügen",
     url: "https://support.microsoft.com/de-de/office/hinzuf%C3%BCgen-von-alternativem-text-zu-einer-form-einem-bild-diagramm-einer-smartart-grafik-oder-einem-anderen-objekt-44989b2a-903c-4d9a-b742-6a75b451c669",
-    linkGeprueft: "", freigegeben: ""
+    linkGeprueft: "2026-09-28", freigegeben: ""
   },
   "ms-barrierefrei": {
     app: "ppt", type: "hilfe", lang: "de", source: "Microsoft Support",
     title: "Barrierefreie PowerPoint-Präsentationen gestalten",
     url: "https://support.microsoft.com/de-de/office/gestalten-barrierefreier-powerpoint-pr%C3%A4sentationen-f%C3%BCr-personen-mit-behinderungen-6f7772b2-2f33-4bd2-8ca7-dae3b2b3ef25",
-    linkGeprueft: "", freigegeben: ""
+    linkGeprueft: "2026-09-28", freigegeben: ""
+  },
+  "ms-teilen": {
+    app: "ppt", type: "hilfe", lang: "de", source: "Microsoft Support",
+    title: "Zusammenarbeiten und Teilen",
+    url: "https://support.microsoft.com/de-de/topic/a2728f34-9a39-4af2-bc75-30edb9bc1cdd",
+    linkGeprueft: "2026-09-28", freigegeben: ""
   },
 
   /* ---------- ONLYOFFICE: offizielle Videos (englisch) ---------- */
