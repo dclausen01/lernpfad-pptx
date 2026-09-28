@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Videos & Hilfeseiten – Lernpfad Präsentieren</title>
+<link rel="stylesheet" href="assets/css/style.css">
+<script src="assets/js/videos.js" defer></script>
+<script src="assets/js/app.js" defer></script>
+</head>
+<body>
+<header id="topbar"></header>
+<div class="layout">
+<nav id="sidebar" aria-label="Lernpfad"></nav>
+<main>
+
+<div class="mod-head">
+  <div class="badges"><span class="badge">Übersicht</span></div>
+  <h1>Videos & Hilfeseiten</h1>
+  <p>Hier findest du alle Anleitungen, auf die der Lernpfad verweist. Wir verlinken <strong>nur offizielle Quellen</strong>: Microsoft Support und das ONLYOFFICE Hilfe-Center bzw. den offiziellen ONLYOFFICE-Kanal. So stimmen die Anleitungen mit deinem Programm überein.</p>
+</div>
+
+<div class="box tip">
+  <div class="box-title">💡 Tipps für englische Videos</div>
+  <p>Auf YouTube kannst du über das Zahnrad › <em>Untertitel</em> › <em>Automatisch übersetzen</em> › <em>Deutsch</em> einstellen. Außerdem kannst du über das Zahnrad die <em>Wiedergabegeschwindigkeit</em> verringern.</p>
+</div>
+
+<h2 class="ppt">PowerPoint 365</h2>
+<div class="media ppt" id="list-ppt"></div>
+
+<h2 class="oo">OnlyOffice</h2>
+<div class="media oo" id="list-oo"></div>
+
+<h2>Prüfstatus (für Lehrkräfte)</h2>
+<p style="font-size:.9rem;color:var(--muted)">„Link geprüft“ = Seite war erreichbar. „Freigegeben“ = eine Lehrkraft hat den Inhalt angesehen und für gut befunden. Eintragen in <code>assets/js/videos.js</code>.</p>
+<div class="table-wrap"><table id="status-table">
+  <thead><tr><th>ID</th><th>Programm</th><th>Titel</th><th>Art</th><th>Sprache</th><th>Link geprüft</th><th>Freigegeben</th></tr></thead>
+  <tbody></tbody>
+</table></div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var reg = window.MEDIA || {}, cfg = window.MEDIA_CONFIG || {};
+  var lists = { ppt: document.getElementById("list-ppt"), oo: document.getElementById("list-oo") };
+  var tbody = document.querySelector("#status-table tbody");
+  var appName = { ppt: "PowerPoint", oo: "OnlyOffice" };
+  Object.keys(reg).forEach(function (id) {
+    var m = reg[id];
+    if (!cfg.nurFreigegebene || m.freigegeben) lists[m.app].insertAdjacentHTML("beforeend", LP.mediaItem(id, m));
+    var tr = document.createElement("tr");
+    [id, appName[m.app], m.title, m.type, m.lang].forEach(function (v) {
+      var td = document.createElement("td"); td.textContent = v; tr.appendChild(td);
+    });
+    [m.linkGeprueft, m.freigegeben].forEach(function (v) {
+      var td = document.createElement("td");
+      td.innerHTML = v ? '<span class="status ok">' + v.replace(/</g, "&lt;") + "</span>" : '<span class="status open">offen</span>';
+      tr.appendChild(td);
+    });
+    tbody.appendChild(tr);
+  });
+});
+</script>
+
+</main>
+</div>
+</body>
+</html>
