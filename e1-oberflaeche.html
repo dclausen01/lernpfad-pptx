@@ -129,10 +129,26 @@
 </div>
 
 <div class="box design">
-  <div class="box-title">✏️ Gute Dateinamen</div>
-  <p>Ein Dateiname sollte auch in drei Monaten noch verraten, was drin ist. Bewährt hat sich:<br>
-  <code>Nachname_Thema_Datum</code> → z.&nbsp;B. <code>Yilmaz_Lieblingsort_2026-10-05.pptx</code></p>
-  <p>Vermeide Leerzeichen und Sonderzeichen wie <code>/ \ : * ? " &lt; &gt; |</code> – manche Systeme kommen damit nicht klar.</p>
+  <div class="box-title">✏️ Wie benenne ich Dateien sinnvoll?</div>
+  <p>Ein Dateiname sollte auch in drei Monaten noch verraten, was drin ist. Wir benutzen immer dieses Schema:</p>
+  <div class="fn-demo">
+    <div><span class="fn-ordner">Präsentieren\</span></div>
+    <div class="fn-line"><span class="fn-datum">2026-10-05</span> <span class="fn-titel">Mein Lieblingsort</span>_<span class="fn-typ">Präs</span>.pptx</div>
+    <div class="fn-line"><span class="fn-datum">2026-10-12</span> <span class="fn-titel">Mein Lieblingsort</span>_<span class="fn-typ">Präs</span>_<span class="fn-version">V2</span>.pptx</div>
+  </div>
+  <ul class="fn-legend">
+    <li><span class="fn-ordner">Ordner</span> – z.&nbsp;B. für die Unterteilung in Fächer oder Themen</li>
+    <li><span class="fn-datum">Datum im Format Jahr-Monat-Tag</span> – ganz vorne</li>
+    <li><span class="fn-titel">Aussagekräftiger Titel</span> – das Thema</li>
+    <li><span class="fn-typ">Typ</span> – z.&nbsp;B. <code>Präs</code>, <code>Handout</code>, <code>Hausarbeit</code></li>
+    <li><span class="fn-version">Version</span> – ab Version 2 dazuschreiben (<code>_V2</code>, <code>_V3</code> …), sonst geht der Überblick verloren</li>
+  </ul>
+  <details>
+    <summary>Warum eigentlich Jahr-Monat-Tag?</summary>
+    <p>Weil der Computer Dateinamen alphabetisch sortiert – und bei <code>2026-10-05</code> stimmt die alphabetische Reihenfolge automatisch mit der zeitlichen überein. Bei <code>05.10.2026</code> würde der 5. Oktober vor dem 12. September stehen, egal in welchem Jahr.</p>
+  </details>
+  <p><strong>Abgabe?</strong> Dann kommt immer dein Name mit in den Dateinamen: <code><span class="fn-datum">2026-10-12</span> <span class="fn-titel">Mein Lieblingsort</span>_<span class="fn-typ">Präs</span>_<span class="fn-version">Yilmaz,Mia</span>.pdf</code></p>
+  <p style="font-size:.9rem;color:var(--muted)">Vermeide Sonderzeichen wie <code>/ \ : * ? " &lt; &gt; |</code> – die sind in Dateinamen nicht erlaubt.</p>
 </div>
 
 <h2>4. Dein Thema für die Einsteiger-Stufe</h2>
@@ -154,11 +170,12 @@
     <li>Lege eine neue, leere Präsentation an.</li>
     <li>Klicke in das obere Feld der ersten Folie („Titel hinzufügen“ bzw. „Zum Hinzufügen eines Titels klicken“) und schreibe dein Thema hinein.</li>
     <li>Klicke in das untere Feld und schreibe deinen Namen hinein.</li>
-    <li>Speichere die Datei mit einem guten Dateinamen (siehe oben) in deinem Kursordner.</li>
+    <li>Lege in deinem Kursordner einen Ordner <code>Präsentieren</code> an und speichere die Datei dort nach unserem Schema, z.&nbsp;B. <code>2026-10-05 Mein Lieblingsort_Präs.pptx</code>.</li>
   </ol>
   <div class="check-title">Selbstcheck</div>
   <ul class="check">
-    <li>Meine Datei hat einen Namen nach dem Muster <code>Nachname_Thema_Datum</code>.</li>
+    <li>Mein Dateiname folgt dem Schema <code>Jahr-Monat-Tag Titel_Typ.pptx</code>.</li>
+    <li>Die Datei liegt in einem passenden Ordner.</li>
     <li>Ich weiß, in welchem Ordner meine Datei liegt, und finde sie wieder.</li>
     <li>Auf Folie 1 stehen Thema und Name.</li>
   </ul>
@@ -201,8 +218,13 @@
   </div>
   <div class="qa" data-right="2">
     <p class="q">Welcher Dateiname ist am besten?</p>
-    <ol><li><code>Präsentation1.pptx</code></li><li><code>Meyer_Hunde_2026-10-05.pptx</code></li><li><code>neu neu FINAL (2).pptx</code></li></ol>
-    <p class="fb" data-ok="Richtig: Name, Thema und Datum – eindeutig und ohne Leerzeichen." data-no="Schau nochmal auf den Tipp „Gute Dateinamen“."></p>
+    <ol><li><code>Präsentation1.pptx</code></li><li><code>2026-10-05 Hunde als Haustiere_Präs.pptx</code></li><li><code>neu neu FINAL (2).pptx</code></li><li><code>05.10.26 hunde.pptx</code></li></ol>
+    <p class="fb" data-ok="Richtig: Datum (Jahr-Monat-Tag), aussagekräftiger Titel und Typ – genau unser Schema." data-no="Schau nochmal auf den Kasten „Wie benenne ich Dateien sinnvoll?“."></p>
+  </div>
+  <div class="qa" data-right="3">
+    <p class="q">Du gibst dein Handout als PDF bei deiner Lehrkraft ab. Welcher Name passt?</p>
+    <ol><li><code>2026-10-12 Hunde als Haustiere_Handout.docx</code></li><li><code>Handout neu_Mia.pdf</code></li><li><code>2026-10-12 Hunde als Haustiere_Handout_Yilmaz,Mia.pdf</code></li></ol>
+    <p class="fb" data-ok="Genau – bei einer Abgabe kommt immer dein Name mit in den Dateinamen." data-no="Denk dran: Bei einer Abgabe gehört immer dein Name in den Dateinamen – im Schema hinten dran."></p>
   </div>
 </div>
 
