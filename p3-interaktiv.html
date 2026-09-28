@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Interaktiv: Trigger, Sprungmarken, Quiz – Lernpfad Präsentieren</title>
+<link rel="stylesheet" href="assets/css/style.css">
+<script src="assets/js/videos.js" defer></script>
+<script src="assets/js/app.js" defer></script>
+</head>
+<body data-module="p3">
+<header id="topbar"></header>
+<div class="layout">
+<nav id="sidebar" aria-label="Lernpfad"></nav>
+<main>
+
+<div class="box goals">
+  <div class="box-title">🎯 Das kannst du nach diesem Modul</div>
+  <ul>
+    <li>mit <strong>Triggern</strong> Animationen auslösen, wenn man auf ein bestimmtes Objekt klickt,</li>
+    <li>Schaltflächen bauen, die zu beliebigen Folien springen,</li>
+    <li>ein <strong>Quiz</strong> oder eine Lernstation bauen, die andere selbstständig durchklicken,</li>
+    <li class="ppt">mit <strong>Zoom</strong> eine klickbare Übersicht erzeugen (nur PowerPoint).</li>
+  </ul>
+</div>
+
+<p>Bisher lief deine Präsentation immer geradeaus: Klick – nächste Folie. Jetzt baust du Präsentationen, in denen <strong>das Publikum entscheidet</strong>, was passiert. Perfekt für Quizze, Lernstationen, Rätsel oder Infoterminals.</p>
+
+<h2>1. Trigger: „Wenn ich hier klicke, passiert dort etwas“</h2>
+<p>Normalerweise startet eine Animation beim nächsten Klick – egal wo. Mit einem <strong>Trigger</strong> startet sie nur, wenn man auf ein <strong>bestimmtes Objekt</strong> klickt.</p>
+<div class="both-grid">
+  <div class="box how ppt">
+    <span class="app-label">PowerPoint 365</span>
+    <ol class="steps">
+      <li><strong>Tipp vorab:</strong> Objekte sinnvoll benennen, sonst heißen sie „Rechteck 7“: <span class="path">Start › Anordnen › Auswahlbereich</span> → Doppelklick auf den Namen, z.&nbsp;B. <code>Antwort A</code>, <code>Feedback A</code>.</li>
+      <li>Das Objekt, das <strong>erscheinen</strong> soll (z.&nbsp;B. <code>Feedback A</code>), markieren und ihm eine Eingangsanimation geben.</li>
+      <li><span class="path">Animationen › Trigger › Beim Klicken auf</span> → das <strong>auslösende</strong> Objekt wählen (<code>Antwort A</code>).</li>
+      <li>Im Animationsbereich steht die Animation jetzt unter „Trigger: Antwort A“.</li>
+    </ol>
+    <figure class="rb" data-app="ppt" data-tab="Animationen"
+      data-groups="Animation: Erscheinen, Verblassen, Effektoptionen | Erweiterte Animation: Animation hinzufügen, Animationsbereich, *1 Trigger ▾, Animation übertragen | Anzeigedauer: Start, Dauer"
+      data-menu="Trigger|*2 Beim Klicken auf ›|Bei Textmarke ›"
+      data-caption="Animationen › Trigger › Beim Klicken auf › Objekt auswählen"></figure>
+  </div>
+  <div class="box how oo">
+    <span class="app-label">OnlyOffice</span>
+    <ol class="steps">
+      <li><strong>Tipp vorab:</strong> Objekte benennen: Rechtsklick › <em>Erweiterte Einstellungen der Form</em> › <em>Allgemeines</em> › <em>Name der Form</em>, z.&nbsp;B. <code>Antwort A</code>.</li>
+      <li>Das Objekt, das erscheinen soll, markieren und ihm eine Animation geben (<span class="path">Animation › …</span>).</li>
+      <li><span class="path">Animation › Trigger › Beim Klicken auf</span> → das auslösende Objekt wählen.</li>
+    </ol>
+    <figure class="rb" data-app="oo" data-tab="Animation"
+      data-groups=": Vorschau | : Animationsgalerie ▾, Parameter | : Animation hinzufügen, Animationsbereich, *1 Trigger ▾ | : Start, Dauer, Verzögern"
+      data-menu="Trigger|Bei Reihenfolge von Klicken|*2 Beim Klicken auf ›"
+      data-caption="Animation › Trigger › Beim Klicken auf › Objekt auswählen"></figure>
+  </div>
+</div>
+
+<h2>2. Sprung-Schaltflächen</h2>
+<p>Eine Form wird zur Schaltfläche, wenn du ihr einen <strong>Link auf eine Folie</strong> gibst (das kennst du aus F6): Form markieren › <kbd>Strg</kbd>+<kbd>K</kbd> › <span class="ppt"><em>Aktuelles Dokument</em></span><span class="oo"><em>Folie aus dieser Präsentation</em></span> › Folie wählen.</p>
+<div class="box note ppt">
+  <p><strong>PowerPoint-Extra – Interaktive Schaltflächen:</strong> <span class="path">Einfügen › Formen</span> › ganz unten <em>Interaktive Schaltflächen</em> (Pfeile, Haus, Info …). Nach dem Aufziehen öffnet sich sofort das Fenster <em>Aktionseinstellungen</em> › <em>Hyperlink zu</em> › z.&nbsp;B. <em>Nächste Folie</em> oder <em>Folie …</em>.</p>
+</div>
+
+<h2>3. Selbstlauf-Modus: nur noch per Schaltfläche weiter</h2>
+<p>Bei einem Quiz soll man <em>nicht</em> einfach per Klick zur Lösungsfolie kommen. Deshalb schaltest du das normale Weiterklicken ab:</p>
+<div class="both-grid">
+  <div class="box how ppt">
+    <span class="app-label">PowerPoint 365</span>
+    <p><span class="path">Bildschirmpräsentation › Bildschirmpräsentation einrichten</span> → <strong>An einem Kiosk ansehen (volle Bildschirmgröße)</strong> → OK.</p>
+    <p>Jetzt geht es nur noch über deine Links und Trigger weiter. <kbd>Esc</kbd> beendet wie immer.</p>
+  </div>
+  <div class="box how oo">
+    <span class="app-label">OnlyOffice</span>
+    <p>Alle Folien markieren (in der Übersicht <kbd>Strg</kbd>+<kbd>A</kbd>) › Registerkarte <strong>Übergänge</strong> › Häkchen bei <strong>Bei Klicken beginnen</strong> entfernen (und <em>Verzögern</em> aus lassen).</p>
+    <p>Teste genau, ob sich dann nur noch deine Schaltflächen bedienen lassen – das Verhalten kann je nach Version abweichen. Die Pfeiltasten funktionieren meist weiterhin.</p>
+  </div>
+</div>
+
+<div class="box note ppt">
+  <div class="box-title">🔍 Nur PowerPoint: Zoom</div>
+  <p><span class="path">Einfügen › Zoom</span> erzeugt klickbare Vorschaubilder anderer Folien:</p>
+  <ul>
+    <li><strong>Zusammenfassungszoom</strong> – eine Übersichtsfolie mit allen gewählten Abschnitten; nach jedem Abschnitt geht es automatisch zur Übersicht zurück.</li>
+    <li><strong>Abschnittszoom</strong> – Sprung in einen Abschnitt (Abschnitte kennst du aus E2 Plus).</li>
+    <li><strong>Folienzoom</strong> – Sprung zu einer einzelnen Folie.</li>
+  </ul>
+  <p>Wirkt wie eine Mischung aus Morphen und Inhaltsverzeichnis – ideal für Präsentationen, bei denen das Publikum die Reihenfolge wählt.</p>
+</div>
+
+<div class="box design">
+  <div class="box-title">✏️ Gestaltungsregeln für interaktive Präsentationen</div>
+  <ul>
+    <li><strong>Schaltflächen müssen wie Schaltflächen aussehen</strong> – deutlich abgesetzt, immer an derselben Stelle, gleich gestaltet.</li>
+    <li><strong>Man darf sich nie „verlaufen“:</strong> Jede Folie braucht einen Weg zurück (z.&nbsp;B. Haus-Symbol zur Startfolie).</li>
+    <li><strong>Klare Anweisung</strong> auf der Folie: „Klicke auf die richtige Antwort.“</li>
+    <li><strong>Durchklicken lassen!</strong> Nur ein Test durch eine andere Person zeigt, ob alles funktioniert.</li>
+  </ul>
+</div>
+
+<h2>Aufgaben</h2>
+
+<div class="box task basis">
+  <div class="task-head"><span class="lvl basis">Basis</span><h3>1 · Die Ein-Folien-Quizfrage (Trigger)</h3><span class="lvl time">15 min</span></div>
+  <p>Baue eine Folie mit einer Frage und drei Antwort-Formen. Klickt man auf eine Antwort, erscheint daneben ✅ „Richtig!“ oder ❌ „Leider falsch – versuch’s nochmal“.</p>
+  <ol class="steps">
+    <li>Frage oben, drei Antwort-Formen untereinander, daneben je eine Feedback-Form.</li>
+    <li>Alle 6 Formen sinnvoll benennen.</li>
+    <li>Jede Feedback-Form bekommt eine Eingangsanimation mit Trigger auf „ihre“ Antwort.</li>
+  </ol>
+  <ul class="check">
+    <li>Am Anfang sind nur Frage und Antworten zu sehen.</li>
+    <li>Jede Antwort zeigt beim Anklicken das richtige Feedback.</li>
+    <li>Ein Klick auf eine leere Stelle löst nichts Falsches aus.</li>
+  </ul>
+</div>
+
+<div class="box task basis">
+  <div class="task-head"><span class="lvl basis">Basis</span><h3>2 · Das Mehr-Folien-Quiz (Links)</h3><span class="lvl time">15 min</span></div>
+  <p>Baue ein Quiz mit <strong>3 Fragen</strong> zu einem Thema deiner Wahl:</p>
+  <ul>
+    <li>Startfolie mit Button „Quiz starten“,</li>
+    <li>je Frage eine Folie; die richtige Antwort springt zur nächsten Frage, falsche Antworten springen zu einer Folie „Leider falsch“ mit Button „Nochmal versuchen“ (zurück zur Frage),</li>
+    <li>am Ende eine Folie „Geschafft!“ mit Button zurück zum Start.</li>
+  </ul>
+  <p>Aktiviere den Selbstlauf-Modus (Kiosk bzw. ohne Klick-Weiterschaltung).</p>
+  <ul class="check">
+    <li>Man kommt nur über die Antworten weiter, nicht durch einfaches Klicken.</li>
+    <li>Jeder Button führt zur richtigen Folie (alles einmal durchgeklickt!).</li>
+    <li>Eine andere Person hat das Quiz ohne Hilfe geschafft.</li>
+  </ul>
+  <details><summary>Tipp: Folienplan zeichnen</summary>
+    <p>Skizziere vorher auf Papier: Kästchen für jede Folie, Pfeile für jeden Link. Dann nummerieren. So verlierst du nicht den Überblick. Die „Leider falsch“-Folie brauchst du einmal pro Frage, damit „Nochmal versuchen“ zur richtigen Frage zurückführt.</p>
+  </details>
+</div>
+
+<div class="box task kreativ">
+  <div class="task-head"><span class="lvl kreativ">Kreativ</span><h3>3 · Entdecker-Folie</h3><span class="lvl time">10 min +</span></div>
+  <p>Baue eine Folie mit einem großen Bild (z.&nbsp;B. ein Zimmer, eine Landschaft, eine Maschine, ein Körper) und 4–6 „Hotspots“ (kleine Kreise). Klickt man auf einen Hotspot, erscheint eine Info-Box mit einer Erklärung. Ideal für Lernstationen oder als Info-Terminal.</p>
+  <ul class="check">
+    <li>Jede Info-Box erscheint beim Klick auf „ihren“ Hotspot.</li>
+    <li>Die Hotspots sind als klickbar erkennbar.</li>
+    <li class="ppt">Profi: Info-Boxen verschwinden wieder (Beenden-Animation mit demselben Trigger oder einem „x“).</li>
+  </ul>
+</div>
+
+<div class="box quiz">
+  <div class="box-title">🧠 Kurz-Check</div>
+  <div class="qa" data-right="3">
+    <p class="q">Was ist ein Trigger?</p>
+    <ol><li>Ein besonders schneller Übergang</li><li>Ein Link zu einer Webseite</li><li>Eine Einstellung, durch die eine Animation erst beim Klick auf ein bestimmtes Objekt startet</li></ol>
+    <p class="fb" data-ok="Genau." data-no="Nicht ganz. Ein Trigger ist ein „Auslöser“ für Animationen."></p>
+  </div>
+</div>
+
+<h2>Videos & Hilfe</h2>
+<div class="media" data-ids="ms-trigger, ms-zoom, oo-animationen, oo-links"></div>
+
+</main>
+</div>
+</body>
+</html>
