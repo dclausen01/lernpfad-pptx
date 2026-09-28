@@ -16,6 +16,8 @@ Ein webbasierter Lernpfad für Schüler:innen in der Erzieherausbildung und im b
 - **Screenshot-Platzhalter**: Eine Bilddatei mit dem angezeigten Namen in `img/screens/` ablegen, dann erscheint sie automatisch.
 - **Gestufte Aufgaben** (Basis / Plus / Kreativ) mit Checklisten zur Selbstkontrolle, aufklappbaren Lösungen und Kurz-Checks.
 - **Zentrale Videoliste** (`assets/js/videos.js`) nur mit offiziellen Quellen, mit Prüf- und Freigabestatus.
+- **Übungsdateien** (`material/*.pptx`) für E3, F3, F4, P2, P3 – öffnen sich in PowerPoint und OnlyOffice.
+- **Selbstcheck** mit Stufenempfehlung, **Notizfeld** pro Modul (sammelbar zum Abgeben).
 - **Fortschritt** lokal im Browser (keine Anmeldung, keine Datenübertragung).
 
 ## Nutzung
@@ -39,4 +41,6 @@ assets/css/style.css
 assets/js/app.js        Navigation, Umschalter, Schemagrafiken, Checklisten, Quiz
 assets/js/videos.js     zentrale Linkliste
 img/screens/            eigene Screenshots (optional)
+material/               Übungsdateien (.pptx), Quellcode in material/_quelle/
+assets/fonts/           Fraunces & Source Sans 3 (SIL Open Font License)
 ```
