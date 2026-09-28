@@ -118,6 +118,10 @@
     bar.querySelector(".menu-btn").addEventListener("click", function () {
       document.body.classList.toggle("nav-open");
     });
+    // Höhe der Kopfzeile messen (bricht am Handy um), damit die Navigation direkt darunter beginnt
+    function measure() { document.documentElement.style.setProperty("--topbar-h", bar.offsetHeight + "px"); }
+    measure();
+    window.addEventListener("resize", measure);
     var btns = bar.querySelectorAll(".app-switch button");
     for (var i = 0; i < btns.length; i++) {
       btns[i].addEventListener("click", function () { setApp(this.dataset.app); });
