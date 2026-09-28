@@ -41,6 +41,9 @@
     { id: "pm", level: "profis", file: "pm-meilenstein.html", title: "Meilenstein: Profi-Projekt", min: 20, milestone: true }
   ];
 
+  // Abgabeformular (Nextcloud Forms) für alle Meilensteine. Leer lassen = kein Knopf.
+  var ABGABE_LINK = "https://cloud.bbz-rd-eck.de/apps/forms/s/TwSkGeRGmxoHJ848zHaZRC3i";
+
   var EXTRA = [
     { file: "regeln.html", title: "Spickzettel: Gute Folien" },
     { file: "videos.html", title: "Videos & Hilfeseiten" },
@@ -442,6 +445,19 @@
     document.body.removeChild(t);
   }
 
+  // ---------- Abgabe-Kasten auf den Meilenstein-Seiten ----------
+  // <div class="abgabe" data-option="Einsteiger: „Meilenstein: …“"></div>
+  function buildAbgabe() {
+    var boxes = document.querySelectorAll("div.abgabe");
+    for (var i = 0; i < boxes.length; i++) {
+      var option = boxes[i].dataset.option || "";
+      boxes[i].innerHTML = ABGABE_LINK
+        ? '<p style="margin:0 0 .5rem"><a class="btn" href="' + esc(ABGABE_LINK) + '" target="_blank" rel="noopener">Zum Abgabeformular ↗</a></p>' +
+          '<p style="margin:0;font-size:.92rem">Melde dich mit deinem Schul-Konto an, lade deine Datei(en) hoch und wähle bei „Der abgegebene Meilenstein ist“: <strong>' + esc(option) + "</strong>.</p>"
+        : '<p style="margin:0">Den Link zum Abgabeformular bekommst du von deiner Lehrkraft.</p>';
+    }
+  }
+
   // ---------- Selbstcheck auf der Startseite ----------
   // <div id="selfcheck"> mit Radiogruppen name="q1".."q3" (Werte 0–2) und <p id="suggest">
   function buildSelfcheck() {
@@ -485,5 +501,6 @@
     buildQuiz();
     buildProgress();
     buildSelfcheck();
+    buildAbgabe();
   });
 })();
