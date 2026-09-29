@@ -145,7 +145,9 @@
         if (!c.url && c.uservisible) return; // z. B. Textfelder ohne eigene Seite
         out.push({
           kind: "cm", id: String(c.id), name: decode(c.name), module: c.module, modname: c.modname,
-          url: c.uservisible ? c.url : null, done: !!c.isoverallcomplete, locked: !c.uservisible,
+          url: c.uservisible ? c.url : null, locked: !c.uservisible,
+          // Moodle 5: isoverallcomplete; Moodle 4.x: completionstate (1 = erledigt, 2 = bestanden, teils als Text)
+          done: c.isoverallcomplete != null ? !!c.isoverallcomplete : (+c.completionstate === 1 || +c.completionstate === 2),
           current: String(c.id) === current
         });
       });

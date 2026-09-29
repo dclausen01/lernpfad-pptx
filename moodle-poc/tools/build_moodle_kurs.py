@@ -7,12 +7,14 @@ Bewertungsraster, Aktivitätsabschluss und Freischaltungen. Keine Klickarbeit, k
 
 Format der Kursbeschreibung: siehe moodle-poc/kurs/praesentieren.yaml (kommentiert).
 
-Grundlage ist das Sicherungsformat von Moodle 5 (geprüft mit 5.2). Die Sicherung trägt die Version 5.0,
-damit sie sich in jedem Moodle ab 5.0 ohne Warnung wiederherstellen lässt (Unterabschnitte gibt es erst ab 5.0).
-Lernpakete werden nur als ZIP mitgeliefert; Moodle entpackt und analysiert sie beim Wiederherstellen selbst.
+Zwei Ziele (geprüft mit Moodle 4.2.3 und 5.2.3):
+    --moodle 5   Einheiten als Unterabschnitte (gibt es erst ab Moodle 5.0)
+    --moodle 4   ohne Unterabschnitte: alle Aktivitäten einer Stufe untereinander im Abschnitt (Moodle 4.x)
+Lernpakete kommen vollständig mit (ZIP, entpackte Dateien und SCO-Struktur aus imsmanifest.xml), so wie Moodle
+selbst sichert – Moodle 4.x entpackt Pakete beim Wiederherstellen nicht von allein.
 
 Aufruf:
-    python3 moodle-poc/tools/build_moodle_kurs.py moodle-poc/kurs/praesentieren.yaml [-o datei.mbz]
+    python3 moodle-poc/tools/build_moodle_kurs.py moodle-poc/kurs/praesentieren.yaml --moodle 4 [-o datei.mbz]
 """
 import argparse
 import hashlib
@@ -23,14 +25,19 @@ import re
 import sys
 import tarfile
 import time
+import xml.etree.ElementTree as ET
+import zipfile
 from pathlib import Path
 from xml.sax.saxutils import escape
 
 import yaml
 
-MOODLE_VERSION = "2025041400"   # Moodle 5.0
-MOODLE_RELEASE = "5.0 (Build: 20250414)"
-BACKUP_RELEASE = "5.0"
+# Ziel-Versionen: Die Sicherung trägt die niedrigste passende Version, dann gibt es beim Wiederherstellen keine Warnung.
+ZIELE = {
+    # h5p: Die aktuellen H5P-Bibliotheken brauchen H5P-Kern 1.26/1.27; Moodle 4.2 hat 1.25 und kann sie nicht nutzen.
+    "4": dict(version="2023042400", release="4.2 (Build: 20230424)", backup_release="4.2", unterabschnitte=False, h5p=False),
+    "5": dict(version="2025041400", release="5.0 (Build: 20250414)", backup_release="5.0", unterabschnitte=True, h5p=True),
+}
 NULL = "$@NULL@$"
 NOW = int(time.time())
 
@@ -49,15 +56,16 @@ def xml_doc(body):
 # ---------------------------------------------------------------- Modell aufbauen
 
 class Kurs:
-    def __init__(self, beschreibung, basis):
+    def __init__(self, beschreibung, basis, ziel="5"):
         self.b = beschreibung
         self.basis = basis
+        self.ziel = ZIELE[ziel]
         self.sections = []      # {id, number, name, summary, sequence[], availability, component, itemid, parentcmid}
         self.activities = []    # {moduleid, modname, instanceid, contextid, sectionid, sectionnumber, insub, ...}
         self.files = []         # {id, hash, contextid, component, filearea, name, size, mime, data}
         self.grade_items = []
         self.ids = {}           # eigene ID → moduleid
-        self._n = {"section": 100, "module": 1000, "instance": 1, "context": 5000, "file": 1, "grade": 10}
+        self._n = {"section": 100, "module": 1000, "instance": 1, "context": 5000, "file": 1, "grade": 10, "sco": 1}
 
     def nid(self, art):
         self._n[art] += 1
@@ -89,6 +97,18 @@ class Kurs:
             a = s["quelle"]
             vorige_haupt = None
             for e in a.get("einheiten", []):
+                ref = e.get("freischalten_nach") or (vorige_haupt if a.get("reihenfolge", "nacheinander") == "nacheinander" else None)
+                if not self.ziel["unterabschnitte"]:
+                    # Moodle 4: keine Unterabschnitte – Inhalte direkt in den Abschnitt, jede mit der Freischaltung der Einheit
+                    for j, inh in enumerate(e.get("inhalte", [])):
+                        akt = self.inhalt(inh, s, insub=False)
+                        if akt is None:
+                            continue
+                        if ref:
+                            verzoegert.append((akt, ref))
+                        if j == 0:
+                            vorige_haupt = inh["id"]
+                    continue
                 # Unterabschnitt = Aktivität "subsection" + eigener (delegierter) Abschnitt
                 sub = self.aktivitaet("subsection", s, dict(name=e["titel"]), insub=False)
                 nummer += 1
@@ -97,7 +117,6 @@ class Kurs:
                           parentcmid=sub["moduleid"])
                 sub["delegated"] = ds
                 self.sections.append(ds)
-                ref = e.get("freischalten_nach") or (vorige_haupt if a.get("reihenfolge", "nacheinander") == "nacheinander" else None)
                 if ref:
                     verzoegert.append((sub, ref))
                 for j, inh in enumerate(e.get("inhalte", [])):
@@ -133,27 +152,69 @@ class Kurs:
         akt["files"].append(f["id"])
         return f
 
+    def scorm_inhalt(self, akt, paket):
+        """Wie Moodle beim Hochladen: Paket entpacken (Dateibereich „content“) und die SCO-Struktur aus
+        imsmanifest.xml ablesen. Nötig für Moodle 4.x; Moodle 5 erkennt am Prüfwert, dass nichts zu tun ist."""
+        z = zipfile.ZipFile(io.BytesIO(paket["data"]))
+        for name in z.namelist():
+            if name.endswith("/"):
+                continue
+            data = z.read(name)
+            pfad, _, datei = name.rpartition("/")
+            f = dict(id=self.nid("file"), hash=hashlib.sha1(data).hexdigest(), contextid=akt["contextid"],
+                     component="mod_scorm", filearea="content", filepath="/" + (pfad + "/" if pfad else ""),
+                     name=datei, size=len(data), mime=None, data=data)
+            self.files.append(f)
+            akt["files"].append(f["id"])
+        ns = lambda tag: "{*}" + tag
+        man = ET.fromstring(z.read("imsmanifest.xml"))
+        ident = man.get("identifier")
+        res = {r.get("identifier"): r.get("href") for r in man.iter() if r.tag.endswith("}resource") or r.tag == "resource"}
+        scoes, order = [], 0
+        for org in man.find(ns("organizations")).findall(ns("organization")):
+            order += 1
+            org_title = org.findtext(ns("title")) or akt["name"]
+            scoes.append(dict(id=self.nid("sco"), manifest=ident, organization="", parent="/",
+                              identifier=org.get("identifier"), launch="", scormtype="", title=org_title,
+                              sortorder=order, datas=[]))
+            for item in org.iter():
+                if not (item.tag.endswith("}item") or item.tag == "item"):
+                    continue
+                order += 1
+                href = res.get(item.get("identifierref"), "")
+                scoes.append(dict(id=self.nid("sco"), manifest=ident, organization=org.get("identifier"),
+                                  parent=org.get("identifier"), identifier=item.get("identifier"), launch=href,
+                                  scormtype="sco" if href else "", title=item.findtext(ns("title")) or akt["name"],
+                                  sortorder=order, datas=[("isvisible", "true"), ("parameters", "")]))
+        akt["scoes"] = scoes
+        akt["launch"] = next((s["id"] for s in scoes if s["launch"]), 0)
+
     def note(self, akt, grademax):
         gi = dict(id=self.nid("grade"), name=akt["name"], module=akt["modname"], instance=akt["instanceid"],
                   grademax=grademax)
         self.grade_items.append(gi)
         akt["grade_item"] = gi
 
-    def inhalt(self, inh, ds):
+    def inhalt(self, inh, ds, insub=True):
         typ = inh["typ"]
+        if typ == "h5p" and not self.ziel["h5p"]:
+            print(f"  Hinweis: H5P „{inh['titel']}“ ausgelassen – die H5P-Bibliotheken brauchen Moodle 5.", file=sys.stderr)
+            return None
         if typ == "lernpaket":
-            akt = self.aktivitaet("scorm", ds, dict(name=inh["titel"], intro=inh.get("text", "")), completion=2)
+            akt = self.aktivitaet("scorm", ds, dict(name=inh["titel"], intro=inh.get("text", "")), completion=2, insub=insub)
             f = self.datei(akt, "mod_scorm", inh["datei"], "application/zip")
             akt["reference"] = f["name"]
+            akt["sha1hash"] = f["hash"]
+            self.scorm_inhalt(akt, f)
             akt["maxgrade"] = inh.get("punkte", 100)
             self.note(akt, akt["maxgrade"])
         elif typ == "h5p":
             akt = self.aktivitaet("h5pactivity", ds, dict(name=inh["titel"], intro=inh.get("text", "")),
-                                  completion=2, completiongradeitemnumber=0)
+                                  completion=2, completiongradeitemnumber=0, insub=insub)
             self.datei(akt, "mod_h5pactivity", inh["datei"], "application/zip.h5p")
             self.note(akt, inh.get("punkte", 100))
         elif typ == "aufgabe":
-            akt = self.aktivitaet("assign", ds, dict(name=inh["titel"], intro=inh.get("text", "")), completion=2)
+            akt = self.aktivitaet("assign", ds, dict(name=inh["titel"], intro=inh.get("text", "")), completion=2, insub=insub)
             akt["grade"] = inh.get("punkte", 100)
             akt["filetypes"] = inh.get("dateitypen", "")
             akt["maxfiles"] = inh.get("dateien", 1)
@@ -227,7 +288,7 @@ EMPTY = {
 
 
 def module_xml(a):
-    return f"""<module id="{a['moduleid']}" version="2025041400">
+    return f"""<module id="{a['moduleid']}" version="{a['version']}">
   <modulename>{a['modname']}</modulename>
   <sectionid>{a['sectionid']}</sectionid>
   <sectionnumber>{a['sectionnumber']}</sectionnumber>
@@ -280,10 +341,10 @@ def scorm_xml(a):
     <displayattemptstatus>0</displayattemptstatus>
     <displaycoursestructure>0</displaycoursestructure>
     <updatefreq>0</updatefreq>
-    <sha1hash></sha1hash>
+    <sha1hash>{a['sha1hash']}</sha1hash>
     <md5hash></md5hash>
     <revision>1</revision>
-    <launch>0</launch>
+    <launch>{a['launch']}</launch>
     <skipview>2</skipview>
     <hidebrowse>0</hidebrowse>
     <hidetoc>3</hidetoc>
@@ -303,8 +364,40 @@ def scorm_xml(a):
     <completionstatusallscos>0</completionstatusallscos>
     <autocommit>0</autocommit>
     <scoes>
+{scoes_xml(a)}
     </scoes>
   </scorm>""")
+
+
+def scoes_xml(a):
+    out = []
+    for s in a.get("scoes", []):
+        datas = "\n".join(f"""          <sco_data id="{s['id'] * 10 + i}">
+            <name>{x(n)}</name>
+            <value>{x(v)}</value>
+          </sco_data>""" for i, (n, v) in enumerate(s["datas"], 1))
+        out.append(f"""      <sco id="{s['id']}">
+        <manifest>{x(s['manifest'])}</manifest>
+        <organization>{x(s['organization'])}</organization>
+        <parent>{x(s['parent'])}</parent>
+        <identifier>{x(s['identifier'])}</identifier>
+        <launch>{x(s['launch'])}</launch>
+        <scormtype>{x(s['scormtype'])}</scormtype>
+        <title>{x(s['title'])}</title>
+        <sortorder>{s['sortorder']}</sortorder>
+        <sco_datas>
+{datas}
+        </sco_datas>
+        <seq_ruleconds>
+        </seq_ruleconds>
+        <seq_rolluprules>
+        </seq_rolluprules>
+        <seq_objectives>
+        </seq_objectives>
+        <sco_tracks>
+        </sco_tracks>
+      </sco>""")
+    return "\n".join(out)
 
 
 def h5p_xml(a):
@@ -618,15 +711,15 @@ def files_xml(k):
     <component>{f['component']}</component>
     <filearea>{f['filearea']}</filearea>
     <itemid>0</itemid>
-    <filepath>/</filepath>
+    <filepath>{x(f.get('filepath', '/'))}</filepath>
     <filename>{x(f['name'])}</filename>
     <userid>{NULL}</userid>
     <filesize>{f['size']}</filesize>
-    <mimetype>{f['mime']}</mimetype>
+    <mimetype>{x(f['mime'])}</mimetype>
     <status>0</status>
     <timecreated>{NOW}</timecreated>
     <timemodified>{NOW}</timemodified>
-    <source>{x(f['name'])}</source>
+    <source>{x(f['name'] if f['filearea'] == 'package' else None)}</source>
     <author>{NULL}</author>
     <license>{NULL}</license>
     <sortorder>0</sortorder>
@@ -693,10 +786,10 @@ def moodle_backup_xml(k, name):
     return f"""<moodle_backup>
   <information>
     <name>{x(name)}</name>
-    <moodle_version>{MOODLE_VERSION}</moodle_version>
-    <moodle_release>{MOODLE_RELEASE}</moodle_release>
-    <backup_version>{MOODLE_VERSION}</backup_version>
-    <backup_release>{BACKUP_RELEASE}</backup_release>
+    <moodle_version>{k.ziel['version']}</moodle_version>
+    <moodle_release>{k.ziel['release']}</moodle_release>
+    <backup_version>{k.ziel['version']}</backup_version>
+    <backup_release>{k.ziel['backup_release']}</backup_release>
     <backup_date>{NOW}</backup_date>
     <mnet_remoteusers>0</mnet_remoteusers>
     <include_files>1</include_files>
@@ -784,7 +877,7 @@ def schreibe_mbz(k, ziel):
         add(f"sections/section_{s['id']}/inforef.xml", "<inforef>\n</inforef>")
     for a in k.activities:
         d = f"activities/{a['modname']}_{a['moduleid']}/"
-        add(d + "module.xml", module_xml(a))
+        add(d + "module.xml", module_xml(dict(a, version=k.ziel["version"])))
         add(d + a["modname"] + ".xml", {"scorm": scorm_xml, "h5pactivity": h5p_xml, "assign": assign_xml,
                                         "subsection": subsection_xml}[a["modname"]](a))
         add(d + "grades.xml", activity_grades_xml(a))
@@ -828,13 +921,15 @@ def schreibe_mbz(k, ziel):
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("beschreibung", type=Path, help="Kursbeschreibung (YAML)")
+    ap.add_argument("--moodle", choices=sorted(ZIELE), default="5",
+                    help="Ziel: 4 = ohne Unterabschnitte (Moodle 4.x), 5 = mit Unterabschnitten (ab Moodle 5.0)")
     ap.add_argument("-o", "--out", type=Path)
     args = ap.parse_args()
     b = yaml.safe_load(args.beschreibung.read_text(encoding="utf-8"))
     basis = (args.beschreibung.parent / b.get("basis", ".")).resolve()
-    k = Kurs(b, basis)
+    k = Kurs(b, basis, args.moodle)
     k.baue()
-    ziel = args.out or (Path(__file__).resolve().parents[1] / "dist" / "kurs" / f"{b['kurs']['kurzname']}.mbz")
+    ziel = args.out or (Path(__file__).resolve().parents[1] / "dist" / "kurs" / f"{b['kurs']['kurzname']}_moodle{args.moodle}.mbz")
     ziel.parent.mkdir(parents=True, exist_ok=True)
     schreibe_mbz(k, ziel)
     typen = {}

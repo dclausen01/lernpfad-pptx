@@ -4,12 +4,12 @@ Die HTML-Lernpfade sollen in Moodle (5.x) laufen und dabei möglichst viel von i
 
 | Was | Wofür | Dateien in `dist/` |
 |---|---|---|
-| **Kompletter Kurs** | Den ganzen Lernpfad Präsentieren mit einem Klick in einen Moodle-Kurs holen | `kurs/lernpfad-praesentieren.mbz` |
+| **Kompletter Kurs** | Den ganzen Lernpfad Präsentieren mit einem Klick in einen Moodle-Kurs holen | `kurs/lernpfad-praesentieren_moodle4.mbz` bzw. `_moodle5.mbz` |
 | **Lernpakete (SCORM)** | einzelne Module von Hand einbinden | `scorm/*.zip` |
 | **Moodle-XML** | Aufgaben aus LF11c, Modul 1, für die Fragensammlung (Tests) | `moodle-xml/lf-11c_m1_fragen.xml` |
 | **H5P** | Kurz-Checks als Selbstlern-Häppchen | `h5p/*.h5p` |
 
-Alles wurde vorab in einem frischen **Moodle 5.2.3** (Deutsch) eingespielt und als Lehrkraft und Schüler:in durchgeklickt. Die Ergebnisse stehen jeweils unter „Vorab geprüft“.
+Alles wurde vorab in frischen Installationen von **Moodle 5.2.3** und **Moodle 4.2.3** eingespielt und als Lehrkraft und Schüler:in durchgeklickt. Die Ergebnisse stehen jeweils unter „Vorab geprüft“.
 
 ![Wiederhergestellter Kurs in Moodle](screenshots/kurs-wiederhergestellt.png)
 
@@ -17,11 +17,18 @@ Alles wurde vorab in einem frischen **Moodle 5.2.3** (Deutsch) eingespielt und a
 
 ## 1. Kompletter Kurs zum Wiederherstellen (empfohlen)
 
-**Datei:** `dist/kurs/lernpfad-praesentieren.mbz` (ca. 5 MB)
+**Dateien** – je nach Moodle-Version:
 
-Enthält den ganzen Lernpfad: drei Abschnitte (Einsteiger, Fortgeschrittene, Profis), darin je Modul ein **Unterabschnitt** mit dem Lernpaket. Dazu kommen:
+| Datei | für | Aufbau |
+|---|---|---|
+| `dist/kurs/lernpfad-praesentieren_moodle5.mbz` | **Moodle 5.x** | je Modul ein **Unterabschnitt** mit Lernpaket (und ggf. Kurz-Check, Abgabe) |
+| `dist/kurs/lernpfad-praesentieren_moodle4.mbz` | **Moodle 4.x** (getestet mit 4.2.3) | ohne Unterabschnitte (gibt es erst ab 5.0): alle Aktivitäten einer Stufe untereinander; **ohne H5P** (siehe unten) |
+
+Beide sind ca. 5 MB groß. Die Moodle-5-Datei in einem Moodle 4 wiederherzustellen, funktioniert **nicht** richtig.
+
+Enthält den ganzen Lernpfad: drei Abschnitte (Einsteiger, Fortgeschrittene, Profis) mit den Lernpaketen der Module. Dazu kommen:
 - **Meilensteine:** Lernpaket mit Auftrag und Checkliste, dazu eine **Moodle-Aufgabe** mit Datei-Upload und **Bewertungsraster**. Das Raster wird automatisch aus der Tabelle auf der Meilenstein-Seite übernommen.
-- **Beispiel E3:** zusätzlich ein **H5P-Kurz-Check** und eine **Zwischenabgabe** (Upload).
+- **Beispiel E3:** zusätzlich eine **Zwischenabgabe** (Upload) und – nur in der Moodle-5-Datei – ein **H5P-Kurz-Check**.
 - **Freischaltung:** Jedes Modul wird frei, sobald das vorige als erledigt markiert ist. Die nächste Stufe wird frei, sobald der Meilenstein abgegeben ist.
 - **Aktivitätsabschluss** ist überall eingestellt. In Aufgaben und H5P stehen Links „⬅️ Zurück / ➡️ Weiter im Lernpfad“, weil Moodle dort selbst kein „Weiter“ anzeigt.
 
@@ -29,7 +36,7 @@ Enthält den ganzen Lernpfad: drei Abschnitte (Einsteiger, Fortgeschrittene, Pro
 
 1. Einen **leeren Kurs** nehmen oder anlegen lassen.
 2. Kurs → **Mehr** → **Wiederverwendung** → **Wiederherstellen**.
-3. `lernpfad-praesentieren.mbz` hochladen → **Wiederherstellen**.
+3. Die passende `.mbz` hochladen → **Wiederherstellen**. (Eine Warnung „Sicherung aus neuerer Moodle-Version“ darf nicht erscheinen – sonst ist es die falsche Datei.)
 4. Ziel: **„In diesen Kurs wiederherstellen“** mit
    - *„Kursinhalt löschen und dann wiederherstellen“* (für einen leeren Kurs am einfachsten) und
    - im nächsten Schritt **„Kurseinstellungen überschreiben: Ja“**. Dann ist die Abschlussverfolgung sicher an. Achtung: Dabei übernimmt Moodle auch den Kursnamen aus der Datei, den kann man danach wieder ändern.
@@ -37,7 +44,7 @@ Enthält den ganzen Lernpfad: drei Abschnitte (Einsteiger, Fortgeschrittene, Pro
 
 > Wer lieber **„zusammenführen“** wählt oder die Kurseinstellungen nicht überschreibt: Vorher im Kurs unter *Einstellungen › Abschlussverfolgung* **„Abschlussverfolgung aktivieren: Ja“** setzen. Sonst greifen die Freischaltungen nicht. Bei vielen Moodles ist das ohnehin Standard.
 >
-> **H5P:** Der Kurz-Check in E3 bringt eigene H5P-Bibliotheken mit. Sind die Typen „Question Set“ und „Multiple Choice“ in eurem Moodle noch nicht installiert, muss sie der Admin einmal unter *Website-Administration › H5P* installieren (siehe Abschnitt 5).
+> **H5P:** Die aktuellen H5P-Inhaltstypen (Question Set, Multiple Choice) brauchen einen neueren H5P-Kern, als Moodle 4.2 hat. Moodle 4.2 kann sie nicht einmal selbst vom H5P-Hub installieren. Deshalb gibt es H5P erst in der Moodle-5-Datei. Die Kurz-Checks stecken ohnehin auch im Lernpaket. In Moodle 5 muss der Admin die Typen ggf. einmal freischalten (siehe Abschnitt 5).
 
 ### Navigation für die Schüler:innen
 
@@ -57,13 +64,14 @@ Enthält den ganzen Lernpfad: drei Abschnitte (Einsteiger, Fortgeschrittene, Pro
 - [ ] Als Lehrkraft: Meilenstein-Abgabe mit dem Raster bewerten
 - [ ] Handy / Moodle-App
 
-### Vorab geprüft (Moodle 5.2.3)
+### Vorab geprüft (Moodle 5.2.3 und 4.2.3)
 
 - ✅ Wiederherstellen per Kommandozeile **und mit den Rechten einer normalen Lehrkraft**, sowohl „zusammenführen“ als auch „löschen und ersetzen“.
+- ✅ **Moodle 4.2.3:** Lernpakete starten (auch als Admin), Kursnavigation mit ✓ und 🔒, Freischalten nach „erledigt“, Weiter zu E2/E3 und zur Zwischenabgabe. Behoben: In der ersten Version kam unter 4.x beim Öffnen eines Lernpakets der Fehler *„array_keys(): Argument #1 ($array) must be of type array, null given“*, weil Moodle 4.x Pakete beim Wiederherstellen nicht selbst entpackt. Die Sicherung bringt jetzt alles fertig mit.
 - ✅ Alle 21 Lernpakete startklar (Moodle entpackt sie beim Wiederherstellen selbst), 21 Unterabschnitte, 4 Aufgaben, 3 Raster mit je 6 Kriterien, H5P.
 - ✅ Freischaltungen und die „Weiter“-Links zeigen nach dem Wiederherstellen auf die richtigen (neuen) Aktivitäten.
 - ✅ Als Schülerin durchgespielt: direkter Start, Kursnavigation im Paket, Sperren, Freischalten nach „erledigt“, Weiter zu Kurz-Check und Aufgabe, Abgabe-Knopf im Meilenstein.
-- ℹ️ Die Datei trägt die Version Moodle 5.0, damit sie in jedem Moodle ab 5.0 ohne Warnung läuft (Unterabschnitte gibt es erst ab 5.0).
+- ℹ️ Die Dateien tragen die Version Moodle 4.2 bzw. 5.0, damit sie ab dieser Version ohne Warnung laufen.
 
 ---
 
@@ -71,7 +79,7 @@ Enthält den ganzen Lernpfad: drei Abschnitte (Einsteiger, Fortgeschrittene, Pro
 
 Falls das Wiederherstellen nicht passt, z. B. weil ein bestehender Kurs erweitert werden soll:
 
-1. **Kurs-Einstellungen:** *Abschlussverfolgung aktivieren: Ja*.
+1. **Kurs-Einstellungen:** *Abschlussverfolgung aktivieren: Ja*. (In Moodle 4.x gibt es keine Unterabschnitte – dort die Aktivitäten einfach untereinander in den Stufen-Abschnitt legen und die Freischaltung an jede Aktivität setzen.)
 2. **Abschnitte** für die Stufen anlegen (z. B. „🌱 Einsteiger“).
 3. Im Abschnitt je Modul einen **Unterabschnitt** anlegen: *Aktivität oder Material anlegen* → **Unterabschnitt**, Name z. B. „E3 · Text gestalten“.
 4. Im Unterabschnitt: *Aktivität anlegen* → **Lernpaket** (SCORM), Datei aus `dist/scorm/` hochladen. Einstellungen:
@@ -164,6 +172,8 @@ Die Aufgaben-IDs (`m1-a01` …) werden zur Moodle-**ID-Nummer**. Die Tags `nivea
 
 Alle Texte der Oberfläche („Überprüfen“, „Lösung anzeigen“ …) sind auf Deutsch.
 
+> **Nur Moodle 5:** Die mitgelieferten Bibliotheken (aktueller Stand vom H5P-Hub) brauchen H5P-Kern 1.26/1.27. Moodle 4.2 hat 1.25 und meldet beim Öffnen *„api-version-unsupported“* (getestet).
+
 ### So anlegen
 
 Kurs → *Aktivität anlegen* → **H5P** → Datei hochladen. Bei der Bewertung „Höchste Bewertung“ oder „Letzter Versuch“ wählen.
@@ -195,8 +205,8 @@ Alle Skripte laufen mit Python 3 und brauchen `pyyaml` und `markdown-it-py` (`pi
 python3 moodle-poc/tools/build_scorm.py                     # alle Module, SCORM 2004
 python3 moodle-poc/tools/build_scorm.py e3 --scorm 1.2      # SCORM 1.2
 
-# Kompletter Kurs aus der Kursbeschreibung
-python3 moodle-poc/tools/build_moodle_kurs.py moodle-poc/kurs/praesentieren.yaml
+# Kompletter Kurs aus der Kursbeschreibung (--moodle 4 oder 5)
+python3 moodle-poc/tools/build_moodle_kurs.py moodle-poc/kurs/praesentieren.yaml --moodle 5
 
 # Moodle-XML aus einem Lernpfad im LF11c-Schema
 python3 moodle-poc/tools/lf11c_to_moodlexml.py ../lernpfad-lf11c m1
