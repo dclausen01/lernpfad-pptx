@@ -1,0 +1,46 @@
+# Kursbeschreibung – Beispiel „Dateien sinnvoll ablegen“ (kleiner Testpfad für den Lernpfad-Baukasten)
+titel: Dateien sinnvoll ablegen
+kurzname: dateien-ablegen
+ueberschrift: Ordnung auf dem Rechner – Schritt für Schritt
+untertitel: Du lernst, Ordner anzulegen, Dateien sinnvoll zu benennen und alles schnell wiederzufinden.
+badges: [Windows, Mac, 2 Stufen · ca. 2 Unterrichtsstunden]
+fusszeile: Beispiel-Lernpfad des Lernpfad-Baukastens · BBZ Rendsburg-Eckernförde
+einleitung: |
+  :::notiz 👉 Bevor du startest
+  1. Stell oben ein, womit du arbeitest: **Windows** oder **Mac**.
+  2. Arbeite die Module der Reihe nach durch und hake deine Checklisten ab.
+  :::
+
+varianten:
+  frage: "Ich arbeite mit:"
+  optionen: {win: Windows, mac: Mac}
+  beide: true
+
+stufen:
+  - id: grundlagen
+    name: Grundlagen
+    icon: "🌱"
+    text: Ordner anlegen, Dateien benennen.
+    module: [g1, g2, gm]
+  - id: vertiefung
+    name: Vertiefung
+    icon: "🚀"
+    text: Suchen und Aufräumen.
+    module: [v1]
+
+selbstcheck:
+  fragen:
+    - frage: Legst du selbst Ordner an?
+      antworten: [Nie, Manchmal, Immer]
+    - frage: Findest du deine Dateien schnell wieder?
+      antworten: [Selten, Meistens, Immer]
+  empfehlung:
+    - {bis: 2, stufe: grundlagen, hinweis: "Starte mit G1."}
+    - {stufe: vertiefung, hinweis: "Die Grundlagen sitzen – dann los mit der Suche."}
+
+einstufung: {bestehen: 80}
+
+moodle:
+  version: 4                 # 4 = ohne Unterabschnitte, 5 = mit Unterabschnitten und H5P
+  freischaltung: einstufung  # einstufung = Stufen gesperrt bis Meilenstein oder Einstufungstest; offen = alle Stufen offen
+  reihenfolge: nacheinander  # nacheinander | frei
