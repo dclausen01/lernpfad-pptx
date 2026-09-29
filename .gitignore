@@ -1,2 +1,4 @@
 shots/
 node_modules/
+moodle-poc/.cache/
+__pycache__/

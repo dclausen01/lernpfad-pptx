@@ -419,3 +419,7 @@ footer.site { max-width: 1320px; margin: 0 auto; padding: 1.5rem 2rem 2.5rem; co
 .fn-demo { font-family: ui-monospace, Consolas, monospace; font-size: .95rem; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: .7rem .9rem; margin: .5rem 0; overflow-x: auto; }
 .fn-demo .fn-line { padding-left: 1.5rem; white-space: nowrap; }
 .fn-legend { margin: .4rem 0 .6rem; }
+
+/* Moodle-Paket (SCORM): Hinweise statt Links auf andere Module */
+.pkg-hint { margin: 0 0 .8rem; font-size: .9rem; color: var(--muted); }
+.pkg-link { text-decoration: underline dotted; cursor: help; }

@@ -1,0 +1,162 @@
+/* SCORM-Anbindung für den Lernpfad (nur im Moodle-Paket eingebunden, nicht in der Web-Version).
+ *
+ * Findet die SCORM-Schnittstelle der Lernplattform (SCORM 2004: API_1484_11, SCORM 1.2: API)
+ * und stellt window.LP_SCORM bereit. app.js nutzt das, wenn es vorhanden und aktiv ist:
+ *   load()                  gespeicherten Stand (Objekt) oder null
+ *   save(state)             Stand speichern (gebündelt, dann Commit)
+ *   setDone(done, progress) Modul erledigt / noch nicht erledigt, progress 0..1
+ *   answer(id, text, choice, rightChoice, correct)  Kurz-Check-Antwort (nur erster Versuch)
+ *   score(raw, max)         Punkte aus den Kurz-Checks (an Moodle als Prozent)
+ *
+ * Konfiguration kommt aus scorm-config.js (vom Build-Skript erzeugt):
+ *   window.LP_SCORM_CONFIG = { module: "e3", launch: "e3-text.html", files: [...] }
+ * Nur die Startseite (launch) meldet sich bei der Plattform an. Zusatzseiten (Spickzettel, Videos)
+ * öffnen sich in einem neuen Tab und arbeiten ohne SCORM.
+ */
+(function () {
+  "use strict";
+  var cfg = window.LP_SCORM_CONFIG || {};
+  var page = location.pathname.split("/").pop() || "";
+  var api = null, v2004 = false, started = false, finished = false;
+  var t0 = Date.now(), timer = null, pending = null;
+
+  function findIn(win) {
+    for (var i = 0; win && i < 10; i++) {
+      try {
+        if (win.API_1484_11) { v2004 = true; return win.API_1484_11; }
+        if (win.API) { v2004 = false; return win.API; }
+      } catch (e) { /* fremde Herkunft: weiter nach oben */ }
+      if (!win.parent || win.parent === win) break;
+      win = win.parent;
+    }
+    return null;
+  }
+
+  if (cfg.launch && page === cfg.launch) {
+    api = findIn(window) || (window.opener ? findIn(window.opener) : null);
+  }
+
+  function call(fn2004, fn12, a, b) {
+    try { return api[v2004 ? fn2004 : fn12](a, b); } catch (e) { return ""; }
+  }
+  function get(k) { return String(call("GetValue", "LMSGetValue", k)); }
+  function set(k, v) { return call("SetValue", "LMSSetValue", k, String(v)); }
+  function commit() { call("Commit", "LMSCommit", ""); }
+
+  // SCORM 1.2 und 2004 benennen die Felder unterschiedlich
+  var F = {
+    status: function () { return v2004 ? "cmi.completion_status" : "cmi.core.lesson_status"; },
+    exit: function () { return v2004 ? "cmi.exit" : "cmi.core.exit"; },
+    entry: function () { return v2004 ? "cmi.entry" : "cmi.core.entry"; },
+    time: function () { return v2004 ? "cmi.session_time" : "cmi.core.session_time"; },
+    score: function (k) { return v2004 ? "cmi.score." + k : "cmi.core.score." + k; }
+  };
+  var MAXLEN = function () { return v2004 ? 64000 : 4096; };
+
+  function sessionTime() {
+    var s = Math.round((Date.now() - t0) / 1000);
+    if (v2004) return "PT" + s + "S";
+    var h = Math.floor(s / 3600), m = Math.floor(s / 60) % 60, r = s % 60;
+    return (h < 10 ? "000" : h < 100 ? "00" : h < 1000 ? "0" : "") + h + ":" + (m < 10 ? "0" : "") + m + ":" + (r < 10 ? "0" : "") + r;
+  }
+
+  if (api) {
+    var ok = call("Initialize", "LMSInitialize", "");
+    started = ok === true || ok === "true";
+  }
+
+  if (started) {
+    var st = get(F.status());
+    if (st === "not attempted" || st === "unknown" || st === "") set(F.status(), "incomplete");
+    set(F.exit(), "suspend");
+    commit();
+  }
+
+  function flush() {
+    if (!started || finished) return;
+    if (pending != null) {
+      var s = pending;
+      if (s.length > MAXLEN()) {
+        // Notfall: Notizen kürzen, damit wenigstens Häkchen und Status gespeichert werden
+        try {
+          var o = JSON.parse(s);
+          o.notes = {};
+          s = JSON.stringify(o);
+          if (window.console) console.warn("Lernpfad: Speicher der Lernplattform voll – Notizen wurden nicht übertragen.");
+        } catch (e) { /* ignorieren */ }
+      }
+      set("cmi.suspend_data", s);
+      pending = null;
+    }
+    commit();
+  }
+  function soon() {
+    clearTimeout(timer);
+    timer = setTimeout(flush, 800);
+  }
+
+  function finish() {
+    if (!started || finished) return;
+    clearTimeout(timer);
+    flush();
+    set(F.time(), sessionTime());
+    set(F.exit(), "suspend");
+    commit();
+    call("Terminate", "LMSFinish", "");
+    finished = true;
+  }
+  window.addEventListener("pagehide", finish);
+  window.addEventListener("beforeunload", finish);
+
+  var answered = {};
+  window.LP_SCORM = {
+    active: started,
+    version: started ? (v2004 ? "2004" : "1.2") : "",
+    config: cfg,
+    load: function () {
+      if (!started) return null;
+      var raw = get("cmi.suspend_data");
+      if (!raw) return null;
+      try { return JSON.parse(raw); } catch (e) { return null; }
+    },
+    save: function (state) {
+      if (!started) return;
+      pending = JSON.stringify(state);
+      soon();
+    },
+    setDone: function (done, progress) {
+      if (!started) return;
+      set(F.status(), done ? "completed" : "incomplete");
+      if (v2004 && typeof progress === "number") set("cmi.progress_measure", Math.max(0, Math.min(1, progress)).toFixed(2));
+      soon();
+    },
+    answer: function (id, text, choice, rightChoice, correct) {
+      if (!started || answered[id]) return;
+      answered[id] = true;
+      var n = parseInt(get("cmi.interactions._count"), 10) || 0;
+      var p = "cmi.interactions." + n + ".";
+      set(p + "id", id);
+      set(p + "type", "choice");
+      if (v2004) {
+        set(p + "description", String(text).slice(0, 250));
+        set(p + "correct_responses.0.pattern", rightChoice);
+        set(p + "learner_response", choice);
+        set(p + "result", correct ? "correct" : "incorrect");
+      } else {
+        set(p + "correct_responses.0.pattern", rightChoice);
+        set(p + "student_response", choice);
+        set(p + "result", correct ? "correct" : "wrong");
+      }
+      soon();
+    },
+    score: function (raw, max) {
+      // In Prozent melden: Moodle übernimmt cmi.score.raw direkt in die Bewertung (max. 100)
+      if (!started || !max) return;
+      set(F.score("min"), 0);
+      set(F.score("max"), 100);
+      set(F.score("raw"), Math.round(raw / max * 100));
+      if (v2004) set("cmi.score.scaled", (raw / max).toFixed(4));
+      soon();
+    }
+  };
+})();

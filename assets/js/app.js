@@ -59,21 +59,43 @@
 
   window.LP = { MODULES: MODULES, LEVELS: LEVELS };
 
+  // ---------- Moodle-Paket (SCORM) ----------
+  // Im Moodle-Paket setzt das Build-Skript LP_SCORM_CONFIG (enthaltene Dateien, Startseite);
+  // scorm.js stellt LP_SCORM bereit. In der Web-Version gibt es beides nicht.
+  var PKG = window.LP_SCORM_CONFIG || null;
+  var SC = window.LP_SCORM && window.LP_SCORM.active ? window.LP_SCORM : null;
+  function inPackage(file) { return !PKG || PKG.files.indexOf(file) > -1; }
+
   // ---------- Speicher (robust, falls localStorage gesperrt ist) ----------
+  // Web: alles im localStorage. Moodle: Fortschritt in der Lernplattform,
+  // nur die Programmwahl im localStorage (gilt so für alle Module des Kurses).
   var KEY = "lernpfad-praesentieren-v1";
-  var state = { done: {}, checks: {}, notes: {}, selfcheck: {}, app: "ppt" };
+  var APPKEY = KEY + ":app";
+  var state = { done: {}, checks: {}, notes: {}, selfcheck: {}, quiz: {}, app: "ppt" };
+  function applyStored(parsed) {
+    if (!parsed) return;
+    state.done = parsed.done || {};
+    state.checks = parsed.checks || {};
+    state.notes = parsed.notes || {};
+    state.selfcheck = parsed.selfcheck || {};
+    state.quiz = parsed.quiz || {};
+    if (parsed.app) state.app = parsed.app;
+  }
   try {
-    var raw = localStorage.getItem(KEY);
-    if (raw) {
-      var parsed = JSON.parse(raw);
-      state.done = parsed.done || {};
-      state.checks = parsed.checks || {};
-      state.notes = parsed.notes || {};
-      state.selfcheck = parsed.selfcheck || {};
-      state.app = parsed.app || "ppt";
+    if (SC) {
+      applyStored(SC.load());
+      state.app = localStorage.getItem(APPKEY) || state.app;
+    } else {
+      var raw = localStorage.getItem(KEY);
+      if (raw) applyStored(JSON.parse(raw));
     }
   } catch (e) { /* ohne Speicher weiterarbeiten */ }
   function save() {
+    if (SC) {
+      SC.save({ done: state.done, checks: state.checks, notes: state.notes, quiz: state.quiz });
+      try { localStorage.setItem(APPKEY, state.app); } catch (e) { /* ignorieren */ }
+      return;
+    }
     try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) { /* ignorieren */ }
   }
   LP.state = state;
@@ -107,7 +129,7 @@
     bar.className = "topbar";
     bar.innerHTML =
       '<button class="menu-btn" type="button" aria-label="Navigation öffnen">☰</button>' +
-      '<a class="brand" href="index.html"><span class="logo">▶</span><span>Lernpfad Präsentieren</span></a>' +
+      '<a class="brand" href="' + (PKG ? PKG.launch : "index.html") + '"><span class="logo">▶</span><span>Lernpfad Präsentieren</span></a>' +
       '<span class="spacer"></span>' +
       '<span class="app-switch-label">Ich arbeite mit:</span>' +
       '<div class="app-switch" role="group" aria-label="Programm wählen">' +
@@ -139,12 +161,15 @@
     var nav = document.getElementById("sidebar");
     if (!nav) return;
     var cur = currentFile();
-    var html = '<a href="index.html" class="btn secondary" style="display:block;text-align:center">Übersicht</a>';
+    var html = PKG
+      ? '<p class="pkg-hint">Die anderen Module findest du im Moodle-Kurs.</p>'
+      : '<a href="index.html" class="btn secondary" style="display:block;text-align:center">Übersicht</a>';
     Object.keys(LEVELS).forEach(function (lv) {
-      var mods = MODULES.filter(function (m) { return m.level === lv; });
+      var mods = MODULES.filter(function (m) { return m.level === lv && inPackage(m.file); });
+      if (!mods.length) return;
       var total = mods.reduce(function (s, m) { return s + m.min; }, 0);
       html += '<h4><span class="dot" style="background:' + LEVELS[lv].color + '"></span>' +
-        LEVELS[lv].name + ' <span style="font-weight:400;text-transform:none;letter-spacing:0">· ca. ' + Math.round(total / 45) + " Std.</span></h4><ul>";
+        LEVELS[lv].name + (PKG ? "" : ' <span style="font-weight:400;text-transform:none;letter-spacing:0">· ca. ' + Math.round(total / 45) + " Std.</span>") + "</h4><ul>";
       mods.forEach(function (m) {
         html += '<li><a href="' + m.file + '"' + (m.file === cur ? ' class="current" aria-current="page"' : "") + ">" +
           '<span class="tick">' + (state.done[m.id] ? "✓" : "") + "</span>" +
@@ -154,6 +179,7 @@
     });
     html += '<div class="extra"><ul>';
     EXTRA.forEach(function (x) {
+      if (!inPackage(x.file)) return;
       html += '<li><a href="' + x.file + '"' + (x.file === cur ? ' class="current"' : "") + '><span class="tick"></span><span>' + esc(x.title) + "</span></a></li>";
     });
     html += "</ul></div>";
@@ -200,13 +226,20 @@
     btn.addEventListener("click", function () {
       state.done[mod.id] = !state.done[mod.id];
       save(); paint(); buildSidebar();
+      if (SC) SC.setDone(!!state.done[mod.id], state.done[mod.id] ? 1 : checkProgress());
     });
     paint();
     wrap.appendChild(btn);
     wrap.appendChild(el("span", { style: "color:var(--muted);font-size:.9rem" },
-      "Markiere das Modul erst, wenn du die Basis-Aufgaben und deine Checkliste geschafft hast."));
+      "Markiere das Modul erst, wenn du die Basis-Aufgaben und deine Checkliste geschafft hast." +
+      (SC ? " Dein Stand wird in Moodle gespeichert." : "")));
     main.appendChild(wrap);
 
+    if (PKG) {
+      main.appendChild(el("div", { "class": "box tip" },
+        "<div class=\"box-title\">➡️ Wie geht’s weiter?</div><p>Schließe dieses Fenster bzw. geh zurück zum Moodle-Kurs. Dort findest du das nächste Modul.</p>"));
+      return;
+    }
     var pager = el("div", { "class": "pager" });
     var prev = MODULES[idx - 1], next = MODULES[idx + 1];
     pager.innerHTML =
@@ -378,11 +411,20 @@
 
   // ---------- Kurz-Check (Quiz) ----------
   // <div class="qa" data-right="2"><p class="q">…</p><ol><li>…</li></ol><p class="fb" data-ok="…" data-no="…"></p></div>
-  function buildQuiz() {
+  // Erster Versuch je Frage zählt (für Moodle: Antworten und Punkte)
+  function quizScore(pageKey, total) {
+    var raw = 0;
+    for (var i = 0; i < total; i++) if (state.quiz[pageKey + ":q" + i] === true) raw++;
+    return raw;
+  }
+  function buildQuiz(pageKey) {
     var qas = document.querySelectorAll(".qa");
+    var letters = "abcdefghij";
     for (var i = 0; i < qas.length; i++) {
-      (function (qa) {
+      (function (qa, qi) {
         var right = parseInt(qa.dataset.right, 10) - 1;
+        var qkey = pageKey + ":q" + qi;
+        var qtext = (qa.querySelector(".q") || qa).textContent.trim();
         var fb = qa.querySelector(".fb");
         var lis = qa.querySelectorAll("ol > li");
         for (var j = 0; j < lis.length; j++) {
@@ -392,6 +434,14 @@
             b.addEventListener("click", function () {
               var all = qa.querySelectorAll("button");
               for (var k = 0; k < all.length; k++) all[k].classList.remove("right", "wrong");
+              if (state.quiz[qkey] == null) {
+                state.quiz[qkey] = idx === right;
+                save();
+                if (SC) {
+                  SC.answer(pageKey + "-frage-" + (qi + 1), qtext, letters.charAt(idx), letters.charAt(right), idx === right);
+                  SC.score(quizScore(pageKey, qas.length), qas.length);
+                }
+              }
               if (idx === right) {
                 b.classList.add("right");
                 fb.innerHTML = "✅ " + (fb.dataset.ok || "Richtig!");
@@ -402,7 +452,35 @@
             });
           })(lis[j], j);
         }
-      })(qas[i]);
+      })(qas[i], i);
+    }
+  }
+
+  function checkProgress() {
+    var all = document.querySelectorAll("ul.check input[type=checkbox]");
+    if (!all.length) return 0;
+    var n = 0;
+    for (var i = 0; i < all.length; i++) if (all[i].checked) n++;
+    return n / all.length;
+  }
+
+  // Im Moodle-Paket: Links auf Seiten, die nicht im Paket sind, als Text zeigen;
+  // Zusatzseiten (Spickzettel, Videos) im neuen Tab öffnen, damit das Modul offen bleibt.
+  function fixPackageLinks() {
+    if (!PKG) return;
+    var links = document.querySelectorAll("a[href]");
+    for (var i = 0; i < links.length; i++) {
+      var a = links[i], href = a.getAttribute("href");
+      if (/^([a-z]+:|#|\/\/)/i.test(href)) continue;
+      var file = href.split("#")[0].split("?")[0];
+      if (!/\.html$/.test(file)) continue;
+      if (!inPackage(file)) {
+        var s = el("span", { "class": "pkg-link", title: "Findest du als eigenes Modul im Moodle-Kurs" }, a.innerHTML);
+        a.parentNode.replaceChild(s, a);
+      } else if (file !== PKG.launch) {
+        a.setAttribute("target", "_blank");
+        a.setAttribute("rel", "noopener");
+      }
     }
   }
 
@@ -456,6 +534,10 @@
     var boxes = document.querySelectorAll("div.abgabe");
     for (var i = 0; i < boxes.length; i++) {
       var option = boxes[i].dataset.option || "";
+      if (PKG) {
+        boxes[i].innerHTML = '<p style="margin:0">Gib deine Dateien in der <strong>Moodle-Aufgabe</strong> ab, die im Kurs direkt unter diesem Meilenstein steht. Dort findest du auch das Bewertungsraster und später das Feedback deiner Lehrkraft.</p>';
+        continue;
+      }
       boxes[i].innerHTML = ABGABE_LINK
         ? '<p style="margin:0 0 .5rem"><a class="btn" href="' + esc(ABGABE_LINK) + '" target="_blank" rel="noopener">Zum Abgabeformular ↗</a></p>' +
           '<p style="margin:0;font-size:.92rem">Melde dich mit deinem Schul-Konto an, lade deine Datei(en) hoch und wähle bei „Der abgegebene Meilenstein ist“: <strong>' + esc(option) + "</strong>.</p>"
@@ -503,9 +585,16 @@
     buildShots();
     buildMedia();
     buildChecks(id || currentFile());
-    buildQuiz();
+    buildQuiz(id || currentFile());
     buildProgress();
     buildSelfcheck();
     buildAbgabe();
+    fixPackageLinks();
+    if (SC) {
+      var cbs = document.querySelectorAll("ul.check input[type=checkbox]");
+      for (var c = 0; c < cbs.length; c++) cbs[c].addEventListener("change", function () {
+        if (id) SC.setDone(!!state.done[id], state.done[id] ? 1 : checkProgress());
+      });
+    }
   });
 })();

@@ -27,6 +27,8 @@ Ein webbasierter Lernpfad für Schüler:innen in der Erzieherausbildung und im b
 
 Hinweise zu Stundenplanung, Bewertung, Screenshots und Videopflege: `lehrkraefte.html`.
 
+**Moodle (Test):** Die Module lassen sich als SCORM-Pakete in Moodle einbinden, dann wird der Fortschritt in Moodle gespeichert. Anleitung, Werkzeuge und Testpakete: [`moodle-poc/`](moodle-poc/README.md).
+
 ## Struktur
 
 ```
@@ -40,6 +42,8 @@ lehrkraefte.html        Hinweise für Lehrkräfte
 assets/css/style.css
 assets/js/app.js        Navigation, Umschalter, Schemagrafiken, Checklisten, Quiz
 assets/js/videos.js     zentrale Linkliste
+assets/js/scorm.js      SCORM-Anbindung (nur im Moodle-Paket)
+moodle-poc/             Moodle-Test: SCORM, Moodle-XML, H5P
 img/screens/            eigene Screenshots (optional)
 material/               Übungsdateien (.pptx), Quellcode in material/_quelle/
 assets/fonts/           Fraunces & Source Sans 3 (SIL Open Font License)

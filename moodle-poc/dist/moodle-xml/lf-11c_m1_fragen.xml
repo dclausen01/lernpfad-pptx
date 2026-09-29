@@ -1,0 +1,1096 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="category">
+<category><text>top/LF 11c/M1 Prozesse identifizieren und einordnen/01 Digitaler Wandel und digitale Geschäftsmodelle</text></category>
+<info format="html"><text><![CDATA[<p>Lerneinheit m1-le08</p>]]></text></info>
+</question>
+<question type="matching">
+<name><text>m1-a21 · Digitalisierung, Transformation oder Disruption?</text></name>
+<idnumber>m1-a21</idnumber>
+<questiontext format="html"><text><![CDATA[<p>Ordne jedes Beispiel der passenden Stufe des digitalen Wandels zu.</p>
+]]></text></questiontext>
+
+<generalfeedback format="html"><text><![CDATA[<p>Die drei Begriffe beschreiben unterschiedlich tiefe Veränderungen – vom einzelnen Dokument bis zum ganzen Markt.</p>
+<ul><li><strong>Die Stadtwerke scannen alle Papierverträge ein und legen sie im Dokumentenmanagementsystem ab.</strong> → Digitalisierung: Analoges wird digital – am Geschäftsmodell ändert sich nichts.</li><li><strong>Brückner richtet das ganze Unternehmen auf den Online-Direktvertrieb aus und baut dafür Logistik, Service und Unternehmenskultur um.</strong> → Digitale Transformation: Strategische Neuausrichtung von Geschäftsmodell, Prozessen und Kultur.</li><li><strong>Musikstreaming löst die CD als wichtigsten Vertriebsweg für Musik ab.</strong> → Digitale Disruption: Ein bestehender Markt wird grundlegend verändert.</li><li><strong>Die Werkstatt ersetzt den handschriftlichen Reparaturzettel durch ein Tablet-Formular.</strong> → Digitalisierung: Ein einzelner Ablauf wird digital abgebildet.</li><li><strong>Ein Taxiunternehmen verliert große Teile seines Geschäfts an Vermittlungs-Apps.</strong> → Digitale Disruption: Neue digitale Anbieter verändern den Markt grundlegend.</li></ul>]]></text></generalfeedback>
+<defaultgrade>1</defaultgrade><penalty>0.3333333</penalty><hidden>0</hidden>
+<shuffleanswers>true</shuffleanswers>
+<correctfeedback format="html"><text><![CDATA[]]></text></correctfeedback><partiallycorrectfeedback format="html"><text><![CDATA[]]></text></partiallycorrectfeedback><incorrectfeedback format="html"><text><![CDATA[]]></text></incorrectfeedback><shownumcorrect/>
+<subquestion format="html"><text><![CDATA[<p>Die Stadtwerke scannen alle Papierverträge ein und legen sie im Dokumentenmanagementsystem ab.</p>
+]]></text><answer><text>Digitalisierung</text></answer></subquestion>
+<subquestion format="html"><text><![CDATA[<p>Brückner richtet das ganze Unternehmen auf den Online-Direktvertrieb aus und baut dafür Logistik, Service und Unternehmenskultur um.</p>
+]]></text><answer><text>Digitale Transformation</text></answer></subquestion>
+<subquestion format="html"><text><![CDATA[<p>Musikstreaming löst die CD als wichtigsten Vertriebsweg für Musik ab.</p>
+]]></text><answer><text>Digitale Disruption</text></answer></subquestion>
+<subquestion format="html"><text><![CDATA[<p>Die Werkstatt ersetzt den handschriftlichen Reparaturzettel durch ein Tablet-Formular.</p>
+]]></text><answer><text>Digitalisierung</text></answer></subquestion>
+<subquestion format="html"><text><![CDATA[<p>Ein Taxiunternehmen verliert große Teile seines Geschäfts an Vermittlungs-Apps.</p>
+]]></text><answer><text>Digitale Disruption</text></answer></subquestion>
+<tags><tag><text>niveau-1</text></tag><tag><text>zuordnung</text></tag><tag><text>entwurf</text></tag></tags>
+</question>
+<question type="matching">
+<name><text>m1-a22 · Digitale Geschäftsmodelle erkennen</text></name>
+<idnumber>m1-a22</idnumber>
+<questiontext format="html"><text><![CDATA[<p>Welches digitale Geschäftsmodell liegt vor?</p>
+]]></text></questiontext>
+
+<generalfeedback format="html"><text><![CDATA[<p>Viele reale Angebote kombinieren mehrere Modelle, z. B. Plattform mit Abo oder Freemium mit Werbung.</p>
+<ul><li><strong>Ein Dashboard-Werkzeug ist mit drei Diagrammen kostenlos; wer mehr will, zahlt für die Pro-Version.</strong> → Freemium: Kostenlose Basisversion, bezahlte Vollversion.</li><li><strong>Kundinnen zahlen monatlich einen festen Betrag für den Betrieb ihrer Datenplattform.</strong> → Abo-Modell: Regelmäßige Zahlung für dauerhaften Zugang.</li><li><strong>Abgerechnet wird nach verbrauchten Rechenstunden in der Cloud.</strong> → Pay per Use: Der Preis hängt von der tatsächlichen Nutzung ab.</li><li><strong>Ein Portal bringt private Verkäufer von gebrauchten E-Bikes und Käufer zusammen und erhält pro Verkauf eine Provision.</strong> → Plattform-Modell: Die Plattform verbindet Anbieter und Nachfrager, ohne selbst zu verkaufen.</li><li><strong>Ein Fahrrad-Blog verlinkt auf den Shop von Brückner und erhält für jeden Kauf über diesen Link eine Provision.</strong> → Affiliate-Modell: Werbebasiertes Modell mit Provision für vermittelte Käufe.</li><li><strong>Ein Online-Shop verkauft Fahrradzubehör, das nach der Bestellung direkt vom Hersteller an die Kundschaft geschickt wird.</strong> → Dropshipping: Der Händler hat die Ware nicht selbst auf Lager.</li></ul>]]></text></generalfeedback>
+<defaultgrade>1</defaultgrade><penalty>0.3333333</penalty><hidden>0</hidden>
+<shuffleanswers>true</shuffleanswers>
+<correctfeedback format="html"><text><![CDATA[]]></text></correctfeedback><partiallycorrectfeedback format="html"><text><![CDATA[]]></text></partiallycorrectfeedback><incorrectfeedback format="html"><text><![CDATA[]]></text></incorrectfeedback><shownumcorrect/>
+<subquestion format="html"><text><![CDATA[<p>Ein Dashboard-Werkzeug ist mit drei Diagrammen kostenlos; wer mehr will, zahlt für die Pro-Version.</p>
+]]></text><answer><text>Freemium</text></answer></subquestion>
+<subquestion format="html"><text><![CDATA[<p>Kundinnen zahlen monatlich einen festen Betrag für den Betrieb ihrer Datenplattform.</p>
+]]></text><answer><text>Abo-Modell</text></answer></subquestion>
+<subquestion format="html"><text><![CDATA[<p>Abgerechnet wird nach verbrauchten Rechenstunden in der Cloud.</p>
+]]></text><answer><text>Pay per Use</text></answer></subquestion>
+<subquestion format="html"><text><![CDATA[<p>Ein Portal bringt private Verkäufer von gebrauchten E-Bikes und Käufer zusammen und erhält pro Verkauf eine Provision.</p>
+]]></text><answer><text>Plattform-Modell</text></answer></subquestion>
+<subquestion format="html"><text><![CDATA[<p>Ein Fahrrad-Blog verlinkt auf den Shop von Brückner und erhält für jeden Kauf über diesen Link eine Provision.</p>
+]]></text><answer><text>Affiliate-Modell</text></answer></subquestion>
+<subquestion format="html"><text><![CDATA[<p>Ein Online-Shop verkauft Fahrradzubehör, das nach der Bestellung direkt vom Hersteller an die Kundschaft geschickt wird.</p>
+]]></text><answer><text>Dropshipping</text></answer></subquestion>
+<tags><tag><text>niveau-2</text></tag><tag><text>zuordnung</text></tag><tag><text>entwurf</text></tag></tags>
+</question>
+<question type="category">
+<category><text>top/LF 11c/M1 Prozesse identifizieren und einordnen/02 Was ist ein Geschäftsprozess?</text></category>
+<info format="html"><text><![CDATA[<p>Lerneinheit m1-le01</p>]]></text></info>
+</question>
+<question type="multichoice">
+<name><text>m1-a01 · Merkmale eines Geschäftsprozesses</text></name>
+<idnumber>m1-a01</idnumber>
+<questiontext format="html"><text><![CDATA[<p>Welche Aussage beschreibt einen <strong>Geschäftsprozess</strong> am besten?</p>
+]]></text></questiontext>
+
+<generalfeedback format="html"><text><![CDATA[<p>Merke dir die Merkmale Auslöser, Ergebnis mit Kundennutzen, Wiederholung, Verantwortung, Messbarkeit.</p>
+]]></text></generalfeedback>
+<defaultgrade>1</defaultgrade><penalty>0.3333333</penalty><hidden>0</hidden>
+<single>true</single>
+<shuffleanswers>true</shuffleanswers>
+<answernumbering>abc</answernumbering><showstandardinstruction>1</showstandardinstruction>
+<answer fraction="100" format="html"><text><![CDATA[<p>Eine wiederkehrende Folge von Tätigkeiten mit definiertem Auslöser, die ein Ergebnis mit Wert für einen internen oder externen Kunden erzeugt.</p>
+]]></text><feedback format="html"><text><![CDATA[<p>Richtig – Auslöser, Ergebnis mit Kundennutzen und Wiederholung sind die Kernmerkmale.</p>
+]]></text></feedback></answer>
+<answer fraction="0" format="html"><text><![CDATA[<p>Eine Abteilung, die für eine bestimmte Aufgabe zuständig ist, z. B. die Buchhaltung.</p>
+]]></text><feedback format="html"><text><![CDATA[<p>Das ist ein Element der Aufbauorganisation. Prozesse laufen meist quer durch mehrere Abteilungen.</p>
+]]></text></feedback></answer>
+<answer fraction="0" format="html"><text><![CDATA[<p>Ein einmaliges Vorhaben mit festem Start- und Endtermin, z. B. die Einführung eines Ticketsystems.</p>
+]]></text><feedback format="html"><text><![CDATA[<p>Das ist ein Projekt. Prozesse wiederholen sich.</p>
+]]></text></feedback></answer>
+<answer fraction="0" format="html"><text><![CDATA[<p>Jede Tätigkeit, die im Unternehmen Kosten verursacht.</p>
+]]></text><feedback format="html"><text><![CDATA[<p>Zu weit gefasst. Ein Prozess ist eine zusammenhängende Folge von Tätigkeiten mit Auslöser und Ergebnis.</p>
+]]></text></feedback></answer>
+<tags><tag><text>niveau-1</text></tag><tag><text>single_choice</text></tag><tag><text>entwurf</text></tag></tags>
+</question>
+<question type="matching">
+<name><text>m1-a02 · Prozess, Abteilung oder Projekt?</text></name>
+<idnumber>m1-a02</idnumber>
+<questiontext format="html"><text><![CDATA[<p>Ordne jeden Begriff aus der FördeData GmbH richtig zu.</p>
+]]></text></questiontext>
+
+<generalfeedback format="html"><text><![CDATA[<p>Prozesse benennt man mit Objekt + Verb. Abteilungen sagen, wer zuständig ist; Projekte sind einmalig.</p>
+<ul><li><strong>Störungsmeldungen bearbeiten</strong> → Prozess: Wiederkehrende Tätigkeitsfolge mit Auslöser (Meldung) und Ergebnis (Störung behoben).</li><li><strong>Service-Desk</strong> → Abteilung: Eine Organisationseinheit – sie ist an Prozessen beteiligt, ist aber selbst keiner.</li><li><strong>Umzug des Rechenzentrums im März</strong> → Projekt: Einmalig und terminiert.</li><li><strong>Angebote erstellen</strong> → Prozess: Kommt bei jeder Kundenanfrage wieder vor.</li><li><strong>Buchhaltung</strong> → Abteilung: Organisationseinheit. Der passende Prozess hieße z. B. „Eingangsrechnungen buchen&quot;.</li><li><strong>Einführung eines neuen Ticketsystems</strong> → Projekt: Einmaliges Vorhaben. Danach läuft der Prozess „Tickets bearbeiten&quot; mit dem neuen System.</li></ul>]]></text></generalfeedback>
+<defaultgrade>1</defaultgrade><penalty>0.3333333</penalty><hidden>0</hidden>
+<shuffleanswers>true</shuffleanswers>
+<correctfeedback format="html"><text><![CDATA[]]></text></correctfeedback><partiallycorrectfeedback format="html"><text><![CDATA[]]></text></partiallycorrectfeedback><incorrectfeedback format="html"><text><![CDATA[]]></text></incorrectfeedback><shownumcorrect/>
+<subquestion format="html"><text><![CDATA[<p>Störungsmeldungen bearbeiten</p>
+]]></text><answer><text>Prozess</text></answer></subquestion>
+<subquestion format="html"><text><![CDATA[<p>Service-Desk</p>
+]]></text><answer><text>Abteilung</text></answer></subquestion>
+<subquestion format="html"><text><![CDATA[<p>Umzug des Rechenzentrums im März</p>
+]]></text><answer><text>Projekt</text></answer></subquestion>
+<subquestion format="html"><text><![CDATA[<p>Angebote erstellen</p>
+]]></text><answer><text>Prozess</text></answer></subquestion>
+<subquestion format="html"><text><![CDATA[<p>Buchhaltung</p>
+]]></text><answer><text>Abteilung</text></answer></subquestion>
+<subquestion format="html"><text><![CDATA[<p>Einführung eines neuen Ticketsystems</p>
+]]></text><answer><text>Projekt</text></answer></subquestion>
+<tags><tag><text>niveau-1</text></tag><tag><text>zuordnung</text></tag><tag><text>entwurf</text></tag></tags>
+</question>
+<question type="category">
+<category><text>top/LF 11c/M1 Prozesse identifizieren und einordnen/03 Prozessarten und Prozesslandkarte</text></category>
+<info format="html"><text><![CDATA[<p>Lerneinheit m1-le02</p>]]></text></info>
+</question>
+<question type="matching">
+<name><text>m1-a03 · Prozessarten bei der FördeData GmbH</text></name>
+<idnumber>m1-a03</idnumber>
+<questiontext format="html"><text><![CDATA[<p>Die FördeData GmbH ist ein IT-Dienstleister, der Datenanalyse-Projekte durchführt und Datenplattformen für Kunden betreibt (siehe Modellunternehmen). Ordne die Prozesse zu.</p>
+]]></text></questiontext>
+
+<generalfeedback format="html"><text><![CDATA[<p>Entscheidend ist der Bezug zum externen Kunden. Achte besonders auf den Unterschied zwischen dem Betrieb der <strong>Kundenplattformen</strong> (Kernprozess) und dem der <strong>eigenen Büro-IT</strong> (Unterstützungsprozess).</p>
+<ul><li><strong>Datenanalyse-Projekt für einen Kunden durchführen</strong> → Kernprozess: Das ist die Leistung, für die Kunden bezahlen.</li><li><strong>Störungen an Kunden-Datenplattformen beheben</strong> → Kernprozess: Der Betrieb der Kundenplattformen ist bei FördeData ein verkauftes Produkt (Managed Service).</li><li><strong>Laptops für neue Beschäftigte beschaffen</strong> → Unterstützungsprozess: Stellt Ressourcen für die Kernprozesse bereit.</li><li><strong>Die eigene Büro-IT (E-Mail, WLAN) betreiben</strong> → Unterstützungsprozess: Anders als die Kundenplattformen wird die eigene Büro-IT nicht an Kunden verkauft.</li><li><strong>Jahresbudget planen</strong> → Managementprozess: Planung und Steuerung des Unternehmens.</li><li><strong>Neue Beschäftigte einstellen</strong> → Unterstützungsprozess: Personalprozesse sind klassische Unterstützungsprozesse.</li><li><strong>Interne Audits im Qualitätsmanagement durchführen</strong> → Managementprozess: Überwachung und Verbesserung des Prozesssystems.</li><li><strong>Angebote für Kundenanfragen erstellen</strong> → Kernprozess: Gehört zum Kundenprozess „Aufträge gewinnen&quot; (bei Porter Marketing und Vertrieb, also primär).</li></ul>]]></text></generalfeedback>
+<defaultgrade>1</defaultgrade><penalty>0.3333333</penalty><hidden>0</hidden>
+<shuffleanswers>true</shuffleanswers>
+<correctfeedback format="html"><text><![CDATA[]]></text></correctfeedback><partiallycorrectfeedback format="html"><text><![CDATA[]]></text></partiallycorrectfeedback><incorrectfeedback format="html"><text><![CDATA[]]></text></incorrectfeedback><shownumcorrect/>
+<subquestion format="html"><text><![CDATA[<p>Datenanalyse-Projekt für einen Kunden durchführen</p>
+]]></text><answer><text>Kernprozess</text></answer></subquestion>
+<subquestion format="html"><text><![CDATA[<p>Störungen an Kunden-Datenplattformen beheben</p>
+]]></text><answer><text>Kernprozess</text></answer></subquestion>
+<subquestion format="html"><text><![CDATA[<p>Laptops für neue Beschäftigte beschaffen</p>
+]]></text><answer><text>Unterstützungsprozess</text></answer></subquestion>
+<subquestion format="html"><text><![CDATA[<p>Die eigene Büro-IT (E-Mail, WLAN) betreiben</p>
+]]></text><answer><text>Unterstützungsprozess</text></answer></subquestion>
+<subquestion format="html"><text><![CDATA[<p>Jahresbudget planen</p>
+]]></text><answer><text>Managementprozess</text></answer></subquestion>
+<subquestion format="html"><text><![CDATA[<p>Neue Beschäftigte einstellen</p>
+]]></text><answer><text>Unterstützungsprozess</text></answer></subquestion>
+<subquestion format="html"><text><![CDATA[<p>Interne Audits im Qualitätsmanagement durchführen</p>
+]]></text><answer><text>Managementprozess</text></answer></subquestion>
+<subquestion format="html"><text><![CDATA[<p>Angebote für Kundenanfragen erstellen</p>
+]]></text><answer><text>Kernprozess</text></answer></subquestion>
+<tags><tag><text>niveau-2</text></tag><tag><text>zuordnung</text></tag><tag><text>entwurf</text></tag></tags>
+</question>
+<question type="multichoice">
+<name><text>m1-a04 · Einordnung hängt vom Geschäftsmodell ab</text></name>
+<idnumber>m1-a04</idnumber>
+<questiontext format="html"><text><![CDATA[<p>Bei der Brückner Fahrradmanufaktur werden Webserver und Warenwirtschaftssystem von einer internen IT-Abteilung betrieben. Welche Einordnung des Prozesses „IT-Systeme betreiben&quot; ist dort richtig?</p>
+]]></text></questiontext>
+
+<generalfeedback format="html"><text><![CDATA[<p>Derselbe Prozessname kann je nach Geschäftsmodell unterschiedlich eingeordnet werden. Bei FördeData ist der Betrieb von Kundenplattformen ein Kernprozess.</p>
+]]></text></generalfeedback>
+<defaultgrade>1</defaultgrade><penalty>0.3333333</penalty><hidden>0</hidden>
+<single>true</single>
+<shuffleanswers>true</shuffleanswers>
+<answernumbering>abc</answernumbering><showstandardinstruction>1</showstandardinstruction>
+<answer fraction="100" format="html"><text><![CDATA[<p>Unterstützungsprozess, weil die Kunden Fahrräder kaufen und die IT den Verkauf und die Produktion nur ermöglicht.</p>
+]]></text><feedback format="html"><text><![CDATA[<p>Richtig. Die IT ist unverzichtbar, erzeugt aber nicht die Leistung, für die Kunden bezahlen.</p>
+]]></text></feedback></answer>
+<answer fraction="0" format="html"><text><![CDATA[<p>Kernprozess, weil ohne IT der Online-Shop nicht funktioniert.</p>
+]]></text><feedback format="html"><text><![CDATA[<p>Unverzichtbar heißt nicht Kernprozess. Auch Lohnabrechnung ist unverzichtbar.</p>
+]]></text></feedback></answer>
+<answer fraction="0" format="html"><text><![CDATA[<p>Managementprozess, weil die IT-Abteilung Entscheidungen über Systeme trifft.</p>
+]]></text><feedback format="html"><text><![CDATA[<p>Managementprozesse planen und steuern das Unternehmen als Ganzes (Strategie, Controlling, QM).</p>
+]]></text></feedback></answer>
+<tags><tag><text>niveau-2</text></tag><tag><text>single_choice</text></tag><tag><text>entwurf</text></tag></tags>
+</question>
+<question type="ordering">
+<name><text>m1-a05 · Ebenen der Prozessverfeinerung</text></name>
+<idnumber>m1-a05</idnumber>
+<questiontext format="html"><text><![CDATA[<p>Bringe die Ebenen in die Reihenfolge vom Groben zum Feinen.</p>
+]]></text></questiontext>
+
+<generalfeedback format="html"><text><![CDATA[<p>Ab der Ebene der Teilprozesse wird meist mit eEPK oder BPMN modelliert (Modul 2).</p>
+]]></text></generalfeedback>
+<defaultgrade>1</defaultgrade><penalty>0.3333333</penalty><hidden>0</hidden>
+<layouttype>VERTICAL</layouttype><selecttype>ALL</selecttype><selectcount>0</selectcount>
+<gradingtype>ABSOLUTE_POSITION</gradingtype><showgrading>SHOW</showgrading><numberingstyle>none</numberingstyle>
+<correctfeedback format="html"><text><![CDATA[<p>Genau – jede Ebene verfeinert die darüberliegende.</p>
+]]></text></correctfeedback><partiallycorrectfeedback format="html"><text><![CDATA[<p>Starte mit dem Gesamtüberblick und gehe dann schrittweise ins Detail.</p>
+]]></text></partiallycorrectfeedback><incorrectfeedback format="html"><text><![CDATA[<p>Starte mit dem Gesamtüberblick und gehe dann schrittweise ins Detail.</p>
+]]></text></incorrectfeedback><shownumcorrect/>
+<answer fraction="1" format="html"><text><![CDATA[<p>Prozesslandkarte</p>
+]]></text></answer>
+<answer fraction="2" format="html"><text><![CDATA[<p>Hauptprozess „Kundenplattformen betreiben&quot;</p>
+]]></text></answer>
+<answer fraction="3" format="html"><text><![CDATA[<p>Teilprozess „Störungen bearbeiten&quot;</p>
+]]></text></answer>
+<answer fraction="4" format="html"><text><![CDATA[<p>Arbeitsschritt „Priorität des Tickets festlegen&quot;</p>
+]]></text></answer>
+<tags><tag><text>niveau-1</text></tag><tag><text>reihenfolge</text></tag><tag><text>entwurf</text></tag></tags>
+</question>
+<question type="essay">
+<name><text>m1-a06 · Prozesslandkarte skizzieren</text></name>
+<idnumber>m1-a06</idnumber>
+<questiontext format="html"><text><![CDATA[<p>Die <strong>Stadtwerke Seebrück</strong> versorgen Haushalte mit Strom und Wasser. Sie lesen Zähler ab, erstellen Jahresabrechnungen, beantworten Kundenanfragen im Kundenservice und schicken den Außendienst für Zählerwechsel und Störungen. Daneben gibt es Personalabteilung, Einkauf, Buchhaltung, eine IT-Abteilung sowie die Geschäftsführung mit Controlling.</p>
+<p>Skizziere eine Prozesslandkarte mit mindestens <strong>drei Kern-, drei Unterstützungs- und zwei Managementprozessen</strong>. Benenne die Prozesse als Tätigkeiten (Objekt + Verb) und kennzeichne, wo der Kunde steht.</p>
+]]></text></questiontext>
+
+<generalfeedback format="html"><text><![CDATA[<h4>Musterlösung</h4><p><strong>Managementprozesse</strong> (oben): Unternehmensstrategie festlegen, Controlling durchführen, Qualitäts- und Risikomanagement betreiben</p>
+<p><strong>Kernprozesse</strong> (Mitte, vom Kunden zum Kunden):
+Kunde (Anforderung) → Kunden gewinnen und Verträge abschließen → Strom und Wasser bereitstellen → Zähler ablesen → Verbrauch abrechnen → Kundenanfragen und Beschwerden bearbeiten → Kunde (versorgt, korrekt abgerechnet)
+Außerdem: Zähler wechseln und Störungen beheben (Außendienst)</p>
+<p><strong>Unterstützungsprozesse</strong> (unten): Personal gewinnen und entwickeln, Material und Dienstleistungen beschaffen, Finanzen buchen, IT-Systeme betreiben</p>
+<p>Andere sinnvolle Zuschnitte sind möglich, z. B. „Netz betreiben&quot; als eigener Kernprozess.</p>
+<h4>Checkliste</h4><ul><li>Drei Gruppen (Management, Kern, Unterstützung) sind erkennbar und in der üblichen Anordnung.</li><li>Mindestens drei Kernprozesse mit direktem Kundenbezug.</li><li>Mindestens drei Unterstützungsprozesse.</li><li>Mindestens zwei Managementprozesse.</li><li>Prozesse sind als Tätigkeiten benannt, nicht als Abteilungen.</li><li>Kunde steht am Anfang (Anforderung) und am Ende (Nutzen) der Kernprozesse.</li><li>Keine Abteilung ist als Prozess eingetragen (z. B. nicht „Buchhaltung&quot;, sondern „Finanzen buchen&quot;).</li></ul><p>Es gibt keine einzig richtige Prozesslandkarte. Bewertet wird, ob die Zuordnung schlüssig und begründbar ist.</p>
+]]></text></generalfeedback>
+<defaultgrade>8</defaultgrade><penalty>0</penalty><hidden>0</hidden>
+<responseformat>editor</responseformat><responserequired>1</responserequired><responsefieldlines>15</responsefieldlines><minwordlimit></minwordlimit><maxwordlimit></maxwordlimit><attachments>0</attachments><attachmentsrequired>0</attachmentsrequired><maxbytes>0</maxbytes><filetypeslist></filetypeslist>
+<graderinfo format="html"><text><![CDATA[<h4>Musterlösung</h4><p><strong>Managementprozesse</strong> (oben): Unternehmensstrategie festlegen, Controlling durchführen, Qualitäts- und Risikomanagement betreiben</p>
+<p><strong>Kernprozesse</strong> (Mitte, vom Kunden zum Kunden):
+Kunde (Anforderung) → Kunden gewinnen und Verträge abschließen → Strom und Wasser bereitstellen → Zähler ablesen → Verbrauch abrechnen → Kundenanfragen und Beschwerden bearbeiten → Kunde (versorgt, korrekt abgerechnet)
+Außerdem: Zähler wechseln und Störungen beheben (Außendienst)</p>
+<p><strong>Unterstützungsprozesse</strong> (unten): Personal gewinnen und entwickeln, Material und Dienstleistungen beschaffen, Finanzen buchen, IT-Systeme betreiben</p>
+<p>Andere sinnvolle Zuschnitte sind möglich, z. B. „Netz betreiben&quot; als eigener Kernprozess.</p>
+<h4>Checkliste</h4><ul><li>Drei Gruppen (Management, Kern, Unterstützung) sind erkennbar und in der üblichen Anordnung.</li><li>Mindestens drei Kernprozesse mit direktem Kundenbezug.</li><li>Mindestens drei Unterstützungsprozesse.</li><li>Mindestens zwei Managementprozesse.</li><li>Prozesse sind als Tätigkeiten benannt, nicht als Abteilungen.</li><li>Kunde steht am Anfang (Anforderung) und am Ende (Nutzen) der Kernprozesse.</li><li>Keine Abteilung ist als Prozess eingetragen (z. B. nicht „Buchhaltung&quot;, sondern „Finanzen buchen&quot;).</li></ul>]]></text></graderinfo><responsetemplate format="html"><text><![CDATA[]]></text></responsetemplate>
+<tags><tag><text>niveau-3</text></tag><tag><text>offen</text></tag><tag><text>entwurf</text></tag></tags>
+</question>
+<question type="matching">
+<name><text>m1-a23 · Prozessebene und Wiederholungsrate</text></name>
+<idnumber>m1-a23</idnumber>
+<questiontext format="html"><text><![CDATA[<p>Ordne jeden Prozess bei FördeData nach seiner Wiederholungsrate ein.</p>
+]]></text></questiontext>
+
+<generalfeedback format="html"><text><![CDATA[<p>Optimierung und Automatisierung lohnen sich vor allem bei Routineprozessen.</p>
+<ul><li><strong>Monatliche Lohnabrechnung</strong> → Routineprozess: Regelmäßig, standardisiert – ideal für Automatisierung.</li><li><strong>Einführung eines neuen Ticketsystems</strong> → Projektprozess: Einmalig und zeitlich begrenzt.</li><li><strong>Reaktion auf einen Ransomware-Angriff</strong> → Ad-hoc-Prozess: Spontan, unvorhergesehen, nicht standardisiert – hier helfen Notfallpläne und Übungen.</li><li><strong>Tägliche Datensicherung</strong> → Routineprozess: Wiederkehrend und gleichförmig (hier sogar vollautomatisiert).</li><li><strong>Umzug in neue Büroräume</strong> → Projektprozess: Einmaliges Vorhaben mit Anfang und Ende.</li></ul>]]></text></generalfeedback>
+<defaultgrade>1</defaultgrade><penalty>0.3333333</penalty><hidden>0</hidden>
+<shuffleanswers>true</shuffleanswers>
+<correctfeedback format="html"><text><![CDATA[]]></text></correctfeedback><partiallycorrectfeedback format="html"><text><![CDATA[]]></text></partiallycorrectfeedback><incorrectfeedback format="html"><text><![CDATA[]]></text></incorrectfeedback><shownumcorrect/>
+<subquestion format="html"><text><![CDATA[<p>Monatliche Lohnabrechnung</p>
+]]></text><answer><text>Routineprozess</text></answer></subquestion>
+<subquestion format="html"><text><![CDATA[<p>Einführung eines neuen Ticketsystems</p>
+]]></text><answer><text>Projektprozess</text></answer></subquestion>
+<subquestion format="html"><text><![CDATA[<p>Reaktion auf einen Ransomware-Angriff</p>
+]]></text><answer><text>Ad-hoc-Prozess</text></answer></subquestion>
+<subquestion format="html"><text><![CDATA[<p>Tägliche Datensicherung</p>
+]]></text><answer><text>Routineprozess</text></answer></subquestion>
+<subquestion format="html"><text><![CDATA[<p>Umzug in neue Büroräume</p>
+]]></text><answer><text>Projektprozess</text></answer></subquestion>
+<tags><tag><text>niveau-2</text></tag><tag><text>zuordnung</text></tag><tag><text>entwurf</text></tag></tags>
+</question>
+<question type="matching">
+<name><text>m1-a24 · Strategisch, taktisch oder operativ?</text></name>
+<idnumber>m1-a24</idnumber>
+<questiontext format="html"><text><![CDATA[<p>Ordne die Prozesse der Stadtwerke Seebrück einer Prozessebene zu.</p>
+]]></text></questiontext>
+
+<generalfeedback format="html"><text><![CDATA[<p>Die Grenzen zwischen den Ebenen sind nicht immer scharf – begründe deine Einordnung.</p>
+<ul><li><strong>Entscheiden, ob die Stadtwerke künftig auch Ladestationen für E-Autos betreiben</strong> → strategisch: Langfristige Ausrichtung des Unternehmens.</li><li><strong>Jahresbudget für den Außendienst planen</strong> → taktisch: Mittelfristige Umsetzung der Strategie in konkrete Mittel.</li><li><strong>Zählerstand einer Kundin erfassen</strong> → operativ: Tagesgeschäft.</li><li><strong>Personaleinsatz für die Ableseperiode im Januar planen</strong> → taktisch: Ressourcenplanung; je nach Sicht auch operativ vertretbar – die Grenzen sind fließend.</li><li><strong>Rechnung an eine Kundin versenden</strong> → operativ: Routinetätigkeit im Tagesgeschäft.</li></ul>]]></text></generalfeedback>
+<defaultgrade>1</defaultgrade><penalty>0.3333333</penalty><hidden>0</hidden>
+<shuffleanswers>true</shuffleanswers>
+<correctfeedback format="html"><text><![CDATA[]]></text></correctfeedback><partiallycorrectfeedback format="html"><text><![CDATA[]]></text></partiallycorrectfeedback><incorrectfeedback format="html"><text><![CDATA[]]></text></incorrectfeedback><shownumcorrect/>
+<subquestion format="html"><text><![CDATA[<p>Entscheiden, ob die Stadtwerke künftig auch Ladestationen für E-Autos betreiben</p>
+]]></text><answer><text>strategisch</text></answer></subquestion>
+<subquestion format="html"><text><![CDATA[<p>Jahresbudget für den Außendienst planen</p>
+]]></text><answer><text>taktisch</text></answer></subquestion>
+<subquestion format="html"><text><![CDATA[<p>Zählerstand einer Kundin erfassen</p>
+]]></text><answer><text>operativ</text></answer></subquestion>
+<subquestion format="html"><text><![CDATA[<p>Personaleinsatz für die Ableseperiode im Januar planen</p>
+]]></text><answer><text>taktisch</text></answer></subquestion>
+<subquestion format="html"><text><![CDATA[<p>Rechnung an eine Kundin versenden</p>
+]]></text><answer><text>operativ</text></answer></subquestion>
+<tags><tag><text>niveau-2</text></tag><tag><text>zuordnung</text></tag><tag><text>entwurf</text></tag></tags>
+</question>
+<question type="category">
+<category><text>top/LF 11c/M1 Prozesse identifizieren und einordnen/04 Aufbau- und Ablauforganisation</text></category>
+<info format="html"><text><![CDATA[<p>Lerneinheit m1-le03</p>]]></text></info>
+</question>
+<question type="matching">
+<name><text>m1-a07 · Aufbau oder Ablauf?</text></name>
+<idnumber>m1-a07</idnumber>
+<questiontext format="html"><text><![CDATA[<p>Gehört der Begriff eher zur Aufbau- oder zur Ablauforganisation?</p>
+]]></text></questiontext>
+
+<generalfeedback format="html"><text><![CDATA[<p>Aufbau = Struktur (wer), Ablauf = Vorgehen (wie, wann, in welcher Reihenfolge).</p>
+<ul><li><strong>Organigramm</strong> → Aufbauorganisation: Zeigt Stellen, Abteilungen und Weisungsbeziehungen.</li><li><strong>Stellenbeschreibung</strong> → Aufbauorganisation: Legt Aufgaben, Befugnisse und Einordnung einer Stelle fest.</li><li><strong>Weisungsbefugnis einer Instanz</strong> → Aufbauorganisation: Teil der Leitungsstruktur.</li><li><strong>Reihenfolge der Arbeitsschritte bei der Auftragsabwicklung</strong> → Ablauforganisation: Beschreibt, wie die Arbeit abläuft.</li><li><strong>eEPK des Reklamationsprozesses</strong> → Ablauforganisation: Eine eEPK modelliert einen Ablauf.</li><li><strong>Festlegung, bis wann Tickets der Priorität 1 bearbeitet sein müssen</strong> → Ablauforganisation: Zeitliche Regelung eines Ablaufs.</li><li><strong>Matrixorganisation</strong> → Aufbauorganisation: Ein Leitungssystem.</li></ul>]]></text></generalfeedback>
+<defaultgrade>1</defaultgrade><penalty>0.3333333</penalty><hidden>0</hidden>
+<shuffleanswers>true</shuffleanswers>
+<correctfeedback format="html"><text><![CDATA[]]></text></correctfeedback><partiallycorrectfeedback format="html"><text><![CDATA[]]></text></partiallycorrectfeedback><incorrectfeedback format="html"><text><![CDATA[]]></text></incorrectfeedback><shownumcorrect/>
+<subquestion format="html"><text><![CDATA[<p>Organigramm</p>
+]]></text><answer><text>Aufbauorganisation</text></answer></subquestion>
+<subquestion format="html"><text><![CDATA[<p>Stellenbeschreibung</p>
+]]></text><answer><text>Aufbauorganisation</text></answer></subquestion>
+<subquestion format="html"><text><![CDATA[<p>Weisungsbefugnis einer Instanz</p>
+]]></text><answer><text>Aufbauorganisation</text></answer></subquestion>
+<subquestion format="html"><text><![CDATA[<p>Reihenfolge der Arbeitsschritte bei der Auftragsabwicklung</p>
+]]></text><answer><text>Ablauforganisation</text></answer></subquestion>
+<subquestion format="html"><text><![CDATA[<p>eEPK des Reklamationsprozesses</p>
+]]></text><answer><text>Ablauforganisation</text></answer></subquestion>
+<subquestion format="html"><text><![CDATA[<p>Festlegung, bis wann Tickets der Priorität 1 bearbeitet sein müssen</p>
+]]></text><answer><text>Ablauforganisation</text></answer></subquestion>
+<subquestion format="html"><text><![CDATA[<p>Matrixorganisation</p>
+]]></text><answer><text>Aufbauorganisation</text></answer></subquestion>
+<tags><tag><text>niveau-1</text></tag><tag><text>zuordnung</text></tag><tag><text>entwurf</text></tag></tags>
+</question>
+<question type="multichoice">
+<name><text>m1-a08 · Leitungssysteme</text></name>
+<idnumber>m1-a08</idnumber>
+<questiontext format="html"><text><![CDATA[<p>Welche Aussagen sind richtig? (Mehrere Antworten möglich)</p>
+]]></text></questiontext>
+
+<generalfeedback format="html"><text><![CDATA[<p>Kenne für jedes Leitungssystem Merkmal, Vorteil und Nachteil.</p>
+]]></text></generalfeedback>
+<defaultgrade>1</defaultgrade><penalty>0.3333333</penalty><hidden>0</hidden>
+<single>false</single>
+<shuffleanswers>true</shuffleanswers>
+<answernumbering>abc</answernumbering><showstandardinstruction>1</showstandardinstruction>
+<answer fraction="33.33333" format="html"><text><![CDATA[<p>Im Einliniensystem hat jede Stelle genau eine vorgesetzte Stelle.</p>
+]]></text><feedback format="html"><text><![CDATA[<p>Richtig – daher eindeutige Weisungswege.</p>
+]]></text></feedback></answer>
+<answer fraction="-50" format="html"><text><![CDATA[<p>Stabsstellen dürfen den Linienstellen fachliche Weisungen erteilen.</p>
+]]></text><feedback format="html"><text><![CDATA[<p>Falsch. Stabsstellen beraten und bereiten Entscheidungen vor, haben aber keine Weisungsbefugnis.</p>
+]]></text></feedback></answer>
+<answer fraction="33.33333" format="html"><text><![CDATA[<p>Im Mehrliniensystem können widersprüchliche Weisungen verschiedener Vorgesetzter entstehen.</p>
+]]></text><feedback format="html"><text><![CDATA[<p>Richtig – das ist der typische Nachteil.</p>
+]]></text></feedback></answer>
+<answer fraction="33.33333" format="html"><text><![CDATA[<p>In der Matrixorganisation überlagern sich zwei Gliederungsdimensionen, z. B. Fachabteilung und Projekt.</p>
+]]></text><feedback format="html"><text><![CDATA[<p>Richtig.</p>
+]]></text></feedback></answer>
+<answer fraction="-50" format="html"><text><![CDATA[<p>Das Einliniensystem ist besonders gut geeignet, um Informationen schnell quer zwischen Abteilungen auszutauschen.</p>
+]]></text><feedback format="html"><text><![CDATA[<p>Falsch. Der formale Weg läuft über die gemeinsame vorgesetzte Stelle – das kann lange dauern.</p>
+]]></text></feedback></answer>
+<tags><tag><text>niveau-2</text></tag><tag><text>multiple_choice</text></tag><tag><text>entwurf</text></tag></tags>
+</question>
+<question type="category">
+<category><text>top/LF 11c/M1 Prozesse identifizieren und einordnen/05 Die Wertkette nach Porter</text></category>
+<info format="html"><text><![CDATA[<p>Lerneinheit m1-le04</p>]]></text></info>
+</question>
+<question type="matching">
+<name><text>m1-a09 · Primär oder unterstützend?</text></name>
+<idnumber>m1-a09</idnumber>
+<questiontext format="html"><text><![CDATA[<p>Ordne die Aktivitäten der Wertkette nach Porter zu.</p>
+]]></text></questiontext>
+
+<generalfeedback format="html"><text><![CDATA[<p>Primär sind Eingangslogistik, Operationen, Ausgangslogistik, Marketing und Vertrieb, Kundendienst. Unterstützend sind Unternehmensinfrastruktur, Personalwirtschaft, Technologieentwicklung, Beschaffung.</p>
+<ul><li><strong>Eingangslogistik</strong> → Primäre Aktivität: Annahme, Lagerung, Verteilung von Material.</li><li><strong>Beschaffung</strong> → Unterstützende Aktivität: Einkauf für alle Bereiche; nicht zu verwechseln mit der Eingangslogistik.</li><li><strong>Kundendienst</strong> → Primäre Aktivität: Service nach dem Verkauf.</li><li><strong>Technologieentwicklung</strong> → Unterstützende Aktivität: F&amp;E, IT, Verfahrensentwicklung.</li><li><strong>Marketing und Vertrieb</strong> → Primäre Aktivität: Direkt am Verkauf beteiligt.</li><li><strong>Personalwirtschaft</strong> → Unterstützende Aktivität: Personal für alle Aktivitäten.</li><li><strong>Unternehmensinfrastruktur</strong> → Unterstützende Aktivität: Geschäftsführung, Planung, Finanzen, Recht, QM.</li><li><strong>Ausgangslogistik</strong> → Primäre Aktivität: Auslieferung an die Kunden.</li></ul>]]></text></generalfeedback>
+<defaultgrade>1</defaultgrade><penalty>0.3333333</penalty><hidden>0</hidden>
+<shuffleanswers>true</shuffleanswers>
+<correctfeedback format="html"><text><![CDATA[]]></text></correctfeedback><partiallycorrectfeedback format="html"><text><![CDATA[]]></text></partiallycorrectfeedback><incorrectfeedback format="html"><text><![CDATA[]]></text></incorrectfeedback><shownumcorrect/>
+<subquestion format="html"><text><![CDATA[<p>Eingangslogistik</p>
+]]></text><answer><text>Primäre Aktivität</text></answer></subquestion>
+<subquestion format="html"><text><![CDATA[<p>Beschaffung</p>
+]]></text><answer><text>Unterstützende Aktivität</text></answer></subquestion>
+<subquestion format="html"><text><![CDATA[<p>Kundendienst</p>
+]]></text><answer><text>Primäre Aktivität</text></answer></subquestion>
+<subquestion format="html"><text><![CDATA[<p>Technologieentwicklung</p>
+]]></text><answer><text>Unterstützende Aktivität</text></answer></subquestion>
+<subquestion format="html"><text><![CDATA[<p>Marketing und Vertrieb</p>
+]]></text><answer><text>Primäre Aktivität</text></answer></subquestion>
+<subquestion format="html"><text><![CDATA[<p>Personalwirtschaft</p>
+]]></text><answer><text>Unterstützende Aktivität</text></answer></subquestion>
+<subquestion format="html"><text><![CDATA[<p>Unternehmensinfrastruktur</p>
+]]></text><answer><text>Unterstützende Aktivität</text></answer></subquestion>
+<subquestion format="html"><text><![CDATA[<p>Ausgangslogistik</p>
+]]></text><answer><text>Primäre Aktivität</text></answer></subquestion>
+<tags><tag><text>niveau-1</text></tag><tag><text>zuordnung</text></tag><tag><text>entwurf</text></tag></tags>
+</question>
+<question type="multichoice">
+<name><text>m1-a10 · Beschaffung und Eingangslogistik</text></name>
+<idnumber>m1-a10</idnumber>
+<questiontext format="html"><text><![CDATA[<p>Worin unterscheiden sich „Beschaffung&quot; und „Eingangslogistik&quot; in Porters Wertkette?</p>
+]]></text></questiontext>
+
+<generalfeedback format="html"><text><![CDATA[<p>Beschaffung kauft auch für andere Bereiche ein (z. B. Büromaterial, Beratungsleistungen) und ist deshalb eine unterstützende Aktivität.</p>
+]]></text></generalfeedback>
+<defaultgrade>1</defaultgrade><penalty>0.3333333</penalty><hidden>0</hidden>
+<single>true</single>
+<shuffleanswers>true</shuffleanswers>
+<answernumbering>abc</answernumbering><showstandardinstruction>1</showstandardinstruction>
+<answer fraction="100" format="html"><text><![CDATA[<p>Beschaffung ist der Einkaufsvorgang für alle Bereiche (unterstützend); Eingangslogistik umfasst Annahme, Lagerung und Verteilung des Materials (primär).</p>
+]]></text><feedback format="html"><text><![CDATA[<p>Richtig. Porter trennt den Einkauf selbst vom physischen Materialfluss.</p>
+]]></text></feedback></answer>
+<answer fraction="0" format="html"><text><![CDATA[<p>Es gibt keinen Unterschied, beide Begriffe meinen dasselbe.</p>
+]]></text><feedback format="html"><text><![CDATA[<p>Doch – sie stehen sogar in verschiedenen Gruppen der Wertkette.</p>
+]]></text></feedback></answer>
+<answer fraction="0" format="html"><text><![CDATA[<p>Beschaffung ist primär, Eingangslogistik ist unterstützend.</p>
+]]></text><feedback format="html"><text><![CDATA[<p>Genau umgekehrt.</p>
+]]></text></feedback></answer>
+<tags><tag><text>niveau-2</text></tag><tag><text>single_choice</text></tag><tag><text>entwurf</text></tag></tags>
+</question>
+<question type="category">
+<category><text>top/LF 11c/M1 Prozesse identifizieren und einordnen/06 Den Ist-Zustand erheben</text></category>
+<info format="html"><text><![CDATA[<p>Lerneinheit m1-le05</p>]]></text></info>
+</question>
+<question type="matching">
+<name><text>m1-a11 · Welche Erhebungsmethode passt?</text></name>
+<idnumber>m1-a11</idnumber>
+<questiontext format="html"><text><![CDATA[<p>Ordne jeder Situation die am besten geeignete Methode zu.</p>
+]]></text></questiontext>
+
+<generalfeedback format="html"><text><![CDATA[<p>Entscheidend sind Ziel der Erhebung, Zahl und Ort der Beteiligten und die Frage, ob Rückfragen nötig sind.</p>
+<ul><li><strong>Die Stadtwerke wollen von 140 Außendienst-Beschäftigten an vier Standorten wissen, welche Probleme sie mit der Zähler-App haben.</strong> → Fragebogen: Viele Personen, verteilt – schriftliche, standardisierte Befragung.</li><li><strong>Du willst verstehen, warum Garantie-Sonderfälle in der Reklamationsabteilung so lange dauern, und dabei nachfragen können.</strong> → Interview: Ursachen und Hintergründe, Rückfragen nötig.</li><li><strong>Bevor du mit Beschäftigten sprichst, willst du wissen, welche Abläufe laut Arbeitsanweisungen und Organigramm gelten.</strong> → Dokumentenanalyse: Guter, schneller Einstieg, zeigt den dokumentierten Soll-Stand.</li><li><strong>Du willst schätzen, welcher Anteil der Arbeitszeit am Service-Telefon auf Wartezeit ohne Anrufe entfällt.</strong> → Multimomentaufnahme: Zeitanteile über Stichproben zu zufälligen Zeitpunkten.</li><li><strong>Die Beschäftigten der Werkstatt sollen zwei Wochen lang selbst notieren, welche Tätigkeiten sie wie lange ausführen.</strong> → Selbstaufschreibung: Eigenerhebung der Beschäftigten – Ergebnisse plausibilisieren.</li><li><strong>Vertrieb, Werkstatt und Buchhaltung sollen gemeinsam den heutigen Reklamationsablauf an einer Pinnwand aufzeichnen.</strong> → Workshop: Mehrere Abteilungen gleichzeitig, moderiert.</li></ul>]]></text></generalfeedback>
+<defaultgrade>1</defaultgrade><penalty>0.3333333</penalty><hidden>0</hidden>
+<shuffleanswers>true</shuffleanswers>
+<correctfeedback format="html"><text><![CDATA[]]></text></correctfeedback><partiallycorrectfeedback format="html"><text><![CDATA[]]></text></partiallycorrectfeedback><incorrectfeedback format="html"><text><![CDATA[]]></text></incorrectfeedback><shownumcorrect/>
+<subquestion format="html"><text><![CDATA[<p>Die Stadtwerke wollen von 140 Außendienst-Beschäftigten an vier Standorten wissen, welche Probleme sie mit der Zähler-App haben.</p>
+]]></text><answer><text>Fragebogen</text></answer></subquestion>
+<subquestion format="html"><text><![CDATA[<p>Du willst verstehen, warum Garantie-Sonderfälle in der Reklamationsabteilung so lange dauern, und dabei nachfragen können.</p>
+]]></text><answer><text>Interview</text></answer></subquestion>
+<subquestion format="html"><text><![CDATA[<p>Bevor du mit Beschäftigten sprichst, willst du wissen, welche Abläufe laut Arbeitsanweisungen und Organigramm gelten.</p>
+]]></text><answer><text>Dokumentenanalyse</text></answer></subquestion>
+<subquestion format="html"><text><![CDATA[<p>Du willst schätzen, welcher Anteil der Arbeitszeit am Service-Telefon auf Wartezeit ohne Anrufe entfällt.</p>
+]]></text><answer><text>Multimomentaufnahme</text></answer></subquestion>
+<subquestion format="html"><text><![CDATA[<p>Die Beschäftigten der Werkstatt sollen zwei Wochen lang selbst notieren, welche Tätigkeiten sie wie lange ausführen.</p>
+]]></text><answer><text>Selbstaufschreibung</text></answer></subquestion>
+<subquestion format="html"><text><![CDATA[<p>Vertrieb, Werkstatt und Buchhaltung sollen gemeinsam den heutigen Reklamationsablauf an einer Pinnwand aufzeichnen.</p>
+]]></text><answer><text>Workshop</text></answer></subquestion>
+<tags><tag><text>niveau-2</text></tag><tag><text>zuordnung</text></tag><tag><text>entwurf</text></tag></tags>
+</question>
+<question type="multichoice">
+<name><text>m1-a12 · Grenzen der Erhebungsmethoden</text></name>
+<idnumber>m1-a12</idnumber>
+<questiontext format="html"><text><![CDATA[<p>Welche Aussagen treffen zu? (Mehrere Antworten möglich)</p>
+]]></text></questiontext>
+
+<generalfeedback format="html"><text><![CDATA[<p>Jede Methode hat blinde Flecken. Deshalb kombiniert man sie.</p>
+]]></text></generalfeedback>
+<defaultgrade>1</defaultgrade><penalty>0.3333333</penalty><hidden>0</hidden>
+<single>false</single>
+<shuffleanswers>true</shuffleanswers>
+<answernumbering>abc</answernumbering><showstandardinstruction>1</showstandardinstruction>
+<answer fraction="33.33333" format="html"><text><![CDATA[<p>Bei einer Beobachtung kann sich das Verhalten der Beobachteten verändern, weil sie wissen, dass sie beobachtet werden.</p>
+]]></text><feedback format="html"><text><![CDATA[<p>Richtig – deshalb Ergebnisse mit anderen Daten abgleichen.</p>
+]]></text></feedback></answer>
+<answer fraction="-50" format="html"><text><![CDATA[<p>Die Dokumentenanalyse zeigt immer den tatsächlichen Ablauf.</p>
+]]></text><feedback format="html"><text><![CDATA[<p>Falsch. Dokumente beschreiben oft den geplanten Ablauf und können veraltet sein.</p>
+]]></text></feedback></answer>
+<answer fraction="33.33333" format="html"><text><![CDATA[<p>Bei einem Fragebogen müssen die Fragen besonders eindeutig sein, weil Rückfragen meist nicht möglich sind.</p>
+]]></text><feedback format="html"><text><![CDATA[<p>Richtig – ein Pretest hilft.</p>
+]]></text></feedback></answer>
+<answer fraction="33.33333" format="html"><text><![CDATA[<p>Angaben aus einer Selbstaufschreibung sollten plausibilisiert werden.</p>
+]]></text><feedback format="html"><text><![CDATA[<p>Richtig, weil sie ohne Kontrolle durch einen Beobachter entstehen.</p>
+]]></text></feedback></answer>
+<answer fraction="-50" format="html"><text><![CDATA[<p>Die Auswertung von Ticketdaten pro Person ist rechtlich unproblematisch, weil die Daten ohnehin im System liegen.</p>
+]]></text><feedback format="html"><text><![CDATA[<p>Falsch. Datenschutz (DSGVO) und ggf. Mitbestimmung des Betriebsrats (§ 87 Abs. 1 Nr. 6 BetrVG) sind zu beachten.</p>
+]]></text></feedback></answer>
+<tags><tag><text>niveau-2</text></tag><tag><text>multiple_choice</text></tag><tag><text>entwurf</text></tag></tags>
+</question>
+<question type="essay">
+<name><text>m1-a13 · Ist-Aufnahme im Service-Desk planen</text></name>
+<idnumber>m1-a13</idnumber>
+<questiontext format="html"><text><![CDATA[<p>Der Service-Desk der FördeData GmbH (12 Beschäftigte, zwei Schichten) nimmt Störungen per Telefon, E-Mail und Webformular an. Webformular und E-Mails landen automatisch im Ticketsystem, telefonische Meldungen werden teilweise erst auf Notizzetteln festgehalten und später eingetragen. Die Geschäftsführung beklagt, dass Störungen „zu lange&quot; dauern.</p>
+<p>Nenne <strong>drei</strong> geeignete Methoden der Ist-Aufnahme und beschreibe jeweils, <strong>wie</strong> du sie in dieser Situation konkret einsetzt.</p>
+]]></text></questiontext>
+
+<generalfeedback format="html"><text><![CDATA[<h4>Musterlösung</h4><ul>
+<li><strong>Auswertung der Systemdaten / Dokumentenanalyse:</strong> Export der Tickets der letzten drei Monate mit Zeitstempeln (Eingang, Zuweisung, Lösung) und Eingangskanal. Auswerten, in welchen Abschnitten die Zeit verloren geht und ob sich Kanäle oder Schichten unterscheiden. Auswertung nicht auf Einzelpersonen bezogen, Betriebsrat einbinden.</li>
+<li><strong>Interview:</strong> Leitfadengestützte Gespräche mit der Leitung des Service-Desks und je einer Person pro Schicht. Fragen: Wo entstehen Wartezeiten? Warum werden Anrufe nicht sofort erfasst? Welche Tickets bleiben typischerweise liegen?</li>
+<li><strong>Selbstaufschreibung:</strong> Zwei Wochen lang Strichliste am Arbeitsplatz: Anzahl telefonischer Meldungen, die erst später ins System eingetragen werden, und die ungefähre Verzögerung. Diese Verzögerung ist in den Systemdaten nicht sichtbar.</li>
+</ul>
+<p>Ebenfalls vertretbar: <strong>Beobachtung</strong> eines Schichtablaufs (Hinweis auf verändertes Verhalten), <strong>Workshop</strong> mit beiden Schichten, <strong>Laufzettel</strong> für telefonische Meldungen.</p>
+<h4>Checkliste</h4><ul><li>Drei unterschiedliche, fachlich korrekt benannte Methoden.</li><li>Für jede Methode ist konkret beschrieben, wer befragt/beobachtet bzw. welche Daten ausgewertet werden.</li><li>Für jede Methode ist erkennbar, welche Information sie liefern soll.</li><li>Mindestens eine Methode erfasst die telefonischen Meldungen, die nicht sofort im System landen.</li><li>Optional, aber stark: Hinweis auf Datenschutz bzw. Betriebsrat bei personenbezogener Auswertung.</li></ul><p>Das bloße Nennen der Methoden bringt in der Prüfung nur einen Teil der Punkte. Die Anwendung auf den Fall ist entscheidend.</p>
+]]></text></generalfeedback>
+<defaultgrade>6</defaultgrade><penalty>0</penalty><hidden>0</hidden>
+<responseformat>editor</responseformat><responserequired>1</responserequired><responsefieldlines>15</responsefieldlines><minwordlimit></minwordlimit><maxwordlimit></maxwordlimit><attachments>0</attachments><attachmentsrequired>0</attachmentsrequired><maxbytes>0</maxbytes><filetypeslist></filetypeslist>
+<graderinfo format="html"><text><![CDATA[<h4>Musterlösung</h4><ul>
+<li><strong>Auswertung der Systemdaten / Dokumentenanalyse:</strong> Export der Tickets der letzten drei Monate mit Zeitstempeln (Eingang, Zuweisung, Lösung) und Eingangskanal. Auswerten, in welchen Abschnitten die Zeit verloren geht und ob sich Kanäle oder Schichten unterscheiden. Auswertung nicht auf Einzelpersonen bezogen, Betriebsrat einbinden.</li>
+<li><strong>Interview:</strong> Leitfadengestützte Gespräche mit der Leitung des Service-Desks und je einer Person pro Schicht. Fragen: Wo entstehen Wartezeiten? Warum werden Anrufe nicht sofort erfasst? Welche Tickets bleiben typischerweise liegen?</li>
+<li><strong>Selbstaufschreibung:</strong> Zwei Wochen lang Strichliste am Arbeitsplatz: Anzahl telefonischer Meldungen, die erst später ins System eingetragen werden, und die ungefähre Verzögerung. Diese Verzögerung ist in den Systemdaten nicht sichtbar.</li>
+</ul>
+<p>Ebenfalls vertretbar: <strong>Beobachtung</strong> eines Schichtablaufs (Hinweis auf verändertes Verhalten), <strong>Workshop</strong> mit beiden Schichten, <strong>Laufzettel</strong> für telefonische Meldungen.</p>
+<h4>Checkliste</h4><ul><li>Drei unterschiedliche, fachlich korrekt benannte Methoden.</li><li>Für jede Methode ist konkret beschrieben, wer befragt/beobachtet bzw. welche Daten ausgewertet werden.</li><li>Für jede Methode ist erkennbar, welche Information sie liefern soll.</li><li>Mindestens eine Methode erfasst die telefonischen Meldungen, die nicht sofort im System landen.</li><li>Optional, aber stark: Hinweis auf Datenschutz bzw. Betriebsrat bei personenbezogener Auswertung.</li></ul>]]></text></graderinfo><responsetemplate format="html"><text><![CDATA[]]></text></responsetemplate>
+<tags><tag><text>niveau-3</text></tag><tag><text>offen</text></tag><tag><text>entwurf</text></tag></tags>
+</question>
+<question type="cloze">
+<name><text>m1-a14 · Vom Ist zum Soll</text></name>
+<idnumber>m1-a14</idnumber>
+<questiontext format="html"><text><![CDATA[<p>Ergänze die Fachbegriffe.</p>
+<p>Zuerst werden in der {1:SHORTANSWER:%100%Ist Aufnahme~%100%Ist-Aufnahme~%100%Ist-Erhebung~%100%Ist Erhebung~%100%Istaufnahme~%100%Isterhebung~%0%*#Es geht um das Sammeln der Daten.} Fakten über den aktuellen Ablauf gesammelt. In der {1:SHORTANSWER:%100%Ist Analyse~%100%Ist-Analyse~%100%Istanalyse~%0%*#Es geht um das Auswerten und Bewerten.} werden diese Fakten ausgewertet und Schwachstellen ermittelt. Daraus entsteht das {1:SHORTANSWER:%100%Soll-Konzept~%100%Soll Konzept~%100%Sollkonzept~%0%*#Gegenstück zum Ist.}, das den angestrebten Zustand beschreibt.</p>
+]]></text></questiontext>
+
+<generalfeedback format="html"><text><![CDATA[<p>Ist-Aufnahme (erheben) → Ist-Analyse (bewerten) → Soll-Konzept (verbessern).</p>
+]]></text></generalfeedback>
+<penalty>0.3333333</penalty><hidden>0</hidden>
+<tags><tag><text>niveau-1</text></tag><tag><text>lueckentext</text></tag><tag><text>entwurf</text></tag></tags>
+</question>
+<question type="category">
+<category><text>top/LF 11c/M1 Prozesse identifizieren und einordnen/07 Schnittstellen und Medienbrüche</text></category>
+<info format="html"><text><![CDATA[<p>Lerneinheit m1-le06</p>]]></text></info>
+</question>
+<question type="essay">
+<name><text>m1-a15 · Schnittstellen und Medienbrüche im Rücksendeprozess</text></name>
+<idnumber>m1-a15</idnumber>
+<questiontext format="html"><text><![CDATA[<p>Bei der Brückner Fahrradmanufaktur läuft eine Rücksendung so ab:</p>
+<ol>
+<li>Die Kundin schreibt eine E-Mail an den Kundenservice.</li>
+<li>Der Kundenservice druckt die E-Mail aus und legt sie ins Fach des Lagers.</li>
+<li>Das Lager nimmt das Paket an, vergleicht den Inhalt mit dem Ausdruck und notiert den Zustand handschriftlich darauf.</li>
+<li>Einmal täglich bringt eine Lagerkraft die Ausdrucke in die Buchhaltung.</li>
+<li>Die Buchhaltung gibt Bestellnummer und Betrag von Hand im ERP-System ein und veranlasst die Erstattung.</li>
+</ol>
+<p>a) Nenne drei Schnittstellen in diesem Ablauf.
+b) Identifiziere zwei Medienbrüche.
+c) Beschreibe für einen der Medienbrüche eine Folge und einen Verbesserungsvorschlag.</p>
+]]></text></questiontext>
+
+<generalfeedback format="html"><text><![CDATA[<h4>Musterlösung</h4><p><strong>a) Schnittstellen</strong></p>
+<ul>
+<li>Kundin → Kundenservice (extern)</li>
+<li>Kundenservice → Lager (organisatorisch)</li>
+<li>Lager → Buchhaltung (organisatorisch)</li>
+<li>Buchhaltung → ERP-System (Mensch–System) bzw. Buchhaltung → Kundin (Erstattung)</li>
+</ul>
+<p><strong>b) Medienbrüche</strong></p>
+<ul>
+<li>E-Mail wird ausgedruckt (digital → Papier).</li>
+<li>Handschriftliche Notiz auf Papier → manuelle Eingabe ins ERP-System (Papier → digital).</li>
+</ul>
+<p><strong>c) Folge und Verbesserung (Beispiel)</strong></p>
+<ul>
+<li>Folge: Tippfehler bei Bestellnummer oder Betrag führen zu falschen Erstattungen; die tägliche Papierübergabe erzeugt bis zu einem Tag Liegezeit.</li>
+<li>Verbesserung: Rücksendeformular im Online-Shop, das direkt einen Vorgang im ERP- oder Ticketsystem anlegt; das Lager erfasst den Zustand digital (z. B. per Tablet oder Scanner) am selben Vorgang; die Buchhaltung gibt die Erstattung im System frei, ohne neu zu tippen.</li>
+</ul>
+<h4>Checkliste</h4><ul><li>Drei Schnittstellen, jeweils mit beiden Beteiligten benannt.</li><li>Zwei Medienbrüche, jeweils mit Ausgangs- und Zielträger (z. B. digital → Papier); mindestens einer davon mit manueller Übertragung.</li><li>Eine konkrete Folge (Fehler, Zeitverlust, Informationsverlust) passend zum gewählten Medienbruch.</li><li>Ein Verbesserungsvorschlag, der den Medienbruch beseitigt (nicht nur „digitalisieren&quot;, sondern wie).</li></ul><p>Der physische Transport des Pakets ist keine Informationsübertragung und deshalb kein Medienbruch – wohl aber eine Schnittstelle.</p>
+]]></text></generalfeedback>
+<defaultgrade>10</defaultgrade><penalty>0</penalty><hidden>0</hidden>
+<responseformat>editor</responseformat><responserequired>1</responserequired><responsefieldlines>15</responsefieldlines><minwordlimit></minwordlimit><maxwordlimit></maxwordlimit><attachments>0</attachments><attachmentsrequired>0</attachmentsrequired><maxbytes>0</maxbytes><filetypeslist></filetypeslist>
+<graderinfo format="html"><text><![CDATA[<h4>Musterlösung</h4><p><strong>a) Schnittstellen</strong></p>
+<ul>
+<li>Kundin → Kundenservice (extern)</li>
+<li>Kundenservice → Lager (organisatorisch)</li>
+<li>Lager → Buchhaltung (organisatorisch)</li>
+<li>Buchhaltung → ERP-System (Mensch–System) bzw. Buchhaltung → Kundin (Erstattung)</li>
+</ul>
+<p><strong>b) Medienbrüche</strong></p>
+<ul>
+<li>E-Mail wird ausgedruckt (digital → Papier).</li>
+<li>Handschriftliche Notiz auf Papier → manuelle Eingabe ins ERP-System (Papier → digital).</li>
+</ul>
+<p><strong>c) Folge und Verbesserung (Beispiel)</strong></p>
+<ul>
+<li>Folge: Tippfehler bei Bestellnummer oder Betrag führen zu falschen Erstattungen; die tägliche Papierübergabe erzeugt bis zu einem Tag Liegezeit.</li>
+<li>Verbesserung: Rücksendeformular im Online-Shop, das direkt einen Vorgang im ERP- oder Ticketsystem anlegt; das Lager erfasst den Zustand digital (z. B. per Tablet oder Scanner) am selben Vorgang; die Buchhaltung gibt die Erstattung im System frei, ohne neu zu tippen.</li>
+</ul>
+<h4>Checkliste</h4><ul><li>Drei Schnittstellen, jeweils mit beiden Beteiligten benannt.</li><li>Zwei Medienbrüche, jeweils mit Ausgangs- und Zielträger (z. B. digital → Papier); mindestens einer davon mit manueller Übertragung.</li><li>Eine konkrete Folge (Fehler, Zeitverlust, Informationsverlust) passend zum gewählten Medienbruch.</li><li>Ein Verbesserungsvorschlag, der den Medienbruch beseitigt (nicht nur „digitalisieren&quot;, sondern wie).</li></ul>]]></text></graderinfo><responsetemplate format="html"><text><![CDATA[]]></text></responsetemplate>
+<tags><tag><text>niveau-3</text></tag><tag><text>offen</text></tag><tag><text>entwurf</text></tag></tags>
+</question>
+<question type="multichoice">
+<name><text>m1-a16 · Was ist ein Medienbruch?</text></name>
+<idnumber>m1-a16</idnumber>
+<questiontext format="html"><text><![CDATA[<p>In welchem Fall liegt ein Medienbruch im problematischen Sinn vor?</p>
+]]></text></questiontext>
+
+<generalfeedback format="html"><text><![CDATA[<p>Kritisch ist die manuelle Neuerfassung von Daten.</p>
+]]></text></generalfeedback>
+<defaultgrade>1</defaultgrade><penalty>0.3333333</penalty><hidden>0</hidden>
+<single>true</single>
+<shuffleanswers>true</shuffleanswers>
+<answernumbering>abc</answernumbering><showstandardinstruction>1</showstandardinstruction>
+<answer fraction="100" format="html"><text><![CDATA[<p>Eine telefonische Bestellung wird auf einem Zettel notiert und später von Hand ins Warenwirtschaftssystem eingegeben.</p>
+]]></text><feedback format="html"><text><![CDATA[<p>Richtig – der Informationsträger wechselt und die Daten werden manuell übertragen.</p>
+]]></text></feedback></answer>
+<answer fraction="0" format="html"><text><![CDATA[<p>Der Online-Shop übergibt Bestellungen über eine Programmierschnittstelle automatisch an das Warenwirtschaftssystem.</p>
+]]></text><feedback format="html"><text><![CDATA[<p>Hier wird automatisch übertragen – eine technische Schnittstelle, aber kein problematischer Medienbruch.</p>
+]]></text></feedback></answer>
+<answer fraction="0" format="html"><text><![CDATA[<p>Zwei Beschäftigte derselben Abteilung besprechen ein Ticket am Telefon.</p>
+]]></text><feedback format="html"><text><![CDATA[<p>Hier werden keine Daten von einem Träger auf einen anderen übertragen.</p>
+]]></text></feedback></answer>
+<tags><tag><text>niveau-1</text></tag><tag><text>single_choice</text></tag><tag><text>entwurf</text></tag></tags>
+</question>
+<question type="matching">
+<name><text>m1-a25 · Welcher Fluss ist das?</text></name>
+<idnumber>m1-a25</idnumber>
+<questiontext format="html"><text><![CDATA[<p>Ordne jeden Vorgang aus dem Reklamationsprozess der Brückner Fahrradmanufaktur dem passenden Fluss zu.</p>
+]]></text></questiontext>
+
+<generalfeedback format="html"><text><![CDATA[<p>Bei der Digitalisierung von Prozessen steht vor allem der Informationsfluss im Mittelpunkt.</p>
+<ul><li><strong>Die Kundin schickt das defekte E-Bike ins Lager.</strong> → Materialfluss: Ein physisches Gut bewegt sich durch den Prozess.</li><li><strong>Der Prüfbericht der Werkstatt geht an die Buchhaltung.</strong> → Informationsfluss: Daten wandern von der Quelle zum Empfänger.</li><li><strong>Die Werkstatt tauscht den Akku aus.</strong> → Leistungsfluss: Wertschöpfende Arbeit.</li><li><strong>Der Kundin werden 180 € erstattet.</strong> → Geldfluss: Finanzielle Transaktion.</li><li><strong>Der Vertrieb meldet der Werkstatt, dass die Kundin einen Leihakku braucht.</strong> → Informationsfluss: Eine Information zur Steuerung des Prozesses.</li></ul>]]></text></generalfeedback>
+<defaultgrade>1</defaultgrade><penalty>0.3333333</penalty><hidden>0</hidden>
+<shuffleanswers>true</shuffleanswers>
+<correctfeedback format="html"><text><![CDATA[]]></text></correctfeedback><partiallycorrectfeedback format="html"><text><![CDATA[]]></text></partiallycorrectfeedback><incorrectfeedback format="html"><text><![CDATA[]]></text></incorrectfeedback><shownumcorrect/>
+<subquestion format="html"><text><![CDATA[<p>Die Kundin schickt das defekte E-Bike ins Lager.</p>
+]]></text><answer><text>Materialfluss</text></answer></subquestion>
+<subquestion format="html"><text><![CDATA[<p>Der Prüfbericht der Werkstatt geht an die Buchhaltung.</p>
+]]></text><answer><text>Informationsfluss</text></answer></subquestion>
+<subquestion format="html"><text><![CDATA[<p>Die Werkstatt tauscht den Akku aus.</p>
+]]></text><answer><text>Leistungsfluss</text></answer></subquestion>
+<subquestion format="html"><text><![CDATA[<p>Der Kundin werden 180 € erstattet.</p>
+]]></text><answer><text>Geldfluss</text></answer></subquestion>
+<subquestion format="html"><text><![CDATA[<p>Der Vertrieb meldet der Werkstatt, dass die Kundin einen Leihakku braucht.</p>
+]]></text><answer><text>Informationsfluss</text></answer></subquestion>
+<tags><tag><text>niveau-2</text></tag><tag><text>zuordnung</text></tag><tag><text>entwurf</text></tag></tags>
+</question>
+<question type="matching">
+<name><text>m1-a26 · Eingang, Verlauf oder Ausgang?</text></name>
+<idnumber>m1-a26</idnumber>
+<questiontext format="html"><text><![CDATA[<p>An welcher Stelle des Prozesses „Störungen bearbeiten&quot; liegt die Schnittstelle?</p>
+]]></text></questiontext>
+
+<generalfeedback format="html"><text><![CDATA[<p>Eingangs- und Ausgangsschnittstellen markieren zugleich die Prozessgrenzen.</p>
+<ul><li><strong>Die Kundin meldet eine Störung über das Webformular.</strong> → Eingangsschnittstelle: Input am Anfang des Prozesses.</li><li><strong>Der 2nd Level bestellt beim Einkauf eine Ersatzfestplatte.</strong> → Verlaufsschnittstelle: Austausch mit einem anderen Prozess während des Ablaufs.</li><li><strong>Die Kundin erhält die Lösungsmeldung per E-Mail.</strong> → Ausgangsschnittstelle: Output am Ende des Prozesses.</li><li><strong>Der aufgewendete Zeitaufwand wird zur Abrechnung an die Buchhaltung übergeben.</strong> → Ausgangsschnittstelle: Ergebnis, das an einen anderen Prozess weitergeht.</li></ul>]]></text></generalfeedback>
+<defaultgrade>1</defaultgrade><penalty>0.3333333</penalty><hidden>0</hidden>
+<shuffleanswers>true</shuffleanswers>
+<correctfeedback format="html"><text><![CDATA[]]></text></correctfeedback><partiallycorrectfeedback format="html"><text><![CDATA[]]></text></partiallycorrectfeedback><incorrectfeedback format="html"><text><![CDATA[]]></text></incorrectfeedback><shownumcorrect/>
+<subquestion format="html"><text><![CDATA[<p>Die Kundin meldet eine Störung über das Webformular.</p>
+]]></text><answer><text>Eingangsschnittstelle</text></answer></subquestion>
+<subquestion format="html"><text><![CDATA[<p>Der 2nd Level bestellt beim Einkauf eine Ersatzfestplatte.</p>
+]]></text><answer><text>Verlaufsschnittstelle</text></answer></subquestion>
+<subquestion format="html"><text><![CDATA[<p>Die Kundin erhält die Lösungsmeldung per E-Mail.</p>
+]]></text><answer><text>Ausgangsschnittstelle</text></answer></subquestion>
+<subquestion format="html"><text><![CDATA[<p>Der aufgewendete Zeitaufwand wird zur Abrechnung an die Buchhaltung übergeben.</p>
+]]></text><answer><text>Ausgangsschnittstelle</text></answer></subquestion>
+<tags><tag><text>niveau-1</text></tag><tag><text>zuordnung</text></tag><tag><text>entwurf</text></tag></tags>
+</question>
+<question type="category">
+<category><text>top/LF 11c/M1 Prozesse identifizieren und einordnen/08 Prozessbeteiligte und Prozesssteckbrief</text></category>
+<info format="html"><text><![CDATA[<p>Lerneinheit m1-le09</p>]]></text></info>
+</question>
+<question type="matching">
+<name><text>m1-a27 · Rollen der Prozessbeteiligten</text></name>
+<idnumber>m1-a27</idnumber>
+<questiontext format="html"><text><![CDATA[<p>Ordne die Beteiligten am Prozess „Zähler wechseln&quot; der Stadtwerke Seebrück ihrer Rolle zu.</p>
+]]></text></questiontext>
+
+<generalfeedback format="html"><text><![CDATA[<p>Die Rollen helfen, bei der Ist-Aufnahme niemanden zu vergessen.</p>
+<ul><li><strong>Leiterin des Außendienstes</strong> → Prozessverantwortliche: Steuert den Ablauf und verantwortet die Ergebnisse.</li><li><strong>Monteure, die den Zähler tauschen</strong> → Prozessausführende: Führen die Arbeitsschritte aus.</li><li><strong>Lager, das die neuen Zähler bereitstellt</strong> → Ressourcenbereitsteller: Stellt Material zur Verfügung.</li><li><strong>Mitarbeiterin des Qualitätsmanagements, die die Einhaltung der Messvorschriften prüft</strong> → Prozessunterstützende: Überwacht Standards und Vorschriften.</li><li><strong>Haushalt, bei dem der Zähler getauscht wird</strong> → Kunden: Empfänger des Prozessergebnisses.</li><li><strong>Eichbehörde</strong> → sonstige Interessengruppen: Hat ein Interesse daran, dass Messgeräte vorschriftsmäßig sind.</li></ul>]]></text></generalfeedback>
+<defaultgrade>1</defaultgrade><penalty>0.3333333</penalty><hidden>0</hidden>
+<shuffleanswers>true</shuffleanswers>
+<correctfeedback format="html"><text><![CDATA[]]></text></correctfeedback><partiallycorrectfeedback format="html"><text><![CDATA[]]></text></partiallycorrectfeedback><incorrectfeedback format="html"><text><![CDATA[]]></text></incorrectfeedback><shownumcorrect/>
+<subquestion format="html"><text><![CDATA[<p>Leiterin des Außendienstes</p>
+]]></text><answer><text>Prozessverantwortliche</text></answer></subquestion>
+<subquestion format="html"><text><![CDATA[<p>Monteure, die den Zähler tauschen</p>
+]]></text><answer><text>Prozessausführende</text></answer></subquestion>
+<subquestion format="html"><text><![CDATA[<p>Lager, das die neuen Zähler bereitstellt</p>
+]]></text><answer><text>Ressourcenbereitsteller</text></answer></subquestion>
+<subquestion format="html"><text><![CDATA[<p>Mitarbeiterin des Qualitätsmanagements, die die Einhaltung der Messvorschriften prüft</p>
+]]></text><answer><text>Prozessunterstützende</text></answer></subquestion>
+<subquestion format="html"><text><![CDATA[<p>Haushalt, bei dem der Zähler getauscht wird</p>
+]]></text><answer><text>Kunden</text></answer></subquestion>
+<subquestion format="html"><text><![CDATA[<p>Eichbehörde</p>
+]]></text><answer><text>sonstige Interessengruppen</text></answer></subquestion>
+<tags><tag><text>niveau-2</text></tag><tag><text>zuordnung</text></tag><tag><text>entwurf</text></tag></tags>
+</question>
+<question type="essay">
+<name><text>m1-a28 · Prozesssteckbrief erstellen</text></name>
+<idnumber>m1-a28</idnumber>
+<questiontext format="html"><text><![CDATA[<p>Bei der Brückner Fahrradmanufaktur werden Reklamationen so bearbeitet: Kundinnen melden sich telefonisch oder per E-Mail beim Kundenservice, der die Angaben auf einem Papierformular notiert. Die Werkstatt prüft das Rad und trägt das Ergebnis in eine Excel-Liste ein, die Buchhaltung erstellt bei berechtigten Reklamationen im ERP-System eine Gutschrift. Pro Woche gehen etwa 25 Reklamationen ein. Die Geschäftsführung möchte, dass Reklamationen schneller und fehlerfreier bearbeitet werden.</p>
+<p>Erstelle einen Prozesssteckbrief mit mindestens acht Angaben.</p>
+]]></text></questiontext>
+
+<generalfeedback format="html"><text><![CDATA[<h4>Musterlösung</h4><table>
+<thead>
+<tr>
+<th>Angabe</th>
+<th>Inhalt</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Prozessname</td>
+<td>Reklamationen bearbeiten</td>
+</tr>
+<tr>
+<td>Prozessziel</td>
+<td>Reklamationen schnell, korrekt und kundenfreundlich abschließen (Gutschrift oder begründete Ablehnung)</td>
+</tr>
+<tr>
+<td>grobe Beschreibung</td>
+<td>Reklamation annehmen, Rad prüfen, Entscheidung treffen, ggf. Gutschrift erstellen, Kundin informieren</td>
+</tr>
+<tr>
+<td>Funktion im Unternehmen</td>
+<td>Kernprozess (direkter Kundenbezug, Kundenzufriedenheit) – als Unterstützungsprozess vertretbar, wenn begründet</td>
+</tr>
+<tr>
+<td>Automatisierungsgrad</td>
+<td>teilautomatisiert (ERP für die Gutschrift, sonst Papier und Excel)</td>
+</tr>
+<tr>
+<td>Wiederholungsrate</td>
+<td>Routineprozess, ca. 25-mal pro Woche</td>
+</tr>
+<tr>
+<td>Prozessebene</td>
+<td>operativ</td>
+</tr>
+<tr>
+<td>Rahmenbedingungen</td>
+<td>gesetzliche Gewährleistung, Datenschutz bei Kundendaten</td>
+</tr>
+<tr>
+<td>genutzte Tools</td>
+<td>Telefon, E-Mail, Papierformular, Excel, ERP-System</td>
+</tr>
+<tr>
+<td>weitere Aspekte</td>
+<td>Medienbrüche (Papier → Excel → ERP), Ziel der Geschäftsführung: kürzere Durchlaufzeit, weniger Fehler</td>
+</tr>
+</tbody>
+</table>
+<h4>Checkliste</h4><ul><li>Mindestens acht der Steckbrief-Angaben sind ausgefüllt.</li><li>Prozessname als Tätigkeit, Prozessziel mit erkennbarem Nutzen.</li><li>Funktion, Wiederholungsrate, Prozessebene und Automatisierungsgrad sind korrekt und passen zur Beschreibung.</li><li>Die genutzten Tools und die erkennbaren Schwachstellen (Medienbrüche) sind erfasst.</li></ul><p>Der Steckbrief ist die Grundlage für die spätere Modellierung und Analyse.</p>
+]]></text></generalfeedback>
+<defaultgrade>8</defaultgrade><penalty>0</penalty><hidden>0</hidden>
+<responseformat>editor</responseformat><responserequired>1</responserequired><responsefieldlines>15</responsefieldlines><minwordlimit></minwordlimit><maxwordlimit></maxwordlimit><attachments>0</attachments><attachmentsrequired>0</attachmentsrequired><maxbytes>0</maxbytes><filetypeslist></filetypeslist>
+<graderinfo format="html"><text><![CDATA[<h4>Musterlösung</h4><table>
+<thead>
+<tr>
+<th>Angabe</th>
+<th>Inhalt</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Prozessname</td>
+<td>Reklamationen bearbeiten</td>
+</tr>
+<tr>
+<td>Prozessziel</td>
+<td>Reklamationen schnell, korrekt und kundenfreundlich abschließen (Gutschrift oder begründete Ablehnung)</td>
+</tr>
+<tr>
+<td>grobe Beschreibung</td>
+<td>Reklamation annehmen, Rad prüfen, Entscheidung treffen, ggf. Gutschrift erstellen, Kundin informieren</td>
+</tr>
+<tr>
+<td>Funktion im Unternehmen</td>
+<td>Kernprozess (direkter Kundenbezug, Kundenzufriedenheit) – als Unterstützungsprozess vertretbar, wenn begründet</td>
+</tr>
+<tr>
+<td>Automatisierungsgrad</td>
+<td>teilautomatisiert (ERP für die Gutschrift, sonst Papier und Excel)</td>
+</tr>
+<tr>
+<td>Wiederholungsrate</td>
+<td>Routineprozess, ca. 25-mal pro Woche</td>
+</tr>
+<tr>
+<td>Prozessebene</td>
+<td>operativ</td>
+</tr>
+<tr>
+<td>Rahmenbedingungen</td>
+<td>gesetzliche Gewährleistung, Datenschutz bei Kundendaten</td>
+</tr>
+<tr>
+<td>genutzte Tools</td>
+<td>Telefon, E-Mail, Papierformular, Excel, ERP-System</td>
+</tr>
+<tr>
+<td>weitere Aspekte</td>
+<td>Medienbrüche (Papier → Excel → ERP), Ziel der Geschäftsführung: kürzere Durchlaufzeit, weniger Fehler</td>
+</tr>
+</tbody>
+</table>
+<h4>Checkliste</h4><ul><li>Mindestens acht der Steckbrief-Angaben sind ausgefüllt.</li><li>Prozessname als Tätigkeit, Prozessziel mit erkennbarem Nutzen.</li><li>Funktion, Wiederholungsrate, Prozessebene und Automatisierungsgrad sind korrekt und passen zur Beschreibung.</li><li>Die genutzten Tools und die erkennbaren Schwachstellen (Medienbrüche) sind erfasst.</li></ul>]]></text></graderinfo><responsetemplate format="html"><text><![CDATA[]]></text></responsetemplate>
+<tags><tag><text>niveau-3</text></tag><tag><text>offen</text></tag><tag><text>entwurf</text></tag></tags>
+</question>
+<question type="category">
+<category><text>top/LF 11c/M1 Prozesse identifizieren und einordnen/09 Prozesse messbar machen – Kennzahlen und Indikatoren</text></category>
+<info format="html"><text><![CDATA[<p>Lerneinheit m1-le07</p>]]></text></info>
+</question>
+<question type="multichoice">
+<name><text>m1-a19 · Gute Kennzahlen</text></name>
+<idnumber>m1-a19</idnumber>
+<questiontext format="html"><text><![CDATA[<p>Der Service-Desk soll künftig <strong>nur</strong> an der mittleren Durchlaufzeit gemessen werden. Welche Einwände sind berechtigt? (Mehrere Antworten möglich)</p>
+]]></text></questiontext>
+
+<generalfeedback format="html"><text><![CDATA[<p>Gute Kennzahlen sind eindeutig definiert, messbar, beeinflussbar und werden kombiniert (Zeit und Qualität).</p>
+]]></text></generalfeedback>
+<defaultgrade>1</defaultgrade><penalty>0.3333333</penalty><hidden>0</hidden>
+<single>false</single>
+<shuffleanswers>true</shuffleanswers>
+<answernumbering>abc</answernumbering><showstandardinstruction>1</showstandardinstruction>
+<answer fraction="33.33333" format="html"><text><![CDATA[<p>Tickets könnten zu früh geschlossen werden, um die Zeit zu senken; die Qualität würde darunter leiden.</p>
+]]></text><feedback format="html"><text><![CDATA[<p>Richtig – klassischer Fehlanreiz. Eine Qualitätskennzahl wie die Wiedereröffnungsquote gehört dazu.</p>
+]]></text></feedback></answer>
+<answer fraction="33.33333" format="html"><text><![CDATA[<p>Es muss eindeutig festgelegt werden, wann die Zeit startet und endet (z. B. Eingang im System oder Anruf; Schließen oder Bestätigung durch Kunden).</p>
+]]></text><feedback format="html"><text><![CDATA[<p>Richtig – ohne klare Definition ist die Zahl nicht vergleichbar.</p>
+]]></text></feedback></answer>
+<answer fraction="33.33333" format="html"><text><![CDATA[<p>Telefonische Meldungen, die erst später eingetragen werden, lassen die gemessene Zeit kürzer erscheinen, als sie ist.</p>
+]]></text><feedback format="html"><text><![CDATA[<p>Richtig – die Zeit vom Anruf bis zum Eintrag fehlt in den Systemdaten.</p>
+]]></text></feedback></answer>
+<answer fraction="-100" format="html"><text><![CDATA[<p>Die Durchlaufzeit ist grundsätzlich ungeeignet, weil sie nicht gemessen werden kann.</p>
+]]></text><feedback format="html"><text><![CDATA[<p>Falsch. Sie ist gut messbar, sollte aber nicht die einzige Kennzahl sein.</p>
+]]></text></feedback></answer>
+<tags><tag><text>niveau-2</text></tag><tag><text>multiple_choice</text></tag><tag><text>entwurf</text></tag></tags>
+</question>
+<question type="essay">
+<name><text>m1-a20 · Indikatoren ableiten und begründen</text></name>
+<idnumber>m1-a20</idnumber>
+<questiontext format="html"><text><![CDATA[<p>Die Brückner Fahrradmanufaktur möchte ihren Reklamationsprozess (siehe Lerneinheit „Schnittstellen und Medienbrüche&quot;) verbessern. Leite <strong>zwei</strong> geeignete Indikatoren zur Bewertung des Prozesses ab und begründe deine Wahl.</p>
+]]></text></questiontext>
+
+<generalfeedback format="html"><text><![CDATA[<h4>Musterlösung</h4><ul>
+<li><strong>Durchlaufzeit je Reklamation</strong> (Tage vom Anruf der Kundin bis zur Gutschrift): Sie macht sichtbar, wie viel Zeit durch Papierübergaben und Liegezeiten verloren geht, und ist für die Kundin direkt spürbar.</li>
+<li><strong>Fehlerquote bei Gutschriften</strong> (Anteil der Gutschriften, die korrigiert werden müssen, bezogen auf alle Gutschriften eines Monats): Sie zeigt die Folgen der manuellen Übertragungen (Medienbrüche) und ob die Verbesserung wirkt.</li>
+</ul>
+<p>Weitere vertretbare Indikatoren: Anzahl Rückfragen je Reklamation, Anteil Reklamationen mit vollständigen Angaben beim ersten Kontakt, Beschwerdequote über die Reklamationsbearbeitung, Bearbeitungskosten je Reklamation.</p>
+<h4>Checkliste</h4><ul><li>Zwei unterschiedliche Indikatoren, möglichst aus verschiedenen Dimensionen (z. B. Zeit und Qualität).</li><li>Jeder Indikator ist präzise beschrieben (was wird gemessen, ggf. Zähler/Nenner oder Start/Ende).</li><li>Die Begründung bezieht sich auf eine konkrete Schwachstelle des Prozesses.</li><li>Die Indikatoren sind mit vertretbarem Aufwand messbar.</li></ul><p>Allgemeine Antworten wie „Kundenzufriedenheit&quot; ohne Messweg und Bezug zum Prozess bringen nur wenige Punkte.</p>
+]]></text></generalfeedback>
+<defaultgrade>4</defaultgrade><penalty>0</penalty><hidden>0</hidden>
+<responseformat>editor</responseformat><responserequired>1</responserequired><responsefieldlines>15</responsefieldlines><minwordlimit></minwordlimit><maxwordlimit></maxwordlimit><attachments>0</attachments><attachmentsrequired>0</attachmentsrequired><maxbytes>0</maxbytes><filetypeslist></filetypeslist>
+<graderinfo format="html"><text><![CDATA[<h4>Musterlösung</h4><ul>
+<li><strong>Durchlaufzeit je Reklamation</strong> (Tage vom Anruf der Kundin bis zur Gutschrift): Sie macht sichtbar, wie viel Zeit durch Papierübergaben und Liegezeiten verloren geht, und ist für die Kundin direkt spürbar.</li>
+<li><strong>Fehlerquote bei Gutschriften</strong> (Anteil der Gutschriften, die korrigiert werden müssen, bezogen auf alle Gutschriften eines Monats): Sie zeigt die Folgen der manuellen Übertragungen (Medienbrüche) und ob die Verbesserung wirkt.</li>
+</ul>
+<p>Weitere vertretbare Indikatoren: Anzahl Rückfragen je Reklamation, Anteil Reklamationen mit vollständigen Angaben beim ersten Kontakt, Beschwerdequote über die Reklamationsbearbeitung, Bearbeitungskosten je Reklamation.</p>
+<h4>Checkliste</h4><ul><li>Zwei unterschiedliche Indikatoren, möglichst aus verschiedenen Dimensionen (z. B. Zeit und Qualität).</li><li>Jeder Indikator ist präzise beschrieben (was wird gemessen, ggf. Zähler/Nenner oder Start/Ende).</li><li>Die Begründung bezieht sich auf eine konkrete Schwachstelle des Prozesses.</li><li>Die Indikatoren sind mit vertretbarem Aufwand messbar.</li></ul>]]></text></graderinfo><responsetemplate format="html"><text><![CDATA[]]></text></responsetemplate>
+<tags><tag><text>niveau-3</text></tag><tag><text>offen</text></tag><tag><text>entwurf</text></tag></tags>
+</question>
+<question type="matching">
+<name><text>m1-a29 · Kennzahlen einordnen</text></name>
+<idnumber>m1-a29</idnumber>
+<questiontext format="html"><text><![CDATA[<p>Zu welcher Kategorie gehört die Kennzahl am ehesten?</p>
+]]></text></questiontext>
+
+<generalfeedback format="html"><text><![CDATA[<p>Die Beispiele hier sind eindeutig gewählt. In der Praxis passen manche Kennzahlen in mehrere Kategorien (Fehlerkosten durch Nacharbeit z. B. zu Kosten und zu Qualität) – in der Prüfung zählt dann die Begründung.</p>
+<ul><li><strong>Durchlaufzeit einer Reklamation</strong> → Zeit: Zeitbasierte Kennzahl.</li><li><strong>Erfüllungsquote – Anteil der Tickets, die ohne Nacharbeit gelöst werden</strong> → Qualität: Qualitätskennzahl.</li><li><strong>Kosten pro bearbeiteter Reklamation</strong> → Kosten: Kosten pro Einheit – eine reine Kostenkennzahl.</li><li><strong>Anteil der Beschäftigten, die sowohl im 1st als auch im 2nd Level arbeiten können</strong> → Flexibilität: Mitarbeiterflexibilität.</li><li><strong>tatsächlich bearbeitete Tickets im Verhältnis zur maximal möglichen Anzahl</strong> → Auslastung: Auslastung = tatsächliche / maximale Leistung.</li><li><strong>Gewinn aus einer Investition im Verhältnis zu den Investitionskosten</strong> → Effizienz: Setzt Output (Gewinn) ins Verhältnis zum Input (Investition) – typisch für Effizienzkennzahlen.</li></ul>]]></text></generalfeedback>
+<defaultgrade>1</defaultgrade><penalty>0.3333333</penalty><hidden>0</hidden>
+<shuffleanswers>true</shuffleanswers>
+<correctfeedback format="html"><text><![CDATA[]]></text></correctfeedback><partiallycorrectfeedback format="html"><text><![CDATA[]]></text></partiallycorrectfeedback><incorrectfeedback format="html"><text><![CDATA[]]></text></incorrectfeedback><shownumcorrect/>
+<subquestion format="html"><text><![CDATA[<p>Durchlaufzeit einer Reklamation</p>
+]]></text><answer><text>Zeit</text></answer></subquestion>
+<subquestion format="html"><text><![CDATA[<p>Erfüllungsquote – Anteil der Tickets, die ohne Nacharbeit gelöst werden</p>
+]]></text><answer><text>Qualität</text></answer></subquestion>
+<subquestion format="html"><text><![CDATA[<p>Kosten pro bearbeiteter Reklamation</p>
+]]></text><answer><text>Kosten</text></answer></subquestion>
+<subquestion format="html"><text><![CDATA[<p>Anteil der Beschäftigten, die sowohl im 1st als auch im 2nd Level arbeiten können</p>
+]]></text><answer><text>Flexibilität</text></answer></subquestion>
+<subquestion format="html"><text><![CDATA[<p>tatsächlich bearbeitete Tickets im Verhältnis zur maximal möglichen Anzahl</p>
+]]></text><answer><text>Auslastung</text></answer></subquestion>
+<subquestion format="html"><text><![CDATA[<p>Gewinn aus einer Investition im Verhältnis zu den Investitionskosten</p>
+]]></text><answer><text>Effizienz</text></answer></subquestion>
+<tags><tag><text>niveau-2</text></tag><tag><text>zuordnung</text></tag><tag><text>entwurf</text></tag></tags>
+</question>
+<question type="category">
+<category><text>top/LF 11c/M1 Prozesse identifizieren und einordnen/09 Prozesse messbar machen – Kennzahlen und Indikatoren/m1-a17 Durchlaufzeit eines Tickets (Varianten)</text></category>
+<info format="html"><text><![CDATA[<p>Varianten derselben Rechenaufgabe mit anderen Zahlen. Im Test als <strong>Zufallsfrage aus dieser Kategorie</strong> einbinden.</p>]]></text></info>
+</question>
+<question type="cloze">
+<name><text>m1-a17 · Durchlaufzeit eines Tickets (Variante 1)</text></name>
+<idnumber>m1-a17-v01</idnumber>
+<questiontext format="html"><text><![CDATA[<p>Ein Ticket der Stadtwerke Seebrück hat folgende Zeitanteile:</p>
+<ul>
+<li>Bearbeitungszeit: 25 min</li>
+<li>Liegezeit: 150 min</li>
+<li>Weitergabe zwischen den Teams (Transportzeit): 25 min</li>
+</ul>
+<p>Berechne die Durchlaufzeit in Minuten und den Anteil der Bearbeitungszeit an der Durchlaufzeit in Prozent (auf eine Nachkommastelle gerundet).</p>
+<p><em>Dezimalzahlen mit Komma eingeben, z. B. 12,5.</em></p><p>Durchlaufzeit: {1:NUMERICAL:=200.0:0} min</p><p>Anteil Bearbeitungszeit: {1:NUMERICAL:=12.5:0.1} %</p>]]></text></questiontext>
+
+<generalfeedback format="html"><text><![CDATA[<h4>Lösungsweg</h4><p>Durchlaufzeit = Bearbeitungszeit + Liegezeit + Transportzeit = 25 + 150 + 25 = <strong>200 min</strong></p>
+<p>Anteil Bearbeitungszeit = 25 / 200 · 100 % = <strong>12,5 %</strong></p>
+<p>Der kleine Anteil der Bearbeitungszeit zeigt, dass Verbesserungen vor allem bei den Liegezeiten ansetzen sollten.</p>
+]]></text></generalfeedback>
+<penalty>0.3333333</penalty><hidden>0</hidden>
+<tags><tag><text>niveau-2</text></tag><tag><text>zahl</text></tag><tag><text>entwurf</text></tag></tags>
+</question>
+<question type="cloze">
+<name><text>m1-a17 · Durchlaufzeit eines Tickets (Variante 2)</text></name>
+<idnumber>m1-a17-v02</idnumber>
+<questiontext format="html"><text><![CDATA[<p>Ein Ticket der Stadtwerke Seebrück hat folgende Zeitanteile:</p>
+<ul>
+<li>Bearbeitungszeit: 30 min</li>
+<li>Liegezeit: 180 min</li>
+<li>Weitergabe zwischen den Teams (Transportzeit): 20 min</li>
+</ul>
+<p>Berechne die Durchlaufzeit in Minuten und den Anteil der Bearbeitungszeit an der Durchlaufzeit in Prozent (auf eine Nachkommastelle gerundet).</p>
+<p><em>Dezimalzahlen mit Komma eingeben, z. B. 12,5.</em></p><p>Durchlaufzeit: {1:NUMERICAL:=230.0:0} min</p><p>Anteil Bearbeitungszeit: {1:NUMERICAL:=13.0:0.1} %</p>]]></text></questiontext>
+
+<generalfeedback format="html"><text><![CDATA[<h4>Lösungsweg</h4><p>Durchlaufzeit = Bearbeitungszeit + Liegezeit + Transportzeit = 30 + 180 + 20 = <strong>230 min</strong></p>
+<p>Anteil Bearbeitungszeit = 30 / 230 · 100 % = <strong>13,0 %</strong></p>
+<p>Der kleine Anteil der Bearbeitungszeit zeigt, dass Verbesserungen vor allem bei den Liegezeiten ansetzen sollten.</p>
+]]></text></generalfeedback>
+<penalty>0.3333333</penalty><hidden>0</hidden>
+<tags><tag><text>niveau-2</text></tag><tag><text>zahl</text></tag><tag><text>entwurf</text></tag></tags>
+</question>
+<question type="cloze">
+<name><text>m1-a17 · Durchlaufzeit eines Tickets (Variante 3)</text></name>
+<idnumber>m1-a17-v03</idnumber>
+<questiontext format="html"><text><![CDATA[<p>Ein Ticket der Stadtwerke Seebrück hat folgende Zeitanteile:</p>
+<ul>
+<li>Bearbeitungszeit: 30 min</li>
+<li>Liegezeit: 450 min</li>
+<li>Weitergabe zwischen den Teams (Transportzeit): 25 min</li>
+</ul>
+<p>Berechne die Durchlaufzeit in Minuten und den Anteil der Bearbeitungszeit an der Durchlaufzeit in Prozent (auf eine Nachkommastelle gerundet).</p>
+<p><em>Dezimalzahlen mit Komma eingeben, z. B. 12,5.</em></p><p>Durchlaufzeit: {1:NUMERICAL:=505.0:0} min</p><p>Anteil Bearbeitungszeit: {1:NUMERICAL:=5.9:0.1} %</p>]]></text></questiontext>
+
+<generalfeedback format="html"><text><![CDATA[<h4>Lösungsweg</h4><p>Durchlaufzeit = Bearbeitungszeit + Liegezeit + Transportzeit = 30 + 450 + 25 = <strong>505 min</strong></p>
+<p>Anteil Bearbeitungszeit = 30 / 505 · 100 % = <strong>5,9 %</strong></p>
+<p>Der kleine Anteil der Bearbeitungszeit zeigt, dass Verbesserungen vor allem bei den Liegezeiten ansetzen sollten.</p>
+]]></text></generalfeedback>
+<penalty>0.3333333</penalty><hidden>0</hidden>
+<tags><tag><text>niveau-2</text></tag><tag><text>zahl</text></tag><tag><text>entwurf</text></tag></tags>
+</question>
+<question type="cloze">
+<name><text>m1-a17 · Durchlaufzeit eines Tickets (Variante 4)</text></name>
+<idnumber>m1-a17-v04</idnumber>
+<questiontext format="html"><text><![CDATA[<p>Ein Ticket der Stadtwerke Seebrück hat folgende Zeitanteile:</p>
+<ul>
+<li>Bearbeitungszeit: 40 min</li>
+<li>Liegezeit: 600 min</li>
+<li>Weitergabe zwischen den Teams (Transportzeit): 25 min</li>
+</ul>
+<p>Berechne die Durchlaufzeit in Minuten und den Anteil der Bearbeitungszeit an der Durchlaufzeit in Prozent (auf eine Nachkommastelle gerundet).</p>
+<p><em>Dezimalzahlen mit Komma eingeben, z. B. 12,5.</em></p><p>Durchlaufzeit: {1:NUMERICAL:=665.0:0} min</p><p>Anteil Bearbeitungszeit: {1:NUMERICAL:=6.0:0.1} %</p>]]></text></questiontext>
+
+<generalfeedback format="html"><text><![CDATA[<h4>Lösungsweg</h4><p>Durchlaufzeit = Bearbeitungszeit + Liegezeit + Transportzeit = 40 + 600 + 25 = <strong>665 min</strong></p>
+<p>Anteil Bearbeitungszeit = 40 / 665 · 100 % = <strong>6,0 %</strong></p>
+<p>Der kleine Anteil der Bearbeitungszeit zeigt, dass Verbesserungen vor allem bei den Liegezeiten ansetzen sollten.</p>
+]]></text></generalfeedback>
+<penalty>0.3333333</penalty><hidden>0</hidden>
+<tags><tag><text>niveau-2</text></tag><tag><text>zahl</text></tag><tag><text>entwurf</text></tag></tags>
+</question>
+<question type="cloze">
+<name><text>m1-a17 · Durchlaufzeit eines Tickets (Variante 5)</text></name>
+<idnumber>m1-a17-v05</idnumber>
+<questiontext format="html"><text><![CDATA[<p>Ein Ticket der Stadtwerke Seebrück hat folgende Zeitanteile:</p>
+<ul>
+<li>Bearbeitungszeit: 50 min</li>
+<li>Liegezeit: 330 min</li>
+<li>Weitergabe zwischen den Teams (Transportzeit): 25 min</li>
+</ul>
+<p>Berechne die Durchlaufzeit in Minuten und den Anteil der Bearbeitungszeit an der Durchlaufzeit in Prozent (auf eine Nachkommastelle gerundet).</p>
+<p><em>Dezimalzahlen mit Komma eingeben, z. B. 12,5.</em></p><p>Durchlaufzeit: {1:NUMERICAL:=405.0:0} min</p><p>Anteil Bearbeitungszeit: {1:NUMERICAL:=12.3:0.1} %</p>]]></text></questiontext>
+
+<generalfeedback format="html"><text><![CDATA[<h4>Lösungsweg</h4><p>Durchlaufzeit = Bearbeitungszeit + Liegezeit + Transportzeit = 50 + 330 + 25 = <strong>405 min</strong></p>
+<p>Anteil Bearbeitungszeit = 50 / 405 · 100 % = <strong>12,3 %</strong></p>
+<p>Der kleine Anteil der Bearbeitungszeit zeigt, dass Verbesserungen vor allem bei den Liegezeiten ansetzen sollten.</p>
+]]></text></generalfeedback>
+<penalty>0.3333333</penalty><hidden>0</hidden>
+<tags><tag><text>niveau-2</text></tag><tag><text>zahl</text></tag><tag><text>entwurf</text></tag></tags>
+</question>
+<question type="cloze">
+<name><text>m1-a17 · Durchlaufzeit eines Tickets (Variante 6)</text></name>
+<idnumber>m1-a17-v06</idnumber>
+<questiontext format="html"><text><![CDATA[<p>Ein Ticket der Stadtwerke Seebrück hat folgende Zeitanteile:</p>
+<ul>
+<li>Bearbeitungszeit: 50 min</li>
+<li>Liegezeit: 600 min</li>
+<li>Weitergabe zwischen den Teams (Transportzeit): 5 min</li>
+</ul>
+<p>Berechne die Durchlaufzeit in Minuten und den Anteil der Bearbeitungszeit an der Durchlaufzeit in Prozent (auf eine Nachkommastelle gerundet).</p>
+<p><em>Dezimalzahlen mit Komma eingeben, z. B. 12,5.</em></p><p>Durchlaufzeit: {1:NUMERICAL:=655.0:0} min</p><p>Anteil Bearbeitungszeit: {1:NUMERICAL:=7.6:0.1} %</p>]]></text></questiontext>
+
+<generalfeedback format="html"><text><![CDATA[<h4>Lösungsweg</h4><p>Durchlaufzeit = Bearbeitungszeit + Liegezeit + Transportzeit = 50 + 600 + 5 = <strong>655 min</strong></p>
+<p>Anteil Bearbeitungszeit = 50 / 655 · 100 % = <strong>7,6 %</strong></p>
+<p>Der kleine Anteil der Bearbeitungszeit zeigt, dass Verbesserungen vor allem bei den Liegezeiten ansetzen sollten.</p>
+]]></text></generalfeedback>
+<penalty>0.3333333</penalty><hidden>0</hidden>
+<tags><tag><text>niveau-2</text></tag><tag><text>zahl</text></tag><tag><text>entwurf</text></tag></tags>
+</question>
+<question type="cloze">
+<name><text>m1-a17 · Durchlaufzeit eines Tickets (Variante 7)</text></name>
+<idnumber>m1-a17-v07</idnumber>
+<questiontext format="html"><text><![CDATA[<p>Ein Ticket der Stadtwerke Seebrück hat folgende Zeitanteile:</p>
+<ul>
+<li>Bearbeitungszeit: 50 min</li>
+<li>Liegezeit: 660 min</li>
+<li>Weitergabe zwischen den Teams (Transportzeit): 5 min</li>
+</ul>
+<p>Berechne die Durchlaufzeit in Minuten und den Anteil der Bearbeitungszeit an der Durchlaufzeit in Prozent (auf eine Nachkommastelle gerundet).</p>
+<p><em>Dezimalzahlen mit Komma eingeben, z. B. 12,5.</em></p><p>Durchlaufzeit: {1:NUMERICAL:=715.0:0} min</p><p>Anteil Bearbeitungszeit: {1:NUMERICAL:=7.0:0.1} %</p>]]></text></questiontext>
+
+<generalfeedback format="html"><text><![CDATA[<h4>Lösungsweg</h4><p>Durchlaufzeit = Bearbeitungszeit + Liegezeit + Transportzeit = 50 + 660 + 5 = <strong>715 min</strong></p>
+<p>Anteil Bearbeitungszeit = 50 / 715 · 100 % = <strong>7,0 %</strong></p>
+<p>Der kleine Anteil der Bearbeitungszeit zeigt, dass Verbesserungen vor allem bei den Liegezeiten ansetzen sollten.</p>
+]]></text></generalfeedback>
+<penalty>0.3333333</penalty><hidden>0</hidden>
+<tags><tag><text>niveau-2</text></tag><tag><text>zahl</text></tag><tag><text>entwurf</text></tag></tags>
+</question>
+<question type="cloze">
+<name><text>m1-a17 · Durchlaufzeit eines Tickets (Variante 8)</text></name>
+<idnumber>m1-a17-v08</idnumber>
+<questiontext format="html"><text><![CDATA[<p>Ein Ticket der Stadtwerke Seebrück hat folgende Zeitanteile:</p>
+<ul>
+<li>Bearbeitungszeit: 50 min</li>
+<li>Liegezeit: 690 min</li>
+<li>Weitergabe zwischen den Teams (Transportzeit): 25 min</li>
+</ul>
+<p>Berechne die Durchlaufzeit in Minuten und den Anteil der Bearbeitungszeit an der Durchlaufzeit in Prozent (auf eine Nachkommastelle gerundet).</p>
+<p><em>Dezimalzahlen mit Komma eingeben, z. B. 12,5.</em></p><p>Durchlaufzeit: {1:NUMERICAL:=765.0:0} min</p><p>Anteil Bearbeitungszeit: {1:NUMERICAL:=6.5:0.1} %</p>]]></text></questiontext>
+
+<generalfeedback format="html"><text><![CDATA[<h4>Lösungsweg</h4><p>Durchlaufzeit = Bearbeitungszeit + Liegezeit + Transportzeit = 50 + 690 + 25 = <strong>765 min</strong></p>
+<p>Anteil Bearbeitungszeit = 50 / 765 · 100 % = <strong>6,5 %</strong></p>
+<p>Der kleine Anteil der Bearbeitungszeit zeigt, dass Verbesserungen vor allem bei den Liegezeiten ansetzen sollten.</p>
+]]></text></generalfeedback>
+<penalty>0.3333333</penalty><hidden>0</hidden>
+<tags><tag><text>niveau-2</text></tag><tag><text>zahl</text></tag><tag><text>entwurf</text></tag></tags>
+</question>
+<question type="category">
+<category><text>top/LF 11c/M1 Prozesse identifizieren und einordnen/09 Prozesse messbar machen – Kennzahlen und Indikatoren/m1-a18 Wiedereröffnungsquote (Varianten)</text></category>
+<info format="html"><text><![CDATA[<p>Varianten derselben Rechenaufgabe mit anderen Zahlen. Im Test als <strong>Zufallsfrage aus dieser Kategorie</strong> einbinden.</p>]]></text></info>
+</question>
+<question type="cloze">
+<name><text>m1-a18 · Wiedereröffnungsquote (Variante 1)</text></name>
+<idnumber>m1-a18-v01</idnumber>
+<questiontext format="html"><text><![CDATA[<p>Im letzten Monat hat der Service-Desk 300 Tickets geschlossen. 57 davon mussten wiedereröffnet werden, weil das Problem nicht gelöst war.</p>
+<p>Berechne die Wiedereröffnungsquote und den Anteil der Tickets, die ohne Wiedereröffnung gelöst wurden (jeweils in Prozent, zwei Nachkommastellen).</p>
+<p><em>Dezimalzahlen mit Komma eingeben, z. B. 12,5.</em></p><p>Wiedereröffnungsquote: {1:NUMERICAL:=19.0:0.01} %</p><p>ohne Wiedereröffnung gelöst: {1:NUMERICAL:=81.0:0.01} %</p>]]></text></questiontext>
+
+<generalfeedback format="html"><text><![CDATA[<h4>Lösungsweg</h4><p>Wiedereröffnungsquote = 57 / 300 · 100 % = <strong>19,00 %</strong></p>
+<p>Ohne Wiedereröffnung gelöst = 100 % − 19,00 % = <strong>81,00 %</strong></p>
+<p>Verhältniszahlen machen Monate mit unterschiedlich vielen Tickets vergleichbar. Diese Qualitätskennzahl ergänzt die Durchlaufzeit und verhindert Fehlanreize.</p>
+]]></text></generalfeedback>
+<penalty>0.3333333</penalty><hidden>0</hidden>
+<tags><tag><text>niveau-2</text></tag><tag><text>zahl</text></tag><tag><text>entwurf</text></tag></tags>
+</question>
+<question type="cloze">
+<name><text>m1-a18 · Wiedereröffnungsquote (Variante 2)</text></name>
+<idnumber>m1-a18-v02</idnumber>
+<questiontext format="html"><text><![CDATA[<p>Im letzten Monat hat der Service-Desk 400 Tickets geschlossen. 51 davon mussten wiedereröffnet werden, weil das Problem nicht gelöst war.</p>
+<p>Berechne die Wiedereröffnungsquote und den Anteil der Tickets, die ohne Wiedereröffnung gelöst wurden (jeweils in Prozent, zwei Nachkommastellen).</p>
+<p><em>Dezimalzahlen mit Komma eingeben, z. B. 12,5.</em></p><p>Wiedereröffnungsquote: {1:NUMERICAL:=12.75:0.01} %</p><p>ohne Wiedereröffnung gelöst: {1:NUMERICAL:=87.25:0.01} %</p>]]></text></questiontext>
+
+<generalfeedback format="html"><text><![CDATA[<h4>Lösungsweg</h4><p>Wiedereröffnungsquote = 51 / 400 · 100 % = <strong>12,75 %</strong></p>
+<p>Ohne Wiedereröffnung gelöst = 100 % − 12,75 % = <strong>87,25 %</strong></p>
+<p>Verhältniszahlen machen Monate mit unterschiedlich vielen Tickets vergleichbar. Diese Qualitätskennzahl ergänzt die Durchlaufzeit und verhindert Fehlanreize.</p>
+]]></text></generalfeedback>
+<penalty>0.3333333</penalty><hidden>0</hidden>
+<tags><tag><text>niveau-2</text></tag><tag><text>zahl</text></tag><tag><text>entwurf</text></tag></tags>
+</question>
+<question type="cloze">
+<name><text>m1-a18 · Wiedereröffnungsquote (Variante 3)</text></name>
+<idnumber>m1-a18-v03</idnumber>
+<questiontext format="html"><text><![CDATA[<p>Im letzten Monat hat der Service-Desk 420 Tickets geschlossen. 24 davon mussten wiedereröffnet werden, weil das Problem nicht gelöst war.</p>
+<p>Berechne die Wiedereröffnungsquote und den Anteil der Tickets, die ohne Wiedereröffnung gelöst wurden (jeweils in Prozent, zwei Nachkommastellen).</p>
+<p><em>Dezimalzahlen mit Komma eingeben, z. B. 12,5.</em></p><p>Wiedereröffnungsquote: {1:NUMERICAL:=5.71:0.01} %</p><p>ohne Wiedereröffnung gelöst: {1:NUMERICAL:=94.29:0.01} %</p>]]></text></questiontext>
+
+<generalfeedback format="html"><text><![CDATA[<h4>Lösungsweg</h4><p>Wiedereröffnungsquote = 24 / 420 · 100 % = <strong>5,71 %</strong></p>
+<p>Ohne Wiedereröffnung gelöst = 100 % − 5,71 % = <strong>94,29 %</strong></p>
+<p>Verhältniszahlen machen Monate mit unterschiedlich vielen Tickets vergleichbar. Diese Qualitätskennzahl ergänzt die Durchlaufzeit und verhindert Fehlanreize.</p>
+]]></text></generalfeedback>
+<penalty>0.3333333</penalty><hidden>0</hidden>
+<tags><tag><text>niveau-2</text></tag><tag><text>zahl</text></tag><tag><text>entwurf</text></tag></tags>
+</question>
+<question type="cloze">
+<name><text>m1-a18 · Wiedereröffnungsquote (Variante 4)</text></name>
+<idnumber>m1-a18-v04</idnumber>
+<questiontext format="html"><text><![CDATA[<p>Im letzten Monat hat der Service-Desk 460 Tickets geschlossen. 60 davon mussten wiedereröffnet werden, weil das Problem nicht gelöst war.</p>
+<p>Berechne die Wiedereröffnungsquote und den Anteil der Tickets, die ohne Wiedereröffnung gelöst wurden (jeweils in Prozent, zwei Nachkommastellen).</p>
+<p><em>Dezimalzahlen mit Komma eingeben, z. B. 12,5.</em></p><p>Wiedereröffnungsquote: {1:NUMERICAL:=13.04:0.01} %</p><p>ohne Wiedereröffnung gelöst: {1:NUMERICAL:=86.96:0.01} %</p>]]></text></questiontext>
+
+<generalfeedback format="html"><text><![CDATA[<h4>Lösungsweg</h4><p>Wiedereröffnungsquote = 60 / 460 · 100 % = <strong>13,04 %</strong></p>
+<p>Ohne Wiedereröffnung gelöst = 100 % − 13,04 % = <strong>86,96 %</strong></p>
+<p>Verhältniszahlen machen Monate mit unterschiedlich vielen Tickets vergleichbar. Diese Qualitätskennzahl ergänzt die Durchlaufzeit und verhindert Fehlanreize.</p>
+]]></text></generalfeedback>
+<penalty>0.3333333</penalty><hidden>0</hidden>
+<tags><tag><text>niveau-2</text></tag><tag><text>zahl</text></tag><tag><text>entwurf</text></tag></tags>
+</question>
+<question type="cloze">
+<name><text>m1-a18 · Wiedereröffnungsquote (Variante 5)</text></name>
+<idnumber>m1-a18-v05</idnumber>
+<questiontext format="html"><text><![CDATA[<p>Im letzten Monat hat der Service-Desk 540 Tickets geschlossen. 39 davon mussten wiedereröffnet werden, weil das Problem nicht gelöst war.</p>
+<p>Berechne die Wiedereröffnungsquote und den Anteil der Tickets, die ohne Wiedereröffnung gelöst wurden (jeweils in Prozent, zwei Nachkommastellen).</p>
+<p><em>Dezimalzahlen mit Komma eingeben, z. B. 12,5.</em></p><p>Wiedereröffnungsquote: {1:NUMERICAL:=7.22:0.01} %</p><p>ohne Wiedereröffnung gelöst: {1:NUMERICAL:=92.78:0.01} %</p>]]></text></questiontext>
+
+<generalfeedback format="html"><text><![CDATA[<h4>Lösungsweg</h4><p>Wiedereröffnungsquote = 39 / 540 · 100 % = <strong>7,22 %</strong></p>
+<p>Ohne Wiedereröffnung gelöst = 100 % − 7,22 % = <strong>92,78 %</strong></p>
+<p>Verhältniszahlen machen Monate mit unterschiedlich vielen Tickets vergleichbar. Diese Qualitätskennzahl ergänzt die Durchlaufzeit und verhindert Fehlanreize.</p>
+]]></text></generalfeedback>
+<penalty>0.3333333</penalty><hidden>0</hidden>
+<tags><tag><text>niveau-2</text></tag><tag><text>zahl</text></tag><tag><text>entwurf</text></tag></tags>
+</question>
+<question type="cloze">
+<name><text>m1-a18 · Wiedereröffnungsquote (Variante 6)</text></name>
+<idnumber>m1-a18-v06</idnumber>
+<questiontext format="html"><text><![CDATA[<p>Im letzten Monat hat der Service-Desk 540 Tickets geschlossen. 42 davon mussten wiedereröffnet werden, weil das Problem nicht gelöst war.</p>
+<p>Berechne die Wiedereröffnungsquote und den Anteil der Tickets, die ohne Wiedereröffnung gelöst wurden (jeweils in Prozent, zwei Nachkommastellen).</p>
+<p><em>Dezimalzahlen mit Komma eingeben, z. B. 12,5.</em></p><p>Wiedereröffnungsquote: {1:NUMERICAL:=7.78:0.01} %</p><p>ohne Wiedereröffnung gelöst: {1:NUMERICAL:=92.22:0.01} %</p>]]></text></questiontext>
+
+<generalfeedback format="html"><text><![CDATA[<h4>Lösungsweg</h4><p>Wiedereröffnungsquote = 42 / 540 · 100 % = <strong>7,78 %</strong></p>
+<p>Ohne Wiedereröffnung gelöst = 100 % − 7,78 % = <strong>92,22 %</strong></p>
+<p>Verhältniszahlen machen Monate mit unterschiedlich vielen Tickets vergleichbar. Diese Qualitätskennzahl ergänzt die Durchlaufzeit und verhindert Fehlanreize.</p>
+]]></text></generalfeedback>
+<penalty>0.3333333</penalty><hidden>0</hidden>
+<tags><tag><text>niveau-2</text></tag><tag><text>zahl</text></tag><tag><text>entwurf</text></tag></tags>
+</question>
+<question type="cloze">
+<name><text>m1-a18 · Wiedereröffnungsquote (Variante 7)</text></name>
+<idnumber>m1-a18-v07</idnumber>
+<questiontext format="html"><text><![CDATA[<p>Im letzten Monat hat der Service-Desk 580 Tickets geschlossen. 15 davon mussten wiedereröffnet werden, weil das Problem nicht gelöst war.</p>
+<p>Berechne die Wiedereröffnungsquote und den Anteil der Tickets, die ohne Wiedereröffnung gelöst wurden (jeweils in Prozent, zwei Nachkommastellen).</p>
+<p><em>Dezimalzahlen mit Komma eingeben, z. B. 12,5.</em></p><p>Wiedereröffnungsquote: {1:NUMERICAL:=2.59:0.01} %</p><p>ohne Wiedereröffnung gelöst: {1:NUMERICAL:=97.41:0.01} %</p>]]></text></questiontext>
+
+<generalfeedback format="html"><text><![CDATA[<h4>Lösungsweg</h4><p>Wiedereröffnungsquote = 15 / 580 · 100 % = <strong>2,59 %</strong></p>
+<p>Ohne Wiedereröffnung gelöst = 100 % − 2,59 % = <strong>97,41 %</strong></p>
+<p>Verhältniszahlen machen Monate mit unterschiedlich vielen Tickets vergleichbar. Diese Qualitätskennzahl ergänzt die Durchlaufzeit und verhindert Fehlanreize.</p>
+]]></text></generalfeedback>
+<penalty>0.3333333</penalty><hidden>0</hidden>
+<tags><tag><text>niveau-2</text></tag><tag><text>zahl</text></tag><tag><text>entwurf</text></tag></tags>
+</question>
+<question type="cloze">
+<name><text>m1-a18 · Wiedereröffnungsquote (Variante 8)</text></name>
+<idnumber>m1-a18-v08</idnumber>
+<questiontext format="html"><text><![CDATA[<p>Im letzten Monat hat der Service-Desk 580 Tickets geschlossen. 39 davon mussten wiedereröffnet werden, weil das Problem nicht gelöst war.</p>
+<p>Berechne die Wiedereröffnungsquote und den Anteil der Tickets, die ohne Wiedereröffnung gelöst wurden (jeweils in Prozent, zwei Nachkommastellen).</p>
+<p><em>Dezimalzahlen mit Komma eingeben, z. B. 12,5.</em></p><p>Wiedereröffnungsquote: {1:NUMERICAL:=6.72:0.01} %</p><p>ohne Wiedereröffnung gelöst: {1:NUMERICAL:=93.28:0.01} %</p>]]></text></questiontext>
+
+<generalfeedback format="html"><text><![CDATA[<h4>Lösungsweg</h4><p>Wiedereröffnungsquote = 39 / 580 · 100 % = <strong>6,72 %</strong></p>
+<p>Ohne Wiedereröffnung gelöst = 100 % − 6,72 % = <strong>93,28 %</strong></p>
+<p>Verhältniszahlen machen Monate mit unterschiedlich vielen Tickets vergleichbar. Diese Qualitätskennzahl ergänzt die Durchlaufzeit und verhindert Fehlanreize.</p>
+]]></text></generalfeedback>
+<penalty>0.3333333</penalty><hidden>0</hidden>
+<tags><tag><text>niveau-2</text></tag><tag><text>zahl</text></tag><tag><text>entwurf</text></tag></tags>
+</question>
+</quiz>
