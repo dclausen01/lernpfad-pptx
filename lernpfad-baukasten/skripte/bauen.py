@@ -305,7 +305,11 @@ class Bauer:
 def main(argv=None):
     ap = kurs_aus_argumenten(argv, __doc__)
     args = ap.parse_args(argv)
+    from pruefen import pruefe
     try:
+        ok, _ = pruefe(args.ordner, still=True)
+        if not ok:
+            raise Fehler("Erst die Fehler oben beheben (Details: pruefen.py).")
         kurs = Kurs(args.ordner)
         web = Bauer(kurs).baue()
     except Fehler as e:

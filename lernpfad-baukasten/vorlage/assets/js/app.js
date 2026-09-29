@@ -665,7 +665,7 @@
     for (var i = 0; i < boxes.length; i++) {
       var option = boxes[i].dataset.option || "";
       if (PKG) {
-        boxes[i].innerHTML = '<p style="margin:0">Gib deine Dateien in der <strong>Moodle-Aufgabe</strong> ab, die im Kurs direkt unter diesem Meilenstein steht. Dort findest du auch das Bewertungsraster und später das Feedback deiner Lehrkraft.</p><p class="pkg-abgabe" style="margin:.6rem 0 0"></p>';
+        boxes[i].innerHTML = '<p style="margin:0">Gib deine Dateien in der <strong>Moodle-Aufgabe</strong> ab, die im Kurs direkt unter diesem Lernpaket steht. Dort siehst du auch, worauf es ankommt, und später das Feedback deiner Lehrkraft.</p><p class="pkg-abgabe" style="margin:.6rem 0 0"></p>';
         continue;
       }
       boxes[i].innerHTML = ABGABE_LINK

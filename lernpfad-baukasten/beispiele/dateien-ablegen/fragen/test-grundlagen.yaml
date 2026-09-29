@@ -1,0 +1,75 @@
+# Fragen für einen Moodle-Test zur Stufe „Grundlagen“ (→ moodle_xml.py → Fragensammlung importieren)
+- id: dg-01
+  modul: g1
+  typ: single_choice
+  titel: Wo neue Ordner anlegen?
+  review: freigegeben
+  aufgabe: Wo legst du am besten einen neuen Ordner für ein Fach an?
+  optionen:
+    - {text: Auf dem Desktop, korrekt: false, feedback: Da wird es schnell unübersichtlich.}
+    - {text: "Im Ordner **Schule** unter Dokumente", korrekt: true}
+    - {text: Im Download-Ordner, korrekt: false}
+  erklaerung: Ein fester Ort für alle Schulsachen macht das Wiederfinden leicht.
+
+- id: dg-02
+  modul: g2
+  typ: multiple_choice
+  titel: Gute Dateinamen
+  review: freigegeben
+  aufgabe: Welche Dateinamen folgen dem Schema „Datum Inhalt“? (mehrere richtig)
+  optionen:
+    - {text: "`2026-10-19 Protokoll Mathe.docx`", korrekt: true}
+    - {text: "`2026-11-02 Referat Bio.pptx`", korrekt: true}
+    - {text: "`neu (2).docx`", korrekt: false}
+
+- id: dg-03
+  modul: g2
+  typ: lueckentext
+  titel: Datumsformat
+  review: freigegeben
+  aufgabe: Ergänze das Datumsformat.
+  text: "Das Datum steht vorne im Format Jahr-{{a}}-Tag."
+  luecken:
+    a: {akzeptiert: [Monat, MM], hinweis: "Zwischen Jahr und Tag"}
+
+- id: dg-04
+  modul: g1
+  typ: zuordnung
+  titel: Was gehört wohin?
+  review: freigegeben
+  aufgabe: Ordne die Dateien den Ordnern zu.
+  kategorien: [Mathe, Deutsch, Bio]
+  elemente:
+    - {text: Protokoll Gleichungen, kategorie: Mathe}
+    - {text: Erörterung, kategorie: Deutsch}
+    - {text: Referat Zelle, kategorie: Bio}
+
+- id: dg-05
+  modul: gm
+  typ: reihenfolge
+  titel: Aufräumen in Schritten
+  review: freigegeben
+  aufgabe: Bring die Schritte in die richtige Reihenfolge.
+  elemente: [Ordner je Fach anlegen, Dateien umbenennen, Dateien in die Ordner verschieben]
+
+- id: dg-06
+  modul: gm
+  typ: zahl
+  titel: Speicherplatz
+  review: freigegeben
+  aufgabe: "Du hast {{n}} Dateien mit je {{mb}} MB. Wie viel Speicher brauchen sie zusammen?"
+  parameter:
+    n: {min: 10, max: 30, schritt: 5}
+    mb: {min: 2, max: 4, schritt: 1}
+  antworten:
+    - {id: summe, label: Speicher, formel: "n * mb", einheit: MB}
+  loesungsweg: "{{n}} · {{mb}} MB = {{summe}} MB"
+
+- id: dg-07
+  modul: gm
+  typ: offen
+  titel: Dein System
+  review: freigegeben
+  aufgabe: Beschreibe in zwei, drei Sätzen, wie du deine Dateien ordnest.
+  musterloesung: Ein Ordner je Fach, Dateien mit Datum vorne benannt.
+  checkliste: [Ordner je Fach genannt, Benennungsschema genannt]
