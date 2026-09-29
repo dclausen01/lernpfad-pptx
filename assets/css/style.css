@@ -423,3 +423,12 @@ footer.site { max-width: 1320px; margin: 0 auto; padding: 1.5rem 2rem 2.5rem; co
 /* Moodle-Paket (SCORM): Hinweise statt Links auf andere Module */
 .pkg-hint { margin: 0 0 .8rem; font-size: .9rem; color: var(--muted); }
 .pkg-link { text-decoration: underline dotted; cursor: help; }
+/* Moodle-Paket: Kursnavigation aus Moodle */
+.course-nav .nav-sub { margin: .35rem 0 .2rem; }
+.course-nav .nav-sub-title { display: block; font-size: .78rem; font-weight: 700; color: var(--muted); padding: .2rem .5rem; }
+.course-nav .nav-sub ul { margin: 0 0 0 .4rem; padding-left: .4rem; border-left: 2px solid var(--border); }
+.course-nav .nav-sub.locked span, .course-nav .nav-locked { display: flex; gap: .4rem; padding: .35rem .5rem; color: var(--muted); opacity: .75; font-size: .9rem; }
+.course-nav .nav-ico { font-size: .85em; }
+.pager .pkg-locked { flex: 1; padding: .7rem 1rem; border: 1px dashed var(--border); border-radius: 8px; color: var(--muted); text-align: right; cursor: default; }
+.pager .pkg-locked small { display: block; }
+.pager .pkg-locked small:last-child { margin-top: .2rem; font-size: .8rem; }

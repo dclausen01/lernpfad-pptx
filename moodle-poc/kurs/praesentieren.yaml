@@ -1,0 +1,211 @@
+# Kursbeschreibung für Moodle: Lernpfad Präsentieren
+# Daraus baut tools/build_moodle_kurs.py eine Kurssicherung (.mbz) zum Wiederherstellen in Moodle 5.
+#
+# Aufbau:  kurs → abschnitte (Stufen) → einheiten (= Unterabschnitte) → inhalte
+# Inhaltstypen:
+#   lernpaket  SCORM-Paket aus build_scorm.py        (datei, titel)
+#   h5p        H5P-Paket aus build_h5p.py            (datei, titel)
+#   aufgabe    Moodle-Aufgabe mit Datei-Upload        (titel, text, punkte, dateitypen, dateien, raster)
+# Freischaltung:
+#   reihenfolge: nacheinander  → jede Einheit wird frei, sobald das erste Element der vorigen Einheit
+#                                abgeschlossen ist (Lernpaket „als erledigt markiert“)
+#   reihenfolge: frei          → alle Einheiten sofort offen
+#   freischalten_nach: <id>    → Abschnitt/Einheit erst nach Abschluss dieses Elements (bei Aufgaben: abgegeben)
+# Bewertungsraster:
+#   raster: { aus_seite: em-meilenstein.html }  übernimmt die Tabelle „Kriterium | erreicht | besonders gut“
+#   raster: { kriterien: [ { kriterium: …, stufen: [ { text: …, punkte: … } ] } ] }  eigenes Raster
+#
+# Zwischenabgaben und H5P entscheidet die Lehrkraft (mit Claude). Hier als Beispiel: E3.
+
+basis: ../..          # Pfade unten sind relativ zum Wurzelordner des Lernpfads
+
+kurs:
+  titel: Lernpfad Präsentieren
+  kurzname: lernpfad-praesentieren
+  text: "<p>PowerPoint 365 und OnlyOffice in drei Stufen – mit Meilensteinen.</p>"
+
+abschnitte:
+
+  - titel: "🌱 Einsteiger"
+    text: "<p>Grundlagen: Oberfläche, Folien, Text, Design, Bilder und Präsentieren. Am Ende steht deine erste eigene Präsentation.</p>"
+    reihenfolge: nacheinander
+    einheiten:
+      - titel: "E1 · Oberfläche kennenlernen & speichern"
+        inhalte:
+          - typ: lernpaket
+            id: e1
+            titel: "E1 · Oberfläche kennenlernen & speichern"
+            datei: moodle-poc/dist/scorm/lernpfad-praesentieren_e1_scorm2004.zip
+      - titel: "E2 · Folien anlegen & Layouts"
+        inhalte:
+          - typ: lernpaket
+            id: e2
+            titel: "E2 · Folien anlegen & Layouts"
+            datei: moodle-poc/dist/scorm/lernpfad-praesentieren_e2_scorm2004.zip
+      - titel: "E3 · Text gestalten"
+        inhalte:
+          - typ: lernpaket
+            id: e3
+            titel: "E3 · Text gestalten"
+            datei: moodle-poc/dist/scorm/lernpfad-praesentieren_e3_scorm2004.zip
+          - typ: h5p
+            id: e3-check
+            titel: "E3 · Kurz-Check"
+            datei: moodle-poc/dist/h5p/lernpfad-praesentieren_e3_kurzcheck.h5p
+          - typ: aufgabe
+            id: e3-abgabe
+            titel: "E3 · Zwischenstand hochladen"
+            text: "<p>Lade deine Präsentation mit den gefüllten Inhaltsfolien hoch (Aufgabe 2 aus E3).</p><p>Dateiname: <code>Jahr-Monat-Tag Titel_Präs_Nachname,Vorname.pptx</code></p>"
+            punkte: 10
+            dateitypen: .pptx
+            dateien: 1
+      - titel: "E4 · Design & Hintergrund"
+        inhalte:
+          - typ: lernpaket
+            id: e4
+            titel: "E4 · Design & Hintergrund"
+            datei: moodle-poc/dist/scorm/lernpfad-praesentieren_e4_scorm2004.zip
+      - titel: "E5 · Bilder, Formen & Textfelder"
+        inhalte:
+          - typ: lernpaket
+            id: e5
+            titel: "E5 · Bilder, Formen & Textfelder"
+            datei: moodle-poc/dist/scorm/lernpfad-praesentieren_e5_scorm2004.zip
+      - titel: "E6 · Präsentieren & als PDF weitergeben"
+        inhalte:
+          - typ: lernpaket
+            id: e6
+            titel: "E6 · Präsentieren & als PDF weitergeben"
+            datei: moodle-poc/dist/scorm/lernpfad-praesentieren_e6_scorm2004.zip
+      - titel: "★ Meilenstein: Deine erste Präsentation"
+        inhalte:
+          - typ: lernpaket
+            id: em
+            titel: "Meilenstein: Auftrag & Checkliste"
+            datei: moodle-poc/dist/scorm/lernpfad-praesentieren_em_scorm2004.zip
+          - typ: aufgabe
+            id: em-abgabe
+            titel: "Abgabe: Deine erste Präsentation"
+            text: "<p>Lade deine fertige Präsentation <strong>als PPTX und als PDF</strong> hoch – beide mit deinem Namen im Dateinamen.</p>"
+            punkte: 100
+            dateitypen: ".pptx,.pdf"
+            dateien: 2
+            raster:
+              aus_seite: em-meilenstein.html
+              punkte: [0, 2, 3]      # nicht erreicht / erreicht / besonders gut
+
+  - titel: "🚀 Fortgeschrittene"
+    text: "<p>Übergänge, Animationen, Ausrichten, Tabellen und Diagramme, SmartArt, Fußzeile und Vortragen.</p>"
+    freischalten_nach: em-abgabe
+    reihenfolge: nacheinander
+    einheiten:
+      - titel: "F1 · Folienübergänge"
+        inhalte:
+          - typ: lernpaket
+            id: f1
+            titel: "F1 · Folienübergänge"
+            datei: moodle-poc/dist/scorm/lernpfad-praesentieren_f1_scorm2004.zip
+      - titel: "F2 · Animationen"
+        inhalte:
+          - typ: lernpaket
+            id: f2
+            titel: "F2 · Animationen"
+            datei: moodle-poc/dist/scorm/lernpfad-praesentieren_f2_scorm2004.zip
+      - titel: "F3 · Ausrichten, Anordnen, Gruppieren"
+        inhalte:
+          - typ: lernpaket
+            id: f3
+            titel: "F3 · Ausrichten, Anordnen, Gruppieren"
+            datei: moodle-poc/dist/scorm/lernpfad-praesentieren_f3_scorm2004.zip
+      - titel: "F4 · Tabellen & Diagramme"
+        inhalte:
+          - typ: lernpaket
+            id: f4
+            titel: "F4 · Tabellen & Diagramme"
+            datei: moodle-poc/dist/scorm/lernpfad-praesentieren_f4_scorm2004.zip
+      - titel: "F5 · SmartArt: Inhalte visualisieren"
+        inhalte:
+          - typ: lernpaket
+            id: f5
+            titel: "F5 · SmartArt: Inhalte visualisieren"
+            datei: moodle-poc/dist/scorm/lernpfad-praesentieren_f5_scorm2004.zip
+      - titel: "F6 · Fußzeile, Foliennummern & Links"
+        inhalte:
+          - typ: lernpaket
+            id: f6
+            titel: "F6 · Fußzeile, Foliennummern & Links"
+            datei: moodle-poc/dist/scorm/lernpfad-praesentieren_f6_scorm2004.zip
+      - titel: "F7 · Vortragen: Notizen, Referentenansicht, Handzettel"
+        inhalte:
+          - typ: lernpaket
+            id: f7
+            titel: "F7 · Vortragen: Notizen, Referentenansicht, Handzettel"
+            datei: moodle-poc/dist/scorm/lernpfad-praesentieren_f7_scorm2004.zip
+      - titel: "★ Meilenstein: Erklär-Präsentation mit Kurzvortrag"
+        inhalte:
+          - typ: lernpaket
+            id: fm
+            titel: "Meilenstein: Auftrag & Checkliste"
+            datei: moodle-poc/dist/scorm/lernpfad-praesentieren_fm_scorm2004.zip
+          - typ: aufgabe
+            id: fm-abgabe
+            titel: "Abgabe: Erklär-Präsentation mit Kurzvortrag"
+            text: "<p>Lade deine Erklär-Präsentation als <strong>PPTX</strong> hoch. Den Vortrag hältst du live in der Klasse.</p>"
+            punkte: 100
+            dateitypen: ".pptx"
+            dateien: 1
+            raster:
+              aus_seite: fm-meilenstein.html
+              punkte: [0, 2, 3]      # nicht erreicht / erreicht / besonders gut
+
+  - titel: "🏆 Profis"
+    text: "<p>Folienmaster, Morphen, interaktive Präsentationen, Audio und Video, Barrierefreiheit und Teamarbeit.</p>"
+    freischalten_nach: fm-abgabe
+    reihenfolge: nacheinander
+    einheiten:
+      - titel: "P1 · Folienmaster: deine eigene Vorlage"
+        inhalte:
+          - typ: lernpaket
+            id: p1
+            titel: "P1 · Folienmaster: deine eigene Vorlage"
+            datei: moodle-poc/dist/scorm/lernpfad-praesentieren_p1_scorm2004.zip
+      - titel: "P2 · Morphen: flüssige Verwandlungen"
+        inhalte:
+          - typ: lernpaket
+            id: p2
+            titel: "P2 · Morphen: flüssige Verwandlungen"
+            datei: moodle-poc/dist/scorm/lernpfad-praesentieren_p2_scorm2004.zip
+      - titel: "P3 · Interaktiv: Trigger, Sprungmarken, Quiz"
+        inhalte:
+          - typ: lernpaket
+            id: p3
+            titel: "P3 · Interaktiv: Trigger, Sprungmarken, Quiz"
+            datei: moodle-poc/dist/scorm/lernpfad-praesentieren_p3_scorm2004.zip
+      - titel: "P4 · Audio & Video"
+        inhalte:
+          - typ: lernpaket
+            id: p4
+            titel: "P4 · Audio & Video"
+            datei: moodle-poc/dist/scorm/lernpfad-praesentieren_p4_scorm2004.zip
+      - titel: "P5 · Barrierefrei & im Team arbeiten"
+        inhalte:
+          - typ: lernpaket
+            id: p5
+            titel: "P5 · Barrierefrei & im Team arbeiten"
+            datei: moodle-poc/dist/scorm/lernpfad-praesentieren_p5_scorm2004.zip
+      - titel: "★ Meilenstein: Profi-Projekt"
+        inhalte:
+          - typ: lernpaket
+            id: pm
+            titel: "Meilenstein: Auftrag & Checkliste"
+            datei: moodle-poc/dist/scorm/lernpfad-praesentieren_pm_scorm2004.zip
+          - typ: aufgabe
+            id: pm-abgabe
+            titel: "Abgabe: Profi-Projekt"
+            text: "<p>Lade dein Profi-Projekt hoch – je nach Format <code>.pptx</code>, <code>.mp4</code> oder <code>.potx</code> + <code>.pptx</code>.</p>"
+            punkte: 100
+            dateitypen: ".pptx,.potx,.mp4"
+            dateien: 3
+            raster:
+              aus_seite: pm-meilenstein.html
+              punkte: [0, 2, 3]      # nicht erreicht / erreicht / besonders gut

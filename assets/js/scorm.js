@@ -108,11 +108,85 @@
   window.addEventListener("pagehide", finish);
   window.addEventListener("beforeunload", finish);
 
+  // ---------- Kursnavigation aus Moodle ----------
+  // Das Paket läuft auf derselben Adresse wie Moodle und darf deshalb die Moodle-Seite drumherum fragen.
+  // Es nutzt dieselbe Schnittstelle wie der Kursindex von Moodle (core_courseformat_get_state).
+  // Klappt das nicht (andere Plattform, Paket außerhalb von Moodle), liefert courseNav null.
+  function moodleTop() {
+    try {
+      var t = window.top;
+      if (t !== window && t.M && t.M.cfg && t.M.cfg.courseId && typeof t.require === "function") return t;
+    } catch (e) { /* fremde Herkunft */ }
+    return null;
+  }
+  function decode(s) {
+    var ta = document.createElement("textarea");
+    ta.innerHTML = s || "";
+    return ta.value;
+  }
+  // Moodle-Daten → { courseUrl, current, sections: [{ title, locked, items: [...] }] }
+  // item: { kind: "cm", id, name, module, url, done, locked, current } oder { kind: "sub", title, locked, items }
+  function normalize(st, M) {
+    var secs = {}, cms = {};
+    st.section.forEach(function (s) { secs[s.id] = s; });
+    st.cm.forEach(function (c) { cms[c.id] = c; });
+    var current = String(M.cfg.contextInstanceId || "");
+    function items(sec) {
+      var out = [];
+      (sec.cmlist || []).forEach(function (id) {
+        var c = cms[id];
+        if (!c) return;
+        if (c.module === "subsection" || c.hasdelegatedsection) {
+          // Gesperrte Unterabschnitte liefert Moodle teils ohne Verweis auf ihren Inhalt
+          var sub = c.delegatesectionid ? secs[c.delegatesectionid] : null;
+          out.push({ kind: "sub", title: decode(sub ? sub.title : c.name), locked: !c.uservisible, items: sub ? items(sub) : [] });
+          return;
+        }
+        if (!c.url && c.uservisible) return; // z. B. Textfelder ohne eigene Seite
+        out.push({
+          kind: "cm", id: String(c.id), name: decode(c.name), module: c.module, modname: c.modname,
+          url: c.uservisible ? c.url : null, done: !!c.isoverallcomplete, locked: !c.uservisible,
+          current: String(c.id) === current
+        });
+      });
+      return out;
+    }
+    var sections = [];
+    st.section.forEach(function (s) {
+      if (s.component) return; // Unterabschnitte hängen an ihrer Aktivität
+      var it = items(s);
+      if (s.number === 0) it = it.filter(function (x) { return x.module !== "forum"; });
+      if (!it.length && !s.hasrestrictions) return;
+      sections.push({ title: decode(s.title), locked: s.hasrestrictions && !it.length, items: it });
+    });
+    return { courseUrl: M.cfg.wwwroot + "/course/view.php?id=" + M.cfg.courseId, current: current, sections: sections };
+  }
+  function courseNav(cb) {
+    var t = moodleTop();
+    if (!t) { cb(null); return; }
+    try {
+      t.require(["core/ajax"], function (ajax) {
+        ajax.call([{ methodname: "core_courseformat_get_state", args: { courseid: t.M.cfg.courseId } }])[0]
+          .then(function (raw) { cb(normalize(typeof raw === "string" ? JSON.parse(raw) : raw, t.M)); })
+          .catch(function () { cb({ courseUrl: t.M.cfg.wwwroot + "/course/view.php?id=" + t.M.cfg.courseId, sections: null }); });
+      });
+    } catch (e) { cb(null); }
+  }
+  // Ganze Moodle-Seite wechseln (nicht nur den Rahmen des Pakets); vorher alles speichern
+  function go(url) {
+    finish();
+    var t = moodleTop() || window.top;
+    try { t.location.href = url; } catch (e) { window.open(url, "_top"); }
+  }
+
   var answered = {};
   window.LP_SCORM = {
     active: started,
     version: started ? (v2004 ? "2004" : "1.2") : "",
     config: cfg,
+    courseNav: courseNav,
+    go: go,
+    flushNow: function () { clearTimeout(timer); flush(); },
     load: function () {
       if (!started) return null;
       var raw = get("cmi.suspend_data");

@@ -160,6 +160,7 @@
   function buildSidebar() {
     var nav = document.getElementById("sidebar");
     if (!nav) return;
+    if (PKG) { renderPackageSidebar(nav); return; }
     var cur = currentFile();
     var html = PKG
       ? '<p class="pkg-hint">Die anderen Module findest du im Moodle-Kurs.</p>'
@@ -226,7 +227,12 @@
     btn.addEventListener("click", function () {
       state.done[mod.id] = !state.done[mod.id];
       save(); paint(); buildSidebar();
-      if (SC) SC.setDone(!!state.done[mod.id], state.done[mod.id] ? 1 : checkProgress());
+      if (SC) {
+        SC.setDone(!!state.done[mod.id], state.done[mod.id] ? 1 : checkProgress());
+        // Moodle wertet den Abschluss beim Speichern aus – danach die Navigation neu holen (Sperren fallen weg)
+        SC.flushNow();
+        setTimeout(loadCourseNav, 1500);
+      }
     });
     paint();
     wrap.appendChild(btn);
@@ -236,8 +242,8 @@
     main.appendChild(wrap);
 
     if (PKG) {
-      main.appendChild(el("div", { "class": "box tip" },
-        "<div class=\"box-title\">➡️ Wie geht’s weiter?</div><p>Schließe dieses Fenster bzw. geh zurück zum Moodle-Kurs. Dort findest du das nächste Modul.</p>"));
+      main.appendChild(el("div", { "class": "pager", id: "pkg-pager" }));
+      renderPackagePager();
       return;
     }
     var pager = el("div", { "class": "pager" });
@@ -464,6 +470,118 @@
     return n / all.length;
   }
 
+  // ---------- Moodle-Paket: Navigation durch den ganzen Moodle-Kurs ----------
+  // scorm.js holt den Kursaufbau aus Moodle (Abschnitte, Unterabschnitte, Aktivitäten, Häkchen, Sperren).
+  // Die Seitenleiste zeigt den Kurs, unten gibt es Zurück/Weiter zur vorigen/nächsten Moodle-Aktivität –
+  // auch zu Aufgaben (Upload), H5P und Tests. Ohne Moodle-Daten: nur „Zurück zum Kurs“.
+  var NAV = PKG && window.LP_SCORM ? window.LP_SCORM : null;
+  var navData = null;
+  var ICON = { scorm: "📦", assign: "📤", h5pactivity: "🧩", quiz: "❓", page: "📄", book: "📘", url: "🔗",
+    resource: "📎", forum: "💬", lesson: "🧭", glossary: "📚", feedback: "📝", choice: "✅" };
+
+  function loadCourseNav() {
+    if (!NAV) return;
+    NAV.courseNav(function (data) {
+      navData = data;
+      buildSidebar();
+      renderPackagePager();
+    });
+  }
+  // Reihenfolge aller Aktivitäten; gesperrte Unterabschnitte/Abschnitte als Platzhalter (Inhalt kennt Moodle erst nach Freigabe)
+  function flatNav() {
+    var out = [];
+    function walk(list) {
+      list.forEach(function (it) {
+        if (it.kind !== "sub") out.push(it);
+        else if (it.locked) out.push({ kind: "cm", name: it.title, locked: true });
+        else walk(it.items);
+      });
+    }
+    (navData && navData.sections || []).forEach(function (sec) {
+      if (sec.locked) out.push({ kind: "cm", name: sec.title, locked: true });
+      else walk(sec.items);
+    });
+    return out;
+  }
+  function navDone(it) {
+    var mid = document.body.dataset.module;
+    return it.done || (it.current && mid && state.done[mid]);
+  }
+  function navItem(it) {
+    if (it.kind === "sub") {
+      if (it.locked) return '<li class="nav-sub locked"><span>🔒 ' + esc(it.title) + "</span></li>";
+      return '<li class="nav-sub"><span class="nav-sub-title">' + esc(it.title) + "</span><ul>" + it.items.map(navItem).join("") + "</ul></li>";
+    }
+    var ico = ICON[it.module] || "•";
+    var label = '<span class="tick">' + (navDone(it) ? "✓" : "") + '</span><span><span class="nav-ico" aria-hidden="true">' + ico + "</span> " + esc(it.name) + "</span>";
+    if (it.current) return '<li><a class="current" aria-current="page" href="#">' + label + "</a></li>";
+    if (it.locked || !it.url) return '<li><span class="nav-locked" title="Noch gesperrt">' + label.replace('<span class="tick"></span>', '<span class="tick">🔒</span>') + "</span></li>";
+    return '<li><a href="' + esc(it.url) + '" data-go="1" title="' + esc(it.modname || "") + '">' + label + "</a></li>";
+  }
+  function renderPackageSidebar(nav) {
+    var html = "";
+    if (navData && navData.courseUrl) {
+      html += '<a href="' + esc(navData.courseUrl) + '" data-go="1" class="btn secondary" style="display:block;text-align:center">← Zum Kurs</a>';
+    } else {
+      html += '<p class="pkg-hint">Die anderen Module findest du im Moodle-Kurs.</p>';
+    }
+    if (navData && navData.sections) {
+      navData.sections.forEach(function (sec) {
+        html += "<h4>" + (sec.locked ? "🔒 " : "") + esc(sec.title) + '</h4><ul class="course-nav">' + sec.items.map(navItem).join("") + "</ul>";
+      });
+    } else {
+      var mod = MODULES[moduleById(document.body.dataset.module)];
+      if (mod) html += '<ul><li><a class="current" aria-current="page" href="#"><span class="tick">' + (state.done[mod.id] ? "✓" : "") + "</span><span>" + esc(mod.title) + "</span></a></li></ul>";
+    }
+    html += '<div class="extra"><ul>';
+    EXTRA.forEach(function (x) {
+      if (!inPackage(x.file)) return;
+      html += '<li><a href="' + x.file + '" target="_blank" rel="noopener"><span class="tick"></span><span>' + esc(x.title) + " ↗</span></a></li>";
+    });
+    nav.innerHTML = html + "</ul></div>";
+  }
+  function pagerLink(it, cls, label) {
+    if (it.locked || !it.url) {
+      var mid = document.body.dataset.module;
+      return '<span class="' + cls + ' pkg-locked"><small>' + label + "</small>🔒 " + esc(it.name) +
+        "<small>" + (mid && !state.done[mid] ? "Wird frei, wenn du dieses Modul als erledigt markierst." : "Noch gesperrt – schau im Kurs, was noch fehlt.") + "</small></span>";
+    }
+    return '<a class="' + cls + '" href="' + esc(it.url) + '" data-go="1"><small>' + label + "</small>" + (ICON[it.module] || "") + " " + esc(it.name) + "</a>";
+  }
+  function renderPackagePager() {
+    var pager = document.getElementById("pkg-pager");
+    if (!pager) return;
+    var list = flatNav(), i = -1;
+    for (var k = 0; k < list.length; k++) if (list[k].current) i = k;
+    if (i < 0) {
+      pager.innerHTML = navData && navData.courseUrl
+        ? '<a class="next" href="' + esc(navData.courseUrl) + '" data-go="1"><small>weiter →</small>Zurück zum Moodle-Kurs</a>'
+        : '<div class="box tip" style="flex:1"><div class="box-title">➡️ Wie geht’s weiter?</div><p>Geh zurück zum Moodle-Kurs. Dort findest du das nächste Modul.</p></div>';
+    } else {
+      var prev = null, next = list[i + 1] || null;
+      for (var j = i - 1; j >= 0 && !prev; j--) if (list[j].url) prev = list[j];
+      pager.innerHTML = (prev ? pagerLink(prev, "prev", "← zurück") : '<a class="prev" href="' + esc(navData.courseUrl) + '" data-go="1"><small>← zurück</small>Kursübersicht</a>') +
+        (next ? pagerLink(next, "next", "weiter →") : '<a class="next" href="' + esc(navData.courseUrl) + '" data-go="1"><small>weiter →</small>Kursübersicht</a>');
+      // Meilenstein: Knopf direkt zur nächsten Moodle-Aufgabe
+      var ab = document.querySelector(".pkg-abgabe");
+      for (var n = i + 1; ab && n < list.length; n++) {
+        if (list[n].module === "assign") {
+          ab.innerHTML = list[n].url
+            ? '<a class="btn" href="' + esc(list[n].url) + '" data-go="1">📤 Zur Abgabe: ' + esc(list[n].name) + "</a>"
+            : "🔒 " + esc(list[n].name) + " – wird frei, wenn du diese Seite als erledigt markierst.";
+          break;
+        }
+      }
+    }
+  }
+  // Links in die Moodle-Seite: ganzes Fenster wechseln und vorher speichern
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest("a[data-go]");
+    if (!a || !NAV) return;
+    e.preventDefault();
+    NAV.go(a.getAttribute("href"));
+  });
+
   // Im Moodle-Paket: Links auf Seiten, die nicht im Paket sind, als Text zeigen;
   // Zusatzseiten (Spickzettel, Videos) im neuen Tab öffnen, damit das Modul offen bleibt.
   function fixPackageLinks() {
@@ -535,7 +653,7 @@
     for (var i = 0; i < boxes.length; i++) {
       var option = boxes[i].dataset.option || "";
       if (PKG) {
-        boxes[i].innerHTML = '<p style="margin:0">Gib deine Dateien in der <strong>Moodle-Aufgabe</strong> ab, die im Kurs direkt unter diesem Meilenstein steht. Dort findest du auch das Bewertungsraster und später das Feedback deiner Lehrkraft.</p>';
+        boxes[i].innerHTML = '<p style="margin:0">Gib deine Dateien in der <strong>Moodle-Aufgabe</strong> ab, die im Kurs direkt unter diesem Meilenstein steht. Dort findest du auch das Bewertungsraster und später das Feedback deiner Lehrkraft.</p><p class="pkg-abgabe" style="margin:.6rem 0 0"></p>';
         continue;
       }
       boxes[i].innerHTML = ABGABE_LINK
@@ -590,6 +708,7 @@
     buildSelfcheck();
     buildAbgabe();
     fixPackageLinks();
+    loadCourseNav();
     if (SC) {
       var cbs = document.querySelectorAll("ul.check input[type=checkbox]");
       for (var c = 0; c < cbs.length; c++) cbs[c].addEventListener("change", function () {

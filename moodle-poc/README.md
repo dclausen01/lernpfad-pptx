@@ -1,68 +1,119 @@
-# Moodle-Proof-of-Concept
+# Lernpfade in Moodle (Proof of Concept)
 
-Hier wird getestet, ob sich die HTML-Lernpfade gut in Moodle (5.x) einbinden lassen. Dabei soll möglichst viel vom Aussehen und von der Interaktivität erhalten bleiben. Drei Wege werden ausprobiert:
+Die HTML-Lernpfade sollen in Moodle (5.x) laufen und dabei möglichst viel von ihrem Aussehen und ihrer Interaktivität behalten. **Moodle ist die Tür für die Schüler:innen.** Das HTML steckt als Lernpaket (SCORM) darin. Abgaben, Tests und H5P sind normale Moodle-Aktivitäten dazwischen.
 
-| Weg | Was | Dateien in `dist/` |
+| Was | Wofür | Dateien in `dist/` |
 |---|---|---|
-| **SCORM** | Modulseiten des Lernpfads Präsentieren als SCORM-Paket. Fortschritt, Häkchen, Notizen und Kurz-Check-Antworten landen in Moodle. | `scorm/*.zip` |
-| **Moodle-XML** | Alle Aufgaben aus LF11c, Modul 1 (7 Aufgabentypen) als Fragen für die Fragensammlung | `moodle-xml/lf-11c_m1_fragen.xml` |
-| **H5P** | Kurz-Checks E1–E6 als „Question Set“, ein LF11c-Lückentext als „Fill in the Blanks“ | `h5p/*.h5p` |
+| **Kompletter Kurs** | Den ganzen Lernpfad Präsentieren mit einem Klick in einen Moodle-Kurs holen | `kurs/lernpfad-praesentieren.mbz` |
+| **Lernpakete (SCORM)** | einzelne Module von Hand einbinden | `scorm/*.zip` |
+| **Moodle-XML** | Aufgaben aus LF11c, Modul 1, für die Fragensammlung (Tests) | `moodle-xml/lf-11c_m1_fragen.xml` |
+| **H5P** | Kurz-Checks als Selbstlern-Häppchen | `h5p/*.h5p` |
 
-Alles wurde vorab in einem frischen **Moodle 5.2.3** (Sprache Deutsch) importiert und durchgeklickt. Die Ergebnisse stehen jeweils unten unter „Vorab geprüft“.
+Alles wurde vorab in einem frischen **Moodle 5.2.3** (Deutsch) eingespielt und als Lehrkraft und Schüler:in durchgeklickt. Die Ergebnisse stehen jeweils unter „Vorab geprüft“.
+
+![Wiederhergestellter Kurs in Moodle](screenshots/kurs-wiederhergestellt.png)
 
 ---
 
-## 1. SCORM-Pakete (Lernpfad Präsentieren, Stufe Einsteiger)
+## 1. Kompletter Kurs zum Wiederherstellen (empfohlen)
 
-**Dateien:** `dist/scorm/lernpfad-praesentieren_e1_scorm2004.zip` … `_e6_…`, `_em_…` (Meilenstein) sowie `lernpfad-praesentieren_e3_scorm12.zip` als Rückfalloption für SCORM 1.2.
+**Datei:** `dist/kurs/lernpfad-praesentieren.mbz` (ca. 5 MB)
 
-### So anlegen
+Enthält den ganzen Lernpfad: drei Abschnitte (Einsteiger, Fortgeschrittene, Profis), darin je Modul ein **Unterabschnitt** mit dem Lernpaket. Dazu kommen:
+- **Meilensteine:** Lernpaket mit Auftrag und Checkliste, dazu eine **Moodle-Aufgabe** mit Datei-Upload und **Bewertungsraster**. Das Raster wird automatisch aus der Tabelle auf der Meilenstein-Seite übernommen.
+- **Beispiel E3:** zusätzlich ein **H5P-Kurz-Check** und eine **Zwischenabgabe** (Upload).
+- **Freischaltung:** Jedes Modul wird frei, sobald das vorige als erledigt markiert ist. Die nächste Stufe wird frei, sobald der Meilenstein abgegeben ist.
+- **Aktivitätsabschluss** ist überall eingestellt. In Aufgaben und H5P stehen Links „⬅️ Zurück / ➡️ Weiter im Lernpfad“, weil Moodle dort selbst kein „Weiter“ anzeigt.
 
-1. Im Kurs: *Aktivität oder Material anlegen* → **SCORM-Paket**.
-2. Name z. B. „E3 · Text gestalten“, Paketdatei hochladen.
-3. Empfohlene Einstellungen:
-   - *Darstellung → Anzeige des Pakets:* **Aktuelles Fenster**. Alternativ „Neues Fenster“ ausprobieren.
-   - *Darstellung:* „Inhaltsverzeichnis“ **ausblenden**, „Navigation anzeigen“ **nein**. Das Paket hat eine eigene Navigation.
-   - *Bewertung:* Bewertungsmethode **Höchste Bewertung**, Maximale Bewertung 100. Die Punkte kommen aus dem Kurz-Check, gezählt wird jeweils der erste Versuch.
-   - *Versuchsverwaltung:* Anzahl der Versuche **unbegrenzt**, „Neuen Versuch erzwingen“ **Nein**. So bleibt der Stand beim Wiederkommen erhalten.
-   - *Aktivitätsabschluss:* **„Status erforderlich: Abgeschlossen“**. Das Modul gilt als erledigt, sobald die Schülerin oder der Schüler auf „Modul als erledigt markieren“ klickt.
-4. Für den Meilenstein (`_em_`) daneben eine **Aufgabe** anlegen (Abgabe PPTX + PDF). Das Bewertungsraster steht auf der Meilenstein-Seite und kann als Bewertungsrichtlinie übernommen werden. Im Paket verweist der Abgabe-Kasten automatisch auf die Moodle-Aufgabe statt auf das Nextcloud-Formular.
-5. Tipp für die Reihenfolge: Mit *Voraussetzungen* („E2 abgeschlossen“ → E3 wird sichtbar) entsteht der Pfad.
+### So geht's (als Lehrkraft, keine Admin-Rechte nötig)
 
-### Was im Paket anders ist als in der Web-Version
+1. Einen **leeren Kurs** nehmen oder anlegen lassen.
+2. Kurs → **Mehr** → **Wiederverwendung** → **Wiederherstellen**.
+3. `lernpfad-praesentieren.mbz` hochladen → **Wiederherstellen**.
+4. Ziel: **„In diesen Kurs wiederherstellen“** mit
+   - *„Kursinhalt löschen und dann wiederherstellen“* (für einen leeren Kurs am einfachsten) und
+   - im nächsten Schritt **„Kurseinstellungen überschreiben: Ja“**. Dann ist die Abschlussverfolgung sicher an. Achtung: Dabei übernimmt Moodle auch den Kursnamen aus der Datei, den kann man danach wieder ändern.
+5. Durchklicken bis **„Wiederherstellung durchführen“**.
 
-- Die Seitenleiste zeigt nur das aktuelle Modul, dazu Spickzettel und Videos (öffnen sich im neuen Tab).
-- Links auf andere Module erscheinen als gepunktet unterstrichener Text („findest du im Moodle-Kurs“).
-- Statt „weiter/zurück“ gibt es den Hinweis, zurück in den Kurs zu gehen.
-- Die Programmwahl (PowerPoint/OnlyOffice) wird für alle Module gemeinsam gemerkt. Man stellt sie also nur einmal ein.
+> Wer lieber **„zusammenführen“** wählt oder die Kurseinstellungen nicht überschreibt: Vorher im Kurs unter *Einstellungen › Abschlussverfolgung* **„Abschlussverfolgung aktivieren: Ja“** setzen. Sonst greifen die Freischaltungen nicht. Bei vielen Moodles ist das ohnehin Standard.
+>
+> **H5P:** Der Kurz-Check in E3 bringt eigene H5P-Bibliotheken mit. Sind die Typen „Question Set“ und „Multiple Choice“ in eurem Moodle noch nicht installiert, muss sie der Admin einmal unter *Website-Administration › H5P* installieren (siehe Abschnitt 5).
+
+### Navigation für die Schüler:innen
+
+- Ein Klick auf ein Modul im Kurs öffnet das Lernpaket **direkt**, ohne Zwischenseite.
+- Die **Seitenleiste im Lernpaket zeigt den ganzen Moodle-Kurs**: alle Abschnitte, Unterabschnitte und Aktivitäten, auch Aufgaben und H5P, mit ✓ für erledigt und 🔒 für gesperrt. Sie holt sich das live aus Moodle. Ändert die Lehrkraft den Kurs, passt sich die Leiste von selbst an.
+- Unten steht **„← zurück / weiter →“** zur vorigen bzw. nächsten Moodle-Aktivität. Ist die nächste noch gesperrt, steht dort „🔒 … Wird frei, wenn du dieses Modul als erledigt markierst.“ Nach dem Klick auf „erledigt“ wird sie nach ein, zwei Sekunden freigeschaltet.
+- Im Meilenstein-Paket führt ein Knopf **„📤 Zur Abgabe: …“** direkt in die Moodle-Aufgabe.
+- Klappt das Auslesen des Kurses einmal nicht (z. B. nach einem großen Moodle-Update), zeigt das Paket einfach „Zurück zum Kurs“.
+
+![Lernpaket mit Kursnavigation aus Moodle](screenshots/scorm-e1-kursnavigation.png)
 
 ### Bitte testen
 
-- [ ] Paket lässt sich hochladen, Seite sieht aus wie die Web-Version (Schriften, Farben, Menüband-Grafiken)
-- [ ] Umschalter PowerPoint/OnlyOffice funktioniert
-- [ ] Als Schüler:in: Häkchen setzen, Notiz schreiben, Kurz-Check beantworten → Kurs verlassen → wieder öffnen: **alles noch da?**
-- [ ] Als Lehrkraft: *Berichte* des SCORM-Pakets → Versuch anklicken → Antworten der Kurz-Checks (Interaktionen), Punkte, Status sichtbar?
-- [ ] „Modul als erledigt markieren“ → Häkchen beim Aktivitätsabschluss im Kurs?
-- [ ] Handy / Moodle-App: bedienbar?
-- [ ] Übungsdatei (E3: `e3-textwueste.pptx`) lässt sich herunterladen
-- [ ] Anzeige im **neuen Fenster** statt im aktuellen – was fühlt sich besser an?
+- [ ] Wiederherstellen als Lehrkraft in einen leeren Kurs
+- [ ] Als Schüler:in: E1 öffnen → erledigt → „weiter“ → E2 … bis zum Kurz-Check und zur Zwischenabgabe in E3
+- [ ] Meilenstein: „Zur Abgabe“ → Dateien hochladen → wird „Fortgeschrittene“ frei?
+- [ ] Als Lehrkraft: Meilenstein-Abgabe mit dem Raster bewerten
+- [ ] Handy / Moodle-App
 
-### Vorab geprüft (Moodle 5.2.3, Deutsch)
+### Vorab geprüft (Moodle 5.2.3)
 
-- ✅ Beide SCORM-Versionen (2004 und 1.2) werden erkannt. Häkchen, Notiz (mit Umlauten), Kurz-Check, „erledigt“ und die Programmwahl sind nach dem Wiederöffnen noch da.
-- ✅ **Paket austauschen** (z. B. nach einer Korrektur): Der Fortschritt der Schüler:innen bleibt erhalten.
-- ✅ Die Lehrkraft sieht im Bericht jede Kurz-Check-Antwort (Fragetext, gewählte und richtige Antwort, richtig/falsch), dazu Status und Punkte. In der Bewertungsübersicht stehen Prozent (erster Versuch zählt).
-- ✅ Aktivitätsabschluss wird gesetzt, sobald „Modul als erledigt markieren“ geklickt wird.
-- ✅ Meilenstein: Der Abgabe-Kasten verweist auf die Moodle-Aufgabe, und es gibt keine toten Links auf andere Module mehr.
-- ℹ️ Nach dem Abschließen öffnet Moodle das Modul im **„Überprüfungsmodus“**. Das Etikett irritiert vielleicht, aber Änderungen werden trotzdem gespeichert (getestet).
-- ℹ️ Bei SCORM 1.2 die *Bewertungsmethode* auf „Höchste Bewertung“ stellen, sonst zählt Moodle nur „Lernobjekte“ (Note 1 statt Prozent).
-- ⬜ Nicht geprüft: Moodle-App, Handy, Anzeige im neuen Fenster.
-
-![E3 als SCORM-Paket in Moodle](screenshots/scorm-e3.png)
+- ✅ Wiederherstellen per Kommandozeile **und mit den Rechten einer normalen Lehrkraft**, sowohl „zusammenführen“ als auch „löschen und ersetzen“.
+- ✅ Alle 21 Lernpakete startklar (Moodle entpackt sie beim Wiederherstellen selbst), 21 Unterabschnitte, 4 Aufgaben, 3 Raster mit je 6 Kriterien, H5P.
+- ✅ Freischaltungen und die „Weiter“-Links zeigen nach dem Wiederherstellen auf die richtigen (neuen) Aktivitäten.
+- ✅ Als Schülerin durchgespielt: direkter Start, Kursnavigation im Paket, Sperren, Freischalten nach „erledigt“, Weiter zu Kurz-Check und Aufgabe, Abgabe-Knopf im Meilenstein.
+- ℹ️ Die Datei trägt die Version Moodle 5.0, damit sie in jedem Moodle ab 5.0 ohne Warnung läuft (Unterabschnitte gibt es erst ab 5.0).
 
 ---
 
-## 2. Moodle-XML (LF11c, Modul 1)
+## 2. Klickanleitung: Kurs von Hand bauen (Rückfallebene)
+
+Falls das Wiederherstellen nicht passt, z. B. weil ein bestehender Kurs erweitert werden soll:
+
+1. **Kurs-Einstellungen:** *Abschlussverfolgung aktivieren: Ja*.
+2. **Abschnitte** für die Stufen anlegen (z. B. „🌱 Einsteiger“).
+3. Im Abschnitt je Modul einen **Unterabschnitt** anlegen: *Aktivität oder Material anlegen* → **Unterabschnitt**, Name z. B. „E3 · Text gestalten“.
+4. Im Unterabschnitt: *Aktivität anlegen* → **Lernpaket** (SCORM), Datei aus `dist/scorm/` hochladen. Einstellungen:
+
+   | Bereich | Einstellung | Wert |
+   |---|---|---|
+   | Darstellung | Anzeige des Pakets | Aktuelles Fenster |
+   | Darstellung | Inhaltsstruktur-Seite überspringen | **Immer** (öffnet das Paket ohne Zwischenseite) |
+   | Darstellung | Inhaltsverzeichnis anzeigen | **Deaktiviert** |
+   | Darstellung | Navigation anzeigen | Nein |
+   | Bewertung | Bewertungsmethode / Maximum | Höchste Bewertung / 100 |
+   | Versuche | Anzahl / Neuen Versuch erzwingen | Unbegrenzt / Nein |
+   | Aktivitätsabschluss | Abschlussbedingung | **„Status erforderlich: Abgeschlossen“** |
+
+5. **Optional** im selben Unterabschnitt: **H5P** (Kurz-Check, Abschluss „Bewertung erhalten“) und/oder **Aufgabe** (Dateiabgabe, Dateitypen z. B. `.pptx`, Abschluss „Abgabe erforderlich“). Beim Meilenstein unter *Bewertung* die Methode **„Bewertungsraster“** wählen und die Tabelle von der Meilenstein-Seite übernehmen.
+6. **Freischaltung:** Unterabschnitt bearbeiten → *Voraussetzungen* → *Aktivitätsabschluss* → das Lernpaket des vorigen Moduls „muss abgeschlossen sein“. Für die nächste Stufe am Abschnitt: Meilenstein-Aufgabe „muss abgeschlossen sein“.
+
+Die Navigation im Paket funktioniert bei einem von Hand gebauten Kurs genauso.
+
+---
+
+## 3. Lernpakete (SCORM) im Detail
+
+**Dateien:** `dist/scorm/lernpfad-praesentieren_<modul>_scorm2004.zip` für alle 21 Module, dazu `lernpfad-praesentieren_e3_scorm12.zip` als Rückfalloption für SCORM 1.2.
+
+- Fortschritt, Häkchen, Notizen, Kurz-Check-Antworten und „erledigt“ werden **in Moodle** gespeichert (nicht mehr nur im Browser).
+- Die Programmwahl (PowerPoint/OnlyOffice) gilt für alle Module gemeinsam. Man stellt sie also nur einmal ein.
+- Links auf andere Module innerhalb der Texte erscheinen als gepunktet unterstrichener Text. Die Navigation läuft über Seitenleiste und „weiter“.
+
+### Vorab geprüft
+
+- ✅ SCORM 2004 und 1.2 werden erkannt. Häkchen, Notiz (mit Umlauten), Kurz-Check, „erledigt“ und Programmwahl sind nach dem Wiederöffnen noch da.
+- ✅ **Paket austauschen** (z. B. nach einer Korrektur): Der Fortschritt der Schüler:innen bleibt erhalten.
+- ✅ Die Lehrkraft sieht im Bericht jede Kurz-Check-Antwort (Fragetext, gewählte und richtige Antwort), dazu Status und Punkte. In der Bewertung stehen Prozent (erster Versuch zählt).
+- ℹ️ Nach dem Abschließen öffnet Moodle das Modul im **„Überprüfungsmodus“**. Das Etikett irritiert vielleicht, Änderungen werden aber trotzdem gespeichert (getestet).
+- ℹ️ Bei SCORM 1.2 die *Bewertungsmethode* auf „Höchste Bewertung“ stellen, sonst zeigt Moodle 1 statt Prozent.
+
+![Meilenstein im Lernpaket mit Abgabe-Knopf](screenshots/scorm-meilenstein-abgabe.png)
+
+---
+
+## 4. Moodle-XML (LF11c, Modul 1)
 
 **Datei:** `dist/moodle-xml/lf-11c_m1_fragen.xml`: 43 Aufgaben, davon 2 Rechenaufgaben mit je 8 Zahlen-Varianten.
 
@@ -105,7 +156,7 @@ Die Aufgaben-IDs (`m1-a01` …) werden zur Moodle-**ID-Nummer**. Die Tags `nivea
 
 ---
 
-## 3. H5P
+## 5. H5P
 
 **Dateien:**
 - `dist/h5p/lernpfad-praesentieren_e1_kurzcheck.h5p` … `_e6_…`: die Kurz-Checks der Module als Question Set. Jede falsche Antwort bekommt das Feedback aus dem Lernpfad.
@@ -140,9 +191,12 @@ Kurs → *Aktivität anlegen* → **H5P** → Datei hochladen. Bei der Bewertung
 Alle Skripte laufen mit Python 3 und brauchen `pyyaml` und `markdown-it-py` (`pip install pyyaml markdown-it-py`). `build_h5p.py` lädt beim ersten Lauf die H5P-Bibliotheken vom offiziellen H5P-Hub (Zwischenspeicher: `moodle-poc/.cache/`).
 
 ```bash
-# SCORM-Pakete (im Wurzelordner des Lernpfads Präsentieren)
-python3 moodle-poc/tools/build_scorm.py e1 e2 e3            # SCORM 2004
+# Lernpakete (im Wurzelordner des Lernpfads Präsentieren)
+python3 moodle-poc/tools/build_scorm.py                     # alle Module, SCORM 2004
 python3 moodle-poc/tools/build_scorm.py e3 --scorm 1.2      # SCORM 1.2
+
+# Kompletter Kurs aus der Kursbeschreibung
+python3 moodle-poc/tools/build_moodle_kurs.py moodle-poc/kurs/praesentieren.yaml
 
 # Moodle-XML aus einem Lernpfad im LF11c-Schema
 python3 moodle-poc/tools/lf11c_to_moodlexml.py ../lernpfad-lf11c m1
@@ -152,4 +206,6 @@ python3 moodle-poc/tools/build_h5p.py kurzcheck e1 e2 e3
 python3 moodle-poc/tools/build_h5p.py lueckentext ../lernpfad-lf11c m1-a14
 ```
 
-Die SCORM-Anbindung steckt in `assets/js/scorm.js` (nur im Paket eingebunden) und in ein paar Haken in `assets/js/app.js`. Die Web-Version (GitHub Pages) verhält sich unverändert.
+**Kursbeschreibung** (`kurs/praesentieren.yaml`): Hier steht, welche Einheiten es gibt, wo Zwischenabgaben und H5P hinkommen, welches Raster gilt und wie freigeschaltet wird. Die Datei ist kommentiert. Genau diese Entscheidungen soll die Lehrkraft später im Skill zusammen mit Claude treffen, danach baut das Skript den Kurs.
+
+Die SCORM-Anbindung steckt in `assets/js/scorm.js` (nur im Paket eingebunden: Speichern in Moodle, Kursnavigation) und in ein paar Haken in `assets/js/app.js`. Die Web-Version (GitHub Pages) verhält sich unverändert.
