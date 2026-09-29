@@ -245,7 +245,7 @@ class Bauer:
         }
         (self.web / "assets/js/kurs.js").write_text(
             "/* Erzeugt von bauen.py aus kurs.yaml – nicht von Hand ändern. */\nwindow.LP_KURS = " +
-            json.dumps(cfg, ensure_ascii=False, indent=1) + ";\n", encoding="utf-8")
+            json.dumps(cfg, ensure_ascii=False, indent=1, default=str) + ";\n", encoding="utf-8")
 
     def kurs_css(self):
         z = ["/* Erzeugt von bauen.py: Farben der Stufen und Varianten dieses Kurses. */", ":root {"]
@@ -272,7 +272,7 @@ class Bauer:
         (self.web / "assets/js/medien.js").write_text(
             "/* Erzeugt von bauen.py aus medien.yaml – nicht von Hand ändern. */\nwindow.MEDIA_CONFIG = " +
             json.dumps({"nurFreigegebene": bool(self.kurs.k.get("nur_freigegebene_medien"))}) + ";\nwindow.MEDIA = " +
-            json.dumps(self.kurs.medien, ensure_ascii=False, indent=1) + ";\n", encoding="utf-8")
+            json.dumps(self.kurs.medien, ensure_ascii=False, indent=1, default=str) + ";\n", encoding="utf-8")
 
     # ---------- Ablauf
     def schreibe(self, datei, inhalt, **info):

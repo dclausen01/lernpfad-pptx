@@ -26,16 +26,19 @@ REF_RE = re.compile(r'(?:src|href|data-src)\s*=\s*"([^"#?]+)', re.I)
 
 
 def dateipruefung(web, seiten):
-    probleme = []
+    """→ (probleme, fehlende Screenshots)"""
+    probleme, platzhalter = [], []
     for s in seiten:
         text = (web / s["datei"]).read_text(encoding="utf-8")
         for ref in REF_RE.findall(text):
             if re.match(r"^([a-z]+:|//|mailto:)", ref, re.I):
                 continue
             if not (web / ref).exists():
-                art = "Screenshot fehlt noch (Platzhalter wird angezeigt)" if 'data-src="' + ref in text else "Datei fehlt"
-                probleme.append((s["datei"], "alle", f"{art}: {ref}"))
-    return probleme
+                if 'data-src="' + ref in text:
+                    platzhalter.append(f"{s['datei']}: {ref}")
+                else:
+                    probleme.append((s["datei"], "alle", f"Datei fehlt: {ref}"))
+    return probleme, platzhalter
 
 
 def starte_browser(pw):
@@ -165,8 +168,10 @@ def durchklicken(kurs, nur_links=False):
     seiten = json.loads((web / "site.json").read_text(encoding="utf-8"))["seiten"]
     ziel = kurs.ausgabe / "pruefung"
     ziel.mkdir(parents=True, exist_ok=True)
-    probleme = dateipruefung(web, seiten)
+    probleme, platzhalter = dateipruefung(web, seiten)
     bilder, hinweise = None, []
+    if platzhalter:
+        hinweise.append(f"{len(platzhalter)} Screenshot(s) fehlen noch (Platzhalter): " + ", ".join(platzhalter))
     if nur_links:
         hinweise.append("nur Dateiprüfung")
     else:
