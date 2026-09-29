@@ -432,3 +432,18 @@ footer.site { max-width: 1320px; margin: 0 auto; padding: 1.5rem 2rem 2.5rem; co
 .pager .pkg-locked { flex: 1; padding: .7rem 1rem; border: 1px dashed var(--border); border-radius: 8px; color: var(--muted); text-align: right; cursor: default; }
 .pager .pkg-locked small { display: block; }
 .pager .pkg-locked small:last-child { margin-top: .2rem; font-size: .8rem; }
+/* Moodle-Startseite „Mein Lernpfad“ */
+.continue-box { border-left: 5px solid var(--accent); }
+.continue-main { margin: .4rem 0 0; }
+.btn.big { font-size: 1.15rem; padding: .8rem 1.4rem; }
+.unit-list { list-style: none; padding-left: 0 !important; }
+.unit-list li { margin: .15rem 0; }
+.muted { color: var(--muted); }
+/* Einstufungstest */
+.tq ol { list-style: none; padding: 0; margin: 0; display: grid; gap: .35rem; }
+.tq li label { display: flex; gap: .5rem; align-items: baseline; padding: .5rem .8rem; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); cursor: pointer; }
+.tq li label:hover { border-color: var(--lv-f); }
+.tq li label.right { background: var(--ok-soft); border-color: var(--ok); }
+.tq li label.wrong { background: var(--bad-soft); border-color: var(--bad); }
+.tq .q { font-weight: 600; margin: 1rem 0 .3rem; }
+.tq .fb { min-height: 1.2em; margin: .3rem 0 .6rem; font-size: .92rem; }

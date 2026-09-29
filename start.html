@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mein Lernpfad – Lernpfad Präsentieren</title>
+<link rel="stylesheet" href="assets/css/style.css">
+<script src="assets/js/videos.js" defer></script>
+<script src="assets/js/app.js" defer></script>
+</head>
+<!-- Startseite im Moodle-Kurs (Lernpaket „Mein Lernpfad“). Füllt sich mit dem Kursaufbau aus Moodle.
+     In der Web-Version gibt es index.html – diese Seite leitet dorthin weiter. -->
+<body data-page="start">
+<header id="topbar"></header>
+<div class="layout wide">
+<main>
+
+<section class="hero">
+<img class="logo-bbz" src="img/logo-bbz.png" alt="Logo BBZ Rendsburg-Eckernförde">
+<div class="badges"><span class="badge">PowerPoint 365</span><span class="badge">OnlyOffice</span><span class="badge">3 Stufen · ca. 12 Unterrichtsstunden</span></div>
+<h1>Mein Lernpfad</h1>
+<p class="lead">Präsentieren lernen – Schritt für Schritt. Hier siehst du, wo du stehst, und kommst mit einem Klick dorthin, wo du aufgehört hast.</p>
+</section>
+
+<div class="box continue-box" id="pkg-continue" aria-live="polite">
+<p>Dein Lernpfad wird geladen …</p>
+</div>
+
+<div class="levels" id="pkg-levels"></div>
+
+<div id="pkg-einstufung"></div>
+
+<h2>Wo steigst du ein? – Selbstcheck</h2>
+<div class="box selfcheck" id="selfcheck">
+<div class="scq"><p>Hast du schon Präsentationen am Computer erstellt?</p>
+<div class="opts">
+<label><input type="radio" name="q1" value="0">Noch nie</label>
+<label><input type="radio" name="q1" value="1">Ein-, zweimal</label>
+<label><input type="radio" name="q1" value="2">Oft</label>
+</div></div>
+<div class="scq"><p>Hast du schon Animationen, Diagramme oder SmartArt eingebaut?</p>
+<div class="opts">
+<label><input type="radio" name="q2" value="0">Nein</label>
+<label><input type="radio" name="q2" value="1">Ein bisschen</label>
+<label><input type="radio" name="q2" value="2">Ja, sicher</label>
+</div></div>
+<div class="scq"><p>Sagen dir „Folienmaster“, „Morphen“ oder „Trigger“ etwas?</p>
+<div class="opts">
+<label><input type="radio" name="q3" value="0">Nein</label>
+<label><input type="radio" name="q3" value="1">Ungefähr</label>
+<label><input type="radio" name="q3" value="2">Ja, nutze ich</label>
+</div></div>
+<p id="suggest" aria-live="polite">Beantworte die drei Fragen, dann bekommst du einen Vorschlag.</p>
+</div>
+
+<div class="box note">
+<div class="box-title">👉 So funktioniert’s</div>
+<ol>
+<li>Stell oben rechts ein, womit du arbeitest: <strong>PowerPoint 365</strong> oder <strong>OnlyOffice</strong>. Das gilt dann für alle Module.</li>
+<li>Arbeite die Module der Reihe nach durch. Am Ende jedes Moduls: <strong>„Modul als erledigt markieren“</strong> – dann wird das nächste frei.</li>
+<li>Am Ende jeder Stufe gibst du einen <strong>★ Meilenstein</strong> in Moodle ab.</li>
+<li>Kannst du schon viel? Mit einem <strong>🎯 Einstufungstest</strong> springst du direkt in die nächste Stufe.</li>
+</ol>
+</div>
+
+<h2>Immer griffbereit</h2>
+<div class="levels">
+<a class="level-card" href="regeln.html" style="text-decoration:none;color:inherit">
+<h3 style="margin-top:0">📋 Spickzettel: Gute Folien</h3>
+<p>Die wichtigsten Gestaltungs- und Vortragsregeln auf einer Seite – auch zum Ausdrucken.</p>
+</a>
+<a class="level-card" href="videos.html" style="text-decoration:none;color:inherit">
+<h3 style="margin-top:0">🎬 Videos & Hilfeseiten</h3>
+<p>Alle geprüften Anleitungen von Microsoft und OnlyOffice an einem Ort.</p>
+</a>
+</div>
+
+</main>
+</div>
+</body>
+</html>

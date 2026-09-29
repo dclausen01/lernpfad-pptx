@@ -11,6 +11,16 @@
 #                                abgeschlossen ist (Lernpaket „als erledigt markiert“)
 #   reihenfolge: frei          → alle Einheiten sofort offen
 #   freischalten_nach: <id>    → Abschnitt/Einheit erst nach Abschluss dieses Elements (bei Aufgaben: abgegeben)
+#   freischalten_nach: [a, b]  → eines davon reicht (ODER)
+#   freischalten_nach: [em-abgabe, {id: test-f, mindestens: 80}]
+#                              → Meilenstein abgegeben ODER Einstufungstest mit mindestens 80 % bestanden
+#
+# Zwei Modelle für die Stufen:
+#   A „Stufen mit Einstufung“ (so unten eingestellt): Stufe 2 und 3 sind gesperrt, bis der Meilenstein der
+#     vorigen Stufe abgegeben ist – oder bis der Einstufungstest bestanden ist. Innerhalb der Stufe nacheinander.
+#   B „Stufen offen“: bei den Abschnitten „freischalten_nach“ weglassen (und die Einstufungstests unter
+#     „allgemein“ entfernen). Dann sind alle Stufen sofort offen, nur die Module innerhalb einer Stufe kommen
+#     nacheinander (reihenfolge: nacheinander) – oder ganz frei (reihenfolge: frei).
 # Bewertungsraster:
 #   raster: { aus_seite: em-meilenstein.html }  übernimmt die Tabelle „Kriterium | erreicht | besonders gut“
 #   raster: { kriterien: [ { kriterium: …, stufen: [ { text: …, punkte: … } ] } ] }  eigenes Raster
@@ -23,6 +33,26 @@ kurs:
   titel: Lernpfad Präsentieren
   kurzname: lernpfad-praesentieren
   text: "<p>PowerPoint 365 und OnlyOffice in drei Stufen – mit Meilensteinen.</p>"
+
+# Abschnitt „Allgemeines“ ganz oben im Kurs
+allgemein:
+  inhalte:
+    - typ: lernpaket
+      id: start
+      titel: "🧭 Mein Lernpfad – hier geht's los"
+      datei: moodle-poc/dist/scorm/lernpfad-praesentieren_start_scorm2004.zip
+      abschluss: false        # Startseite: kein Aktivitätsabschluss …
+      punkte: 0               # … und keine Bewertung
+    - typ: lernpaket
+      id: test-f
+      titel: "🎯 Einstufungstest: direkt zu Fortgeschrittene"
+      datei: moodle-poc/dist/scorm/lernpfad-praesentieren_einstufung-fortgeschrittene_scorm2004.zip
+      abschluss: false        # freiwillig; zählt nur über die Bewertung (siehe freischalten_nach)
+    - typ: lernpaket
+      id: test-p
+      titel: "🎯 Einstufungstest: direkt zu Profis"
+      datei: moodle-poc/dist/scorm/lernpfad-praesentieren_einstufung-profis_scorm2004.zip
+      abschluss: false
 
 abschnitte:
 
@@ -96,7 +126,7 @@ abschnitte:
 
   - titel: "🚀 Fortgeschrittene"
     text: "<p>Übergänge, Animationen, Ausrichten, Tabellen und Diagramme, SmartArt, Fußzeile und Vortragen.</p>"
-    freischalten_nach: em-abgabe
+    freischalten_nach: [em-abgabe, {id: test-f, mindestens: 80}]
     reihenfolge: nacheinander
     einheiten:
       - titel: "F1 · Folienübergänge"
@@ -160,7 +190,7 @@ abschnitte:
 
   - titel: "🏆 Profis"
     text: "<p>Folienmaster, Morphen, interaktive Präsentationen, Audio und Video, Barrierefreiheit und Teamarbeit.</p>"
-    freischalten_nach: fm-abgabe
+    freischalten_nach: [fm-abgabe, {id: test-p, mindestens: 80}]
     reihenfolge: nacheinander
     einheiten:
       - titel: "P1 · Folienmaster: deine eigene Vorlage"

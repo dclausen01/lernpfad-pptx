@@ -71,7 +71,7 @@
   // nur die Programmwahl im localStorage (gilt so für alle Module des Kurses).
   var KEY = "lernpfad-praesentieren-v1";
   var APPKEY = KEY + ":app";
-  var state = { done: {}, checks: {}, notes: {}, selfcheck: {}, quiz: {}, app: "ppt" };
+  var state = { done: {}, checks: {}, notes: {}, selfcheck: {}, quiz: {}, test: {}, app: "ppt" };
   function applyStored(parsed) {
     if (!parsed) return;
     state.done = parsed.done || {};
@@ -79,6 +79,7 @@
     state.notes = parsed.notes || {};
     state.selfcheck = parsed.selfcheck || {};
     state.quiz = parsed.quiz || {};
+    state.test = parsed.test || {};
     if (parsed.app) state.app = parsed.app;
   }
   try {
@@ -92,7 +93,7 @@
   } catch (e) { /* ohne Speicher weiterarbeiten */ }
   function save() {
     if (SC) {
-      SC.save({ done: state.done, checks: state.checks, notes: state.notes, quiz: state.quiz });
+      SC.save({ done: state.done, checks: state.checks, notes: state.notes, quiz: state.quiz, test: state.test });
       try { localStorage.setItem(APPKEY, state.app); } catch (e) { /* ignorieren */ }
       return;
     }
@@ -231,7 +232,7 @@
         SC.setDone(!!state.done[mod.id], state.done[mod.id] ? 1 : checkProgress());
         // Moodle wertet den Abschluss beim Speichern aus – danach die Navigation neu holen (Sperren fallen weg)
         SC.flushNow();
-        setTimeout(loadCourseNav, 1500);
+        setTimeout(function () { loadCourseNav(); if (NAV.refreshMoodle) NAV.refreshMoodle(); }, 1500);
       }
     });
     paint();
@@ -483,11 +484,27 @@
     if (!NAV) return;
     NAV.courseNav(function (data) {
       navData = data;
+      trackingHint();
       buildSidebar();
       renderPackagePager();
+      renderStart();
     });
   }
   // Reihenfolge aller Aktivitäten; gesperrte Unterabschnitte/Abschnitte als Platzhalter (Inhalt kennt Moodle erst nach Freigabe)
+  // Hinweis, wenn Moodle den Abschluss dieses Moduls nicht anzeigt (sonst sucht man den Fehler an der falschen Stelle)
+  function trackingHint() {
+    var wrap = document.querySelector(".done-wrap");
+    var t = navData && navData.tracking;
+    if (!wrap || !t || wrap.querySelector(".pkg-tracking")) return;
+    var msg = !t.tracked
+      ? "Hinweis für Lehrkräfte: Du bist hier nicht als Teilnehmer:in eingeschrieben. Moodle zeigt dir deshalb keinen Aktivitätsabschluss an " +
+        "(keine Häkchen, keine Freischaltungen). Zum Testen am besten ein Schüler-Testkonto verwenden."
+      : !t.enabled
+        ? "Hinweis: Moodle speichert hier keinen Aktivitätsabschluss. Bitte im Kurs die <strong>Abschlussverfolgung</strong> einschalten " +
+          "und beim Lernpaket <strong>„Status erforderlich: Abgeschlossen“</strong> einstellen. Dein Stand im Lernpaket wird trotzdem gespeichert."
+        : "";
+    if (msg) wrap.appendChild(el("p", { "class": "pkg-tracking box warn", style: "flex-basis:100%;margin:.6rem 0 0" }, msg));
+  }
   function flatNav() {
     var out = [];
     function walk(list) {
@@ -674,10 +691,11 @@
       qs.forEach(function (q) { if (state.selfcheck[q] != null) { sum += +state.selfcheck[q]; n++; } });
       if (n < 3) return;
       var lv = sum <= 1 ? "einsteiger" : sum <= 4 ? "fortgeschrittene" : "profis";
+      if (PKG) { document.getElementById("suggest").innerHTML = pkgSuggest(lv); return; }
       var hint = {
         einsteiger: "Starte mit E1 – auch wenn dir manches bekannt vorkommt, lohnen sich die Gestaltungstipps.",
-        fortgeschrittene: "Prüf dich zuerst mit der Checkliste im <a href=\"em-meilenstein.html\">Einsteiger-Meilenstein</a>. Klappt alles? Dann steig bei F1 ein. Sonst hol die fehlenden Module nach.",
-        profis: "Prüf dich mit den Checklisten der Meilensteine <a href=\"em-meilenstein.html\">Einsteiger</a> und <a href=\"fm-meilenstein.html\">Fortgeschrittene</a>. Sitzt alles? Dann los mit P1."
+        fortgeschrittene: "Prüf dich zuerst mit dem <a href=\"einstufung-fortgeschrittene.html\">🎯 Einstufungstest</a> oder der Checkliste im <a href=\"em-meilenstein.html\">Einsteiger-Meilenstein</a>. Klappt alles? Dann steig bei F1 ein. Sonst hol die fehlenden Module nach.",
+        profis: "Prüf dich mit dem <a href=\"einstufung-profis.html\">🎯 Einstufungstest</a> oder den Checklisten der Meilensteine <a href=\"em-meilenstein.html\">Einsteiger</a> und <a href=\"fm-meilenstein.html\">Fortgeschrittene</a>. Sitzt alles? Dann los mit P1."
       }[lv];
       document.getElementById("suggest").innerHTML = "Mein Vorschlag: <b>" + LEVELS[lv].name + "</b> → <a href=\"" + LEVELS[lv].start + "\">zum Start</a>. " + hint +
         " <br><small>Absprache mit deiner Lehrkraft geht vor – sie weiß, womit eure Klasse arbeitet.</small>";
@@ -690,9 +708,173 @@
       }
     });
     evaluate();
+    selfcheckRefresh = evaluate;
+  }
+  var selfcheckRefresh = function () {};
+
+  // ---------- Moodle-Startseite „Mein Lernpfad“ (start.html) ----------
+  // Füllt sich mit dem Kursaufbau aus Moodle: Weitermachen, Stufen mit Fortschritt, Einstufungstests.
+  function levelKey(title) {
+    for (var k in LEVELS) if (title.indexOf(LEVELS[k].name) > -1) return k;
+    return "";
+  }
+  function levelSections() {
+    return (navData && navData.sections || []).filter(function (s) { return s.number > 0; });
+  }
+  function unitItems(it) {
+    if (it.kind !== "sub") return [it];
+    return it.locked ? [{ kind: "cm", name: it.title, locked: true }] : it.items;
+  }
+  function sectionItems(sec) {
+    if (sec.locked) return [{ kind: "cm", name: sec.title, locked: true }];
+    return [].concat.apply([], sec.items.map(unitItems));
+  }
+  function einstufungTests() {
+    var s0 = (navData && navData.sections || []).filter(function (s) { return s.number === 0; })[0];
+    return s0 ? s0.items.filter(function (it) { return it.kind === "cm" && /einstufung/i.test(it.name); }) : [];
+  }
+  function testFor(lv) {
+    var name = LEVELS[lv] && LEVELS[lv].name;
+    return einstufungTests().filter(function (t) { return name && t.name.indexOf(name) > -1; })[0];
+  }
+  function goLink(it, cls, text) {
+    return it.url ? '<a class="' + (cls || "") + '" href="' + esc(it.url) + '" data-go="1">' + (text || esc(it.name)) + "</a>" : esc(it.name);
+  }
+  function nextItem() {
+    var all = [].concat.apply([], levelSections().map(sectionItems));
+    for (var i = 0; i < all.length; i++) if (!all[i].done) return all[i];
+    return null;
+  }
+  function pkgSuggest(lv) {
+    var cont = nextItem();
+    var t = testFor(lv);
+    var text = "Mein Vorschlag: <b>" + LEVELS[lv].name + "</b>. ";
+    if (lv === "einsteiger" || !t) {
+      text += cont && cont.url ? "Leg los: " + goLink(cont, "", "▶ " + esc(cont.name)) + "." : "Starte mit dem ersten Modul.";
+    } else {
+      text += "Mach den " + goLink(t, "", "🎯 Einstufungstest") + " – wenn du bestehst, wird " + LEVELS[lv].name +
+        " sofort für dich frei. Nicht bestanden? Dann arbeitest du die Module davor durch.";
+    }
+    return text + " <br><small>Absprache mit deiner Lehrkraft geht vor.</small>";
+  }
+  function renderStart() {
+    var box = document.getElementById("pkg-continue");
+    if (!box) return;
+    if (!navData || !navData.sections) {
+      box.innerHTML = '<p>Der Kurs konnte nicht geladen werden. ' + (navData && navData.courseUrl ? '<a href="' + esc(navData.courseUrl) + '" data-go="1">Zur Kursseite</a>' : "Geh zurück zur Kursseite.") + "</p>";
+      return;
+    }
+    var n = nextItem();
+    if (n && n.url) {
+      box.innerHTML = '<div class="box-title">▶ Weitermachen</div><p class="continue-main">' + goLink(n, "btn big", (ICON[n.module] || "") + " " + esc(n.name)) + "</p>";
+    } else if (n) {
+      box.innerHTML = '<div class="box-title">🔒 Als Nächstes</div><p><strong>' + esc(n.name) + "</strong> – wird frei, sobald du das Vorige abgeschlossen hast. Schau in der Kursübersicht, was noch fehlt.</p>";
+    } else {
+      box.innerHTML = '<div class="box-title">🎉 Geschafft!</div><p>Du hast alle Module abgeschlossen. Stark!</p>';
+    }
+    var html = "";
+    levelSections().forEach(function (sec, i) {
+      var key = levelKey(sec.title);
+      var units = sec.locked ? [] : sec.items;
+      var done = units.filter(function (u) { return unitItems(u).every(function (x) { return x.done; }) && !u.locked; }).length;
+      html += '<div class="level-card ' + key + '"><h2>' + esc(sec.title) + (sec.locked ? " 🔒" : "") + "</h2>";
+      if (sec.locked) {
+        var t = testFor(key);
+        html += "<p>Wird frei, sobald du den Meilenstein der vorigen Stufe abgegeben hast" + (t ? " – oder mit dem " + goLink(t, "", "🎯 Einstufungstest") : "") + ".</p>";
+      } else {
+        html += '<div class="progress"><span style="width:' + Math.round(done / Math.max(units.length, 1) * 100) + '%"></span></div>' +
+          '<div class="progress-label">' + done + " von " + units.length + " erledigt</div><ul class=\"unit-list\">";
+        units.forEach(function (u) {
+          var items = unitItems(u), first = items.filter(function (x) { return x.url; })[0];
+          var ok = !u.locked && items.every(function (x) { return x.done; });
+          var title = u.kind === "sub" ? u.title : u.name;
+          html += "<li>" + (ok ? "✓ " : u.locked || !first ? "🔒 " : "") + (first && !u.locked ? goLink(first, "", esc(title)) : '<span class="muted">' + esc(title) + "</span>") + "</li>";
+        });
+        html += "</ul>";
+        var open = sectionItems(sec).filter(function (x) { return !x.done && x.url; })[0] || sectionItems(sec).filter(function (x) { return x.url; })[0];
+        if (open) html += goLink(open, "btn", done ? "Weiter in dieser Stufe" : "Starten");
+      }
+      html += "</div>";
+    });
+    document.getElementById("pkg-levels").innerHTML = html;
+    var tests = einstufungTests();
+    document.getElementById("pkg-einstufung").innerHTML = tests.length
+      ? '<div class="box tip"><div class="box-title">🎯 Du kannst schon viel?</div><p>Mit einem Einstufungstest springst du direkt in eine höhere Stufe:</p><ul>' +
+        tests.map(function (t) { return "<li>" + goLink(t) + "</li>"; }).join("") + "</ul></div>"
+      : "";
+    selfcheckRefresh();
+  }
+
+  // ---------- Einstufungstest (einstufung-*.html) ----------
+  // Fragen erst am Ende auswerten; bestes Ergebnis zählt und geht als Punkte + bestanden/nicht bestanden an Moodle.
+  function buildTest() {
+    var form = document.getElementById("test");
+    if (!form) return;
+    var need = +document.body.dataset.bestehen || 80;
+    var qs = form.querySelectorAll(".tq");
+    for (var i = 0; i < qs.length; i++) {
+      var lis = qs[i].querySelectorAll("ol > li");
+      for (var j = 0; j < lis.length; j++) {
+        lis[j].innerHTML = '<label><input type="radio" name="tq' + i + '" value="' + j + '"> <span>' + lis[j].innerHTML + "</span></label>";
+      }
+    }
+    function showBest() {
+      var b = document.getElementById("test-best");
+      if (b && state.test.best != null) {
+        b.innerHTML = '<div class="box ' + (state.test.passed ? "tip" : "note") + '"><strong>Dein bestes Ergebnis bisher: ' + state.test.best + " %</strong> – " +
+          (state.test.passed ? "bestanden ✓" : "noch nicht bestanden") + "</div>";
+      }
+    }
+    showBest();
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var offen = 0, richtig = 0;
+      for (var i = 0; i < qs.length; i++) if (!form.querySelector('input[name="tq' + i + '"]:checked')) offen++;
+      var res = document.getElementById("test-result");
+      if (offen) { res.innerHTML = '<div class="box warn">Noch ' + offen + (offen === 1 ? " Frage" : " Fragen") + " offen – beantworte bitte alle.</div>"; return; }
+      for (var k = 0; k < qs.length; k++) {
+        var q = qs[k], right = parseInt(q.dataset.right, 10) - 1;
+        var pick = +form.querySelector('input[name="tq' + k + '"]:checked').value;
+        var labels = q.querySelectorAll("ol > li label");
+        for (var m = 0; m < labels.length; m++) {
+          labels[m].classList.toggle("right", m === right);
+          labels[m].classList.toggle("wrong", m === pick && pick !== right);
+        }
+        var fb = q.querySelector(".fb");
+        if (pick === right) richtig++;
+        fb.innerHTML = (pick === right ? "✅ " + (fb.dataset.ok || "Richtig.") : "❌ " + (fb.dataset.no || "Leider falsch.")) +
+          ' <small class="muted">(' + esc(q.dataset.quelle || "") + ")</small>";
+      }
+      var pct = Math.round(richtig / qs.length * 100), passed = pct >= need;
+      if (state.test.best == null || pct > state.test.best) { state.test.best = pct; state.test.raw = richtig; }
+      state.test.passed = state.test.passed || passed;
+      save();
+      if (SC) {
+        SC.score(state.test.raw, qs.length); SC.setSuccess(!!state.test.passed); SC.flushNow();
+        // Moodle wertet die Freischaltung neu aus – Kursindex und eigene Navigation danach aktualisieren
+        setTimeout(function () { loadCourseNav(); if (NAV && NAV.refreshMoodle) NAV.refreshMoodle(); }, 1500);
+      }
+      var back = PKG && navData ? (navData.sections.filter(function (s) { return s.number === 0; })[0] || { items: [] }).items.filter(function (it) { return it.module === "scorm" && !/einstufung/i.test(it.name); })[0] : null;
+      res.innerHTML = '<div class="box ' + (passed ? "tip" : "warn") + '"><div class="box-title">' + (passed ? "🎉 Bestanden!" : "Noch nicht ganz") + "</div><p><strong>" +
+        richtig + " von " + qs.length + " richtig (" + pct + " %)</strong> – nötig sind " + need + " %.</p><p>" +
+        (passed ? "Die Stufe <strong>" + esc(document.body.dataset.stufe || "") + "</strong> ist jetzt für dich frei." + (back && back.url ? " " + goLink(back, "btn", "🧭 Zurück zu Mein Lernpfad") : "")
+          : "Schau dir die Fragen oben an – bei jeder steht, aus welchem Modul sie kommt. Du kannst es später noch einmal versuchen.") +
+        '</p><p><button class="btn secondary" type="button" id="test-again">Nochmal versuchen</button></p></div>';
+      form.querySelector('button[type="submit"]').disabled = true;
+      document.getElementById("test-again").addEventListener("click", function () {
+        form.reset();
+        var ls = form.querySelectorAll("label"); for (var z = 0; z < ls.length; z++) ls[z].classList.remove("right", "wrong");
+        var fbs = form.querySelectorAll(".fb"); for (var y = 0; y < fbs.length; y++) fbs[y].innerHTML = "";
+        form.querySelector('button[type="submit"]').disabled = false;
+        res.innerHTML = ""; showBest(); form.scrollIntoView();
+      });
+      showBest();
+      res.scrollIntoView({ behavior: "smooth" });
+    });
   }
 
   document.addEventListener("DOMContentLoaded", function () {
+    if (document.body.dataset.page === "start" && !PKG) { location.replace("index.html"); return; }
     buildTopbar();
     buildSidebar();
     var id = document.body.dataset.module;
@@ -707,6 +889,7 @@
     buildProgress();
     buildSelfcheck();
     buildAbgabe();
+    buildTest();
     fixPackageLinks();
     loadCourseNav();
     if (SC) {

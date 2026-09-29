@@ -65,6 +65,7 @@ class Kurs:
         self.files = []         # {id, hash, contextid, component, filearea, name, size, mime, data}
         self.grade_items = []
         self.ids = {}           # eigene ID → moduleid
+        self.akt_by_ref = {}    # eigene ID → Aktivität
         self._n = {"section": 100, "module": 1000, "instance": 1, "context": 5000, "file": 1, "grade": 10, "sco": 1}
 
     def nid(self, art):
@@ -73,17 +74,36 @@ class Kurs:
 
     # -- Freischaltung (Aktivitätsabschluss einer anderen Aktivität)
     def bedingung(self, ref):
+        """freischalten_nach → Moodle-Voraussetzung.
+        "id"                       Aktivität abgeschlossen (bei Aufgaben: abgegeben)
+        {id: …, mindestens: 80}    Bewertung der Aktivität mindestens 80 %
+        [a, b, …]                  eine davon reicht (ODER), z. B. Meilenstein ODER Einstufungstest bestanden"""
         if not ref:
             return None
-        if ref not in self.ids:
-            sys.exit(f"Unbekannte Referenz in freischalten_nach: {ref}")
-        return json.dumps({"op": "&", "c": [{"type": "completion", "cm": self.ids[ref], "e": 1}], "showc": [True]})
+        def einzel(r):
+            rid = r["id"] if isinstance(r, dict) else r
+            if rid not in self.ids:
+                sys.exit(f"Unbekannte Referenz in freischalten_nach: {rid}")
+            if isinstance(r, dict) and "mindestens" in r:
+                gi = self.akt_by_ref[rid]["grade_item"]
+                if not gi:
+                    sys.exit(f"{rid} hat keine Bewertung – „mindestens“ geht nur bei bewerteten Aktivitäten")
+                return {"type": "grade", "id": gi["id"], "min": float(r["mindestens"])}
+            return {"type": "completion", "cm": self.ids[rid], "e": 1}
+        if isinstance(ref, list):
+            if len(ref) > 1:
+                return json.dumps({"op": "|", "c": [einzel(r) for r in ref], "show": True})
+            ref = ref[0]
+        return json.dumps({"op": "&", "c": [einzel(ref)], "showc": [True]})
 
     def baue(self):
         kopf = self.b["kurs"]
-        # Abschnitt 0
-        self.sections.append(dict(id=self.nid("section"), number=0, name="", summary="", sequence=[],
-                                  availability=None, component=None, itemid=None, parentcmid=None))
+        # Abschnitt 0 („Allgemeines“): z. B. Start-Lernpaket und Einstufungstests
+        s0 = dict(id=self.nid("section"), number=0, name="", summary=self.b.get("allgemein", {}).get("text", ""),
+                  sequence=[], availability=None, component=None, itemid=None, parentcmid=None)
+        self.sections.append(s0)
+        for inh in self.b.get("allgemein", {}).get("inhalte", []):
+            self.inhalt(inh, s0, insub=False)
         # erst alle Abschnitte anlegen (Nummern 1..n), Unterabschnitte danach nummerieren (so macht es Moodle)
         oben = []
         for i, a in enumerate(self.b["abschnitte"], 1):
@@ -201,13 +221,16 @@ class Kurs:
             print(f"  Hinweis: H5P „{inh['titel']}“ ausgelassen – die H5P-Bibliotheken brauchen Moodle 5.", file=sys.stderr)
             return None
         if typ == "lernpaket":
-            akt = self.aktivitaet("scorm", ds, dict(name=inh["titel"], intro=inh.get("text", "")), completion=2, insub=insub)
+            # abschluss: false → kein Aktivitätsabschluss (Startseite, Einstufungstest); punkte: 0 → keine Bewertung
+            akt = self.aktivitaet("scorm", ds, dict(name=inh["titel"], intro=inh.get("text", "")),
+                                  completion=2 if inh.get("abschluss", True) else 0, insub=insub)
             f = self.datei(akt, "mod_scorm", inh["datei"], "application/zip")
             akt["reference"] = f["name"]
             akt["sha1hash"] = f["hash"]
             self.scorm_inhalt(akt, f)
             akt["maxgrade"] = inh.get("punkte", 100)
-            self.note(akt, akt["maxgrade"])
+            if akt["maxgrade"]:
+                self.note(akt, akt["maxgrade"])
         elif typ == "h5p":
             akt = self.aktivitaet("h5pactivity", ds, dict(name=inh["titel"], intro=inh.get("text", "")),
                                   completion=2, completiongradeitemnumber=0, insub=insub)
@@ -223,6 +246,7 @@ class Kurs:
         else:
             sys.exit(f"Unbekannter Inhaltstyp: {typ}")
         akt["ref"] = inh["id"]
+        self.akt_by_ref[inh["id"]] = akt
         if inh["id"] in self.ids:
             sys.exit(f"Doppelte ID: {inh['id']}")
         self.ids[inh["id"]] = akt["moduleid"]
@@ -258,7 +282,7 @@ class Kurs:
     def weiter_links(self):
         """In Aufgaben und H5P einen Link zurück in den Pfad setzen (Moodle zeigt dort kein „Weiter“).
         Die Links sind als Moodle-Platzhalter geschrieben; Moodle rechnet sie beim Wiederherstellen um."""
-        reihe = [a for a in self.activities if a["modname"] != "subsection"]
+        reihe = [a for a in self.activities if a["modname"] != "subsection" and a["sectionnumber"] != 0]
         for i, a in enumerate(reihe):
             if a["modname"] == "scorm":
                 continue

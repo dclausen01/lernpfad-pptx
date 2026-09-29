@@ -27,9 +27,11 @@ Alles wurde vorab in frischen Installationen von **Moodle 5.2.3** und **Moodle 4
 Beide sind ca. 5 MB groß. Die Moodle-5-Datei in einem Moodle 4 wiederherzustellen, funktioniert **nicht** richtig.
 
 Enthält den ganzen Lernpfad: drei Abschnitte (Einsteiger, Fortgeschrittene, Profis) mit den Lernpaketen der Module. Dazu kommen:
+- **Ganz oben „🧭 Mein Lernpfad“:** eine Startseite als Lernpaket mit großem **„▶ Weitermachen“**-Knopf (führt zum ersten noch nicht erledigten Modul), Stufen-Karten mit Fortschritt, Selbstcheck.
+- **🎯 Einstufungstests** (ebenfalls oben): Wer den Test besteht (ab 80 %), dem öffnet sich die nächste Stufe sofort – ohne die Module davor. Die Fragen stammen aus den Kurz-Checks der vorigen Stufe.
 - **Meilensteine:** Lernpaket mit Auftrag und Checkliste, dazu eine **Moodle-Aufgabe** mit Datei-Upload und **Bewertungsraster**. Das Raster wird automatisch aus der Tabelle auf der Meilenstein-Seite übernommen.
 - **Beispiel E3:** zusätzlich eine **Zwischenabgabe** (Upload) und – nur in der Moodle-5-Datei – ein **H5P-Kurz-Check**.
-- **Freischaltung:** Jedes Modul wird frei, sobald das vorige als erledigt markiert ist. Die nächste Stufe wird frei, sobald der Meilenstein abgegeben ist.
+- **Freischaltung:** Jedes Modul wird frei, sobald das vorige als erledigt markiert ist. Die nächste Stufe wird frei, sobald der Meilenstein abgegeben **oder** der Einstufungstest bestanden ist. (Alternative „Stufen offen“: siehe Kursbeschreibung.)
 - **Aktivitätsabschluss** ist überall eingestellt. In Aufgaben und H5P stehen Links „⬅️ Zurück / ➡️ Weiter im Lernpfad“, weil Moodle dort selbst kein „Weiter“ anzeigt.
 
 ### So geht's (als Lehrkraft, keine Admin-Rechte nötig)
@@ -52,7 +54,12 @@ Enthält den ganzen Lernpfad: drei Abschnitte (Einsteiger, Fortgeschrittene, Pro
 - Die **Seitenleiste im Lernpaket zeigt den ganzen Moodle-Kurs**: alle Abschnitte, Unterabschnitte und Aktivitäten, auch Aufgaben und H5P, mit ✓ für erledigt und 🔒 für gesperrt. Sie holt sich das live aus Moodle. Ändert die Lehrkraft den Kurs, passt sich die Leiste von selbst an.
 - Unten steht **„← zurück / weiter →“** zur vorigen bzw. nächsten Moodle-Aktivität. Ist die nächste noch gesperrt, steht dort „🔒 … Wird frei, wenn du dieses Modul als erledigt markierst.“ Nach dem Klick auf „erledigt“ wird sie nach ein, zwei Sekunden freigeschaltet.
 - Im Meilenstein-Paket führt ein Knopf **„📤 Zur Abgabe: …“** direkt in die Moodle-Aufgabe.
+- Nach „Modul als erledigt markieren“ oder einem bestandenen Einstufungstest aktualisiert sich auch **Moodles Kursindex links sofort** (Häkchen, Schlösser) – ohne Neuladen.
 - Klappt das Auslesen des Kurses einmal nicht (z. B. nach einem großen Moodle-Update), zeigt das Paket einfach „Zurück zum Kurs“.
+
+> **„Der Knopf schließt das Modul in Moodle nicht ab“?** Fast immer liegt es am Testkonto: Moodle speichert zwar auch für Lehrkräfte und Admins, **zeigt Abschlüsse aber nur Teilnehmer:innen an** (Häkchen, Freischaltungen). Zum Testen ein Schüler-Testkonto nehmen – „Rolle wechseln“ reicht nicht. Das Lernpaket zeigt Lehrkräften dazu jetzt einen Hinweis unter dem Knopf, ebenso wenn im Kurs die Abschlussverfolgung aus ist.
+
+![Startseite „Mein Lernpfad“ in Moodle 4.2](screenshots/start-mein-lernpfad.png)
 
 ![Lernpaket mit Kursnavigation aus Moodle](screenshots/scorm-e1-kursnavigation.png)
 
@@ -71,6 +78,8 @@ Enthält den ganzen Lernpfad: drei Abschnitte (Einsteiger, Fortgeschrittene, Pro
 - ✅ Alle 21 Lernpakete startklar (Moodle entpackt sie beim Wiederherstellen selbst), 21 Unterabschnitte, 4 Aufgaben, 3 Raster mit je 6 Kriterien, H5P.
 - ✅ Freischaltungen und die „Weiter“-Links zeigen nach dem Wiederherstellen auf die richtigen (neuen) Aktivitäten.
 - ✅ Als Schülerin durchgespielt: direkter Start, Kursnavigation im Paket, Sperren, Freischalten nach „erledigt“, Weiter zu Kurz-Check und Aufgabe, Abgabe-Knopf im Meilenstein.
+- ✅ Startseite und Einstufungstest (4.2 und 5.2): „Weitermachen“ führt zum richtigen Modul, Test bestanden → „Fortgeschrittene“ frei, „Profis“ bleibt gesperrt. Kursindex aktualisiert sich live. Lehrkräfte sehen den Hinweis zum Abschluss.
+- ℹ️ Die Einstufungstests laufen im Browser – wer im Quelltext sucht, findet die Lösungen. Für eine freiwillige Selbst-Einstufung ist das vertretbar; für eine echte Prüfung einen Moodle-Test nehmen.
 - ℹ️ Die Dateien tragen die Version Moodle 4.2 bzw. 5.0, damit sie ab dieser Version ohne Warnung laufen.
 
 ---
@@ -204,6 +213,10 @@ Alle Skripte laufen mit Python 3 und brauchen `pyyaml` und `markdown-it-py` (`pi
 # Lernpakete (im Wurzelordner des Lernpfads Präsentieren)
 python3 moodle-poc/tools/build_scorm.py                     # alle Module, SCORM 2004
 python3 moodle-poc/tools/build_scorm.py e3 --scorm 1.2      # SCORM 1.2
+
+# Startseite und Einstufungstests als Lernpakete (Tests werden aus den Kurz-Checks erzeugt)
+python3 moodle-poc/tools/build_einstufung.py
+python3 moodle-poc/tools/build_scorm.py start.html einstufung-fortgeschrittene.html einstufung-profis.html
 
 # Kompletter Kurs aus der Kursbeschreibung (--moodle 4 oder 5)
 python3 moodle-poc/tools/build_moodle_kurs.py moodle-poc/kurs/praesentieren.yaml --moodle 5

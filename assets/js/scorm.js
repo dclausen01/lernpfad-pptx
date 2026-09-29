@@ -131,6 +131,7 @@
     st.section.forEach(function (s) { secs[s.id] = s; });
     st.cm.forEach(function (c) { cms[c.id] = c; });
     var current = String(M.cfg.contextInstanceId || "");
+    var tracking = null;
     function items(sec) {
       var out = [];
       (sec.cmlist || []).forEach(function (id) {
@@ -143,6 +144,10 @@
           return;
         }
         if (!c.url && c.uservisible) return; // z. B. Textfelder ohne eigene Seite
+        if (String(c.id) === current) {
+          // Zeigt Moodle hier einen Abschluss an? (nur für Teilnehmer:innen und nur mit Aktivitätsabschluss)
+          tracking = { tracked: !!c.istrackeduser, enabled: c.completionstate != null || c.isoverallcomplete != null };
+        }
         out.push({
           kind: "cm", id: String(c.id), name: decode(c.name), module: c.module, modname: c.modname,
           url: c.uservisible ? c.url : null, locked: !c.uservisible,
@@ -159,9 +164,9 @@
       var it = items(s);
       if (s.number === 0) it = it.filter(function (x) { return x.module !== "forum"; });
       if (!it.length && !s.hasrestrictions) return;
-      sections.push({ title: decode(s.title), locked: s.hasrestrictions && !it.length, items: it });
+      sections.push({ number: s.number, title: decode(s.title), locked: s.hasrestrictions && !it.length, items: it });
     });
-    return { courseUrl: M.cfg.wwwroot + "/course/view.php?id=" + M.cfg.courseId, current: current, sections: sections };
+    return { courseUrl: M.cfg.wwwroot + "/course/view.php?id=" + M.cfg.courseId, current: current, sections: sections, tracking: tracking };
   }
   function courseNav(cb) {
     var t = moodleTop();
@@ -174,6 +179,18 @@
       });
     } catch (e) { cb(null); }
   }
+  // Moodles Kursindex (linke Leiste) neu laden – er aktualisiert sich sonst erst beim nächsten Seitenaufruf
+  function refreshMoodle() {
+    var t = moodleTop();
+    if (!t) return;
+    try {
+      t.require(["core_courseformat/courseeditor"], function (ce) {
+        var ed = ce.getCurrentCourseEditor();
+        if (ed && ed.dispatch) ed.dispatch("courseState");
+      });
+    } catch (e) { /* ältere oder andere Plattform: nichts tun */ }
+  }
+
   // Ganze Moodle-Seite wechseln (nicht nur den Rahmen des Pakets); vorher alles speichern
   function go(url) {
     finish();
@@ -187,6 +204,7 @@
     version: started ? (v2004 ? "2004" : "1.2") : "",
     config: cfg,
     courseNav: courseNav,
+    refreshMoodle: refreshMoodle,
     go: go,
     flushNow: function () { clearTimeout(timer); flush(); },
     load: function () {
@@ -198,6 +216,17 @@
     save: function (state) {
       if (!started) return;
       pending = JSON.stringify(state);
+      soon();
+    },
+    // Einstufungstest: bestanden / nicht bestanden (SCORM 1.2 kennt dafür nur lesson_status)
+    setSuccess: function (passed) {
+      if (!started) return;
+      if (v2004) {
+        set("cmi.success_status", passed ? "passed" : "failed");
+        set("cmi.completion_status", "completed");
+      } else {
+        set("cmi.core.lesson_status", passed ? "passed" : "failed");
+      }
       soon();
     },
     setDone: function (done, progress) {

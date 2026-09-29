@@ -9,6 +9,7 @@ Aufruf (im Wurzelordner des Lernpfads):
     python3 moodle-poc/tools/build_scorm.py                    # alle Module, SCORM 2004
     python3 moodle-poc/tools/build_scorm.py e1 e3 em           # nur diese
     python3 moodle-poc/tools/build_scorm.py e3 --scorm 1.2     # SCORM 1.2 (Rückfalloption)
+    python3 moodle-poc/tools/build_scorm.py start.html einstufung-profis.html   # weitere Seiten (Start, Tests)
 """
 import argparse
 import json
@@ -140,7 +141,7 @@ def build(mod, version):
     config = {"module": mod["id"], "launch": mod["file"], "files": pages}
     files_with_cfg = sorted(files + ["assets/js/scorm-config.js"])
     ident = f"{COURSE_ID}-{mod['id']}"
-    title = f"{mod['id'].upper()} · {mod['title']}" if not mod["id"].endswith("m") else mod["title"]
+    title = mod.get("paket_titel") or (f"{mod['id'].upper()} · {mod['title']}" if not mod["id"].endswith("m") else mod["title"])
     OUT.mkdir(parents=True, exist_ok=True)
     tag = "scorm12" if version == "1.2" else "scorm2004"
     target = OUT / f"{COURSE_ID}_{mod['id']}_{tag}.zip"
@@ -163,6 +164,15 @@ def main():
     ap.add_argument("--scorm", choices=["2004", "1.2"], default="2004")
     args = ap.parse_args()
     mods = read_modules()
+    seiten = [a for a in args.module if a.endswith(".html")]
+    args.module = [a for a in args.module if not a.endswith(".html")]
+    for datei in seiten:
+        titel = re.search(r"<title>(.*?)</title>", (ROOT / datei).read_text(encoding="utf-8"), re.S).group(1)
+        titel = titel.split(" – ")[0].strip()
+        t = build(dict(id=Path(datei).stem, file=datei, title=titel, paket_titel=titel), args.scorm)
+        print(f"{t.relative_to(ROOT)}  ({t.stat().st_size // 1024} KB)")
+    if seiten and not args.module:
+        return
     if args.module:
         wanted = set(args.module)
         unknown = wanted - {m["id"] for m in mods}
