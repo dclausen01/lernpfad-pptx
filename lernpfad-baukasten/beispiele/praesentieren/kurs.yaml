@@ -1,0 +1,64 @@
+# Kursbeschreibung – Lernpfad Präsentieren (aus dem ursprünglichen statischen Lernpfad übernommen)
+titel: Lernpfad Präsentieren
+kurzname: lernpfad-praesentieren
+ueberschrift: Präsentieren lernen – Schritt für Schritt
+untertitel: "Von der ersten Folie bis zur interaktiven Lernpräsentation: Du lernst, wo jede Funktion steckt, und du lernst, wie gute Folien aussehen und wie du souverän vorträgst."
+badges: [PowerPoint 365, OnlyOffice, 3 Stufen · ca. 12 Unterrichtsstunden]
+logo: material/logo-bbz.png
+fusszeile: "Lernpfad Präsentieren · BBZ Rendsburg-Eckernförde · für Unterricht in Erzieherausbildung und beruflichem Gymnasium · Anleitungen bezogen auf PowerPoint für Microsoft 365 (Windows) und OnlyOffice Docs / Desktop Editors (Stand: 2026). Häkchen und Notizen werden nur in deinem Browser gespeichert."
+abgabe_link: https://cloud.bbz-rd-eck.de/apps/forms/s/TwSkGeRGmxoHJ848zHaZRC3i
+
+einleitung: |
+  :::notiz 👉 Bevor du startest
+  1. Stell oben rechts ein, womit du arbeitest: **PowerPoint 365** oder **OnlyOffice**. Du siehst dann nur die passenden Anleitungen.
+  2. Arbeite die Module der Reihe nach durch. <span class="lvl basis">Basis</span>-Aufgaben schaffen alle, <span class="lvl plus">Plus</span> und <span class="lvl kreativ">Kreativ</span> sind für alle, die mehr wollen.
+  3. Kontrolliere dich selbst mit den **Checklisten** und **Kurz-Checks**. Deine Häkchen werden in diesem Browser gespeichert.
+  4. Am Ende jeder Stufe gibt es einen **★ Meilenstein**, den sich deine Lehrkraft ansieht.
+  :::
+
+varianten:
+  frage: "Ich arbeite mit:"
+  optionen: {ppt: PowerPoint 365, oo: OnlyOffice}
+  beide: true
+
+# Registerkarten der Menübänder (Stand: PowerPoint für Microsoft 365, OnlyOffice Docs 8/9)
+menueband:
+  ppt: [Datei, Start, Einfügen, Zeichnen, Entwurf, Übergänge, Animationen, Bildschirmpräsentation, Aufzeichnen, Überprüfen, Ansicht, Hilfe]
+  oo: [Datei, Startseite, Einfügen, Zeichnen, Design, Übergänge, Animation, Zusammenarbeit, Ansicht, Schützen, Plugins]
+
+stufen:
+  - id: einsteiger
+    name: Einsteiger
+    icon: "🌱"
+    text: "**ca. 4 Unterrichtsstunden** · Die Grundlagen: Folien, Text, Design, Bilder, Präsentieren."
+    module: [e1, e2, e3, e4, e5, e6, em]
+  - id: fortgeschrittene
+    name: Fortgeschrittene
+    icon: "🚀"
+    text: "**ca. 4 Unterrichtsstunden** · Bewegung, Ordnung, Daten und ein echter Vortrag."
+    module: [f1, f2, f3, f4, f5, f6, f7, fm]
+  - id: profis
+    name: Profis
+    icon: "🏆"
+    text: "**ca. 4 Unterrichtsstunden** · Eigene Vorlagen, Morphen, Interaktion, Medien, Teamarbeit."
+    module: [p1, p2, p3, p4, p5, pm]
+
+selbstcheck:
+  fragen:
+    - frage: Hast du schon Präsentationen am Computer erstellt?
+      antworten: [Noch nie, "Ein-, zweimal", Oft]
+    - frage: Hast du schon Animationen, Diagramme oder SmartArt eingebaut?
+      antworten: [Nein, Ein bisschen, "Ja, sicher"]
+    - frage: Sagen dir „Folienmaster“, „Morphen“ oder „Trigger“ etwas?
+      antworten: [Nein, Ungefähr, "Ja, nutze ich"]
+  empfehlung:
+    - {bis: 1, stufe: einsteiger, hinweis: "Starte mit E1 – auch wenn dir manches bekannt vorkommt, lohnen sich die Gestaltungstipps."}
+    - {bis: 4, stufe: fortgeschrittene, hinweis: "Prüf dich zuerst mit dem Einstufungstest oder der Checkliste im Einsteiger-Meilenstein. Klappt alles? Dann steig bei F1 ein."}
+    - {stufe: profis, hinweis: "Prüf dich mit dem Einstufungstest oder den Checklisten der Meilensteine. Sitzt alles? Dann los mit P1."}
+
+einstufung: {bestehen: 80}
+
+moodle:
+  version: 4
+  freischaltung: einstufung
+  reihenfolge: nacheinander

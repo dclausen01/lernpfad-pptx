@@ -82,7 +82,7 @@ class Bauer:
 
     def abgabe(self, m):
         a = m.get("abgabe")
-        if not a:
+        if not a or a.get("nur_moodle"):
             return ""
         text = self.u.block(a.get("text", ""))
         return ('<h2>Abgabe</h2><div class="box download"><div class="box-title">📤 ' + esc(a.get("titel", "Abgabe")) +

@@ -101,6 +101,7 @@ abgabe:                                 # optional: Moodle-Aufgabe unter dem Ler
   dateitypen: .pptx,.pdf                # optional
   dateien: 1                            # höchstens so viele Dateien
   option: "Einsteiger: Meilenstein"     # nur Web-Version mit abgabe_link
+  nur_moodle: true                      # Abgabe-Kasten nicht in der Web-Version zeigen
 meilenstein: true                       # Meilenstein-Modul (★, schaltet in Modell A die nächste Stufe frei)
 raster:                                 # Bewertungsraster (Moodle: Rubrik an der Abgabe)
   - {kriterium: Aufbau, erreicht: Titel-, Inhalts- und Schlussfolie, besonders_gut: roter Faden erkennbar}

@@ -32,8 +32,12 @@ Hinweis ohne Standardtitel.
 :::
 ```
 
-`tipp` 💡, `achtung` ⚠️, `notiz` (neutral), `gestaltung` ✏️ Gestaltungsregeln, `ziele` 🎯. Ein Titel hinter dem
-Namen ersetzt den Standardtitel.
+`tipp` 💡, `achtung` ⚠️, `notiz` (neutral), `gestaltung` ✏️ Gestaltungsregeln, `ziele` 🎯, `kasten` (schlicht,
+z. B. um mehrere Checklisten). Ein Titel hinter dem Namen ersetzt den Standardtitel.
+
+**Nur für eine Variante:** Jeder Baustein kann am Ende der Kopfzeile `{id}` bekommen –
+`:::notiz Nur in PowerPoint {ppt}`, `:::schritte {oo}`, `:::screenshot material/x.png {ppt}`. Er erscheint dann
+nur, wenn diese Variante gewählt ist.
 
 ## Aufgaben
 
@@ -53,7 +57,7 @@ So könnte es aussehen: …
 ```
 
 `:::aufgabe <niveau> [minuten] Titel` – Niveau `basis` (alle), `plus` (weiterführend), `kreativ` (offen,
-eigene Ideen), `pflicht` (grün wie Basis, heißt „Pflicht“). Minuten optional.
+eigene Ideen), `pflicht` (grün wie Basis, heißt „Pflicht“). Minuten optional, `10+` heißt „10 min oder länger“.
 `:::checkliste [Titel]` macht aus der Liste darin Häkchen, die gespeichert werden (Web: Browser, Moodle: im Kurs).
 `:::loesung [Titel]` ist aufklappbar.
 
@@ -62,7 +66,7 @@ eigene Ideen), `pflicht` (grün wie Basis, heißt „Pflicht“). Minuten option
 ```markdown
 :::schritte
 1. Gehe in den Ordner.
-2. Drücke ++Strg++ + ++Umschalt++ + ++N++.
+2. Drücke ++Strg+Umschalt+N++.
 3. Tippe den Namen und bestätige mit ++Enter++.
 :::
 ```
@@ -84,14 +88,15 @@ Nummerierte Schrittfolge mit großen Ziffern – für Anleitungen immer diese st
 
 Jede `:::variante <id>` erscheint nur, wenn oben diese Variante gewählt ist; bei „beide“ stehen sie im
 `:::varianten`-Rahmen nebeneinander. Kurze Unterschiede im Fließtext: `<span class="win">Strg</span><span class="mac">Befehl</span>`.
-Was für alle gleich ist, steht außerhalb – nicht doppelt schreiben.
+Was für alle gleich ist, steht außerhalb – nicht doppelt schreiben. Eigene Beschriftung statt des Namens aus
+kurs.yaml: `:::variante oo OnlyOffice (Browser)`.
 
 ## Menüpfade, Tasten, Links
 
 | Schreibweise | Ergebnis |
 | --- | --- |
 | `{{Start › Schriftart › Fett}}` | Menüpfad als Kästchen (Trennzeichen ›, auf dem Mac: Alt+Umschalt+3 – oder einfach kopieren) |
-| `++Strg++ + ++C++` | Tasten |
+| `++Strg+C++`, `++Enter++` | Tasten bzw. Tastenkombination |
 | `[zum Modul E2](modul:e2)` | Link auf ein anderes Modul (Dateiname egal, in Moodle wird daraus Text) |
 | `[Vorlage](material/vorlage.pptx)` | Link auf eine Datei in `material/` |
 | `![Beschreibung](material/bild.png)` | Bild – Beschreibung = Alternativtext, immer ausfüllen |

@@ -4,20 +4,23 @@ Bausteine (Container, geöffnet mit ::: name …, geschlossen mit :::; verschach
     :::ziele [Titel]            Lernziele-Kasten (sonst automatisch aus „lernziele“ im Modulkopf)
     :::tipp [Titel]             Tipp          :::achtung [Titel]   typischer Fehler, Warnung
     :::notiz [Titel]            Hinweis       :::gestaltung [Titel] Gestaltungsregeln
+    :::kasten [Titel]           neutraler Kasten (z. B. um mehrere Checklisten)
     :::aufgabe basis 10 Titel   Aufgabe (Niveau basis|plus|kreativ|pflicht, Minuten optional, Titel)
     :::checkliste [Titel]       Liste zum Abhaken (Markdown-Liste darin)
     :::loesung [Titel]          aufklappbare Lösung
     :::schritte                 nummerierte Schrittfolge (Markdown-Liste 1. 2. 3. darin)
     ::::varianten               Anleitungen nebeneinander (bei „beide“), darin:
-    :::variante <id>            Anleitung nur für eine Variante des Umschalters (z. B. ppt, oo)
+    :::variante <id> [Label]    Anleitung nur für eine Variante des Umschalters (z. B. ppt, oo)
     :::material <datei> Titel   Download-Kasten mit Knopf, Text darin = Beschreibung
     :::menueband <variante> <Registerkarte>   Schema eines Menübands (Zeilen: gruppen:, menue:, text:)
     :::seitenleiste <variante> <Titel>        Schema einer Seitenleiste (Zeilen: zeilen:, text:)
     :::screenshot <datei>       Bild (bzw. Platzhalter, solange die Datei fehlt); Text darin = Beschreibung
     :::kurzcheck / :::abgabe / :::raster / :::medien   Platzhalter: hier erscheinen Kurz-Check, Abgabe,
                                 Bewertungsraster, Videos aus dem Modulkopf (sonst am Ende des Moduls)
+Jeder Baustein kann am Ende der Kopfzeile {id} bekommen, z. B. ":::notiz Nur für PowerPoint {ppt}" – dann erscheint
+er nur bei dieser Variante des Umschalters.
 Kurzschreibweisen im Text:
-    {{Start › Schriftart}}      Menüpfad          ++Strg++ ++C++   Taste
+    {{Start › Schriftart}}      Menüpfad          ++Strg+C++ oder ++Enter++   Tasten
     [Text](modul:e2)            Link auf ein anderes Modul
     <span class="ppt">…</span>  Text nur für eine Variante (HTML ist erlaubt)
 """
@@ -35,11 +38,20 @@ KAESTEN = {  # name: (CSS-Klasse, Standardtitel)
     "achtung": ("warn", "⚠️ Achtung"),
     "notiz": ("note", ""),
     "gestaltung": ("design", "✏️ Gestaltungsregeln"),
+    "kasten": ("plain", ""),
 }
 ROH = ("menueband", "seitenleiste", "screenshot", "kurzcheck", "abgabe", "raster", "medien")
 ALLE = set(KAESTEN) | {"aufgabe", "checkliste", "loesung", "schritte", "varianten", "variante", "material"} | set(ROH)
 
 esc = lambda s: html.escape(str(s), quote=True)
+
+
+def klassen(rest):
+    """„Titel {ppt}“ → („Titel“, " ppt") – Varianten-Klasse am Ende der Kopfzeile."""
+    m = re.search(r"\s*\{([\w -]+)\}\s*$", rest)
+    if not m:
+        return rest, ""
+    return rest[:m.start()].strip(), " " + " ".join(m.group(1).split())
 
 
 class Uebersetzer:
@@ -67,32 +79,33 @@ class Uebersetzer:
         return self._zu(name, rest)
 
     def _auf(self, name, rest):
+        rest, extra = klassen(rest)
         if name in KAESTEN:
             cls, titel = KAESTEN[name]
             titel = rest or titel
-            return f'<div class="box {cls}">' + (f'<div class="box-title">{self.inline(titel)}</div>' if titel else "")
+            return f'<div class="box {cls}{extra}">' + (f'<div class="box-title">{self.inline(titel)}</div>' if titel else "")
         if name == "aufgabe":
             teile = rest.split()
             niveau = teile.pop(0).lower() if teile and teile[0].lower() in NIVEAU else "basis"
-            minuten = teile.pop(0) if teile and teile[0].isdigit() else ""
+            minuten = teile.pop(0) if teile and re.fullmatch(r"\d+\+?", teile[0]) else ""
             cls, label = NIVEAU[niveau]
-            return (f'<div class="box task {cls}"><div class="task-head"><span class="lvl {cls}">{label}</span>'
+            return (f'<div class="box task {cls}{extra}"><div class="task-head"><span class="lvl {cls}">{label}</span>'
                     f'<h3>{self.inline(" ".join(teile))}</h3>' +
-                    (f'<span class="lvl time">{minuten} min</span>' if minuten else "") + "</div>")
+                    (f'<span class="lvl time">{minuten.rstrip("+")} min{" +" if minuten.endswith("+") else ""}</span>' if minuten else "") + "</div>")
         if name == "checkliste":
-            return '<div class="checkliste">' + (f'<div class="check-title">{self.inline(rest)}</div>' if rest else "")
+            return f'<div class="checkliste{extra}">' + (f'<div class="check-title">{self.inline(rest)}</div>' if rest else "")
         if name == "loesung":
-            return f"<details><summary>{self.inline(rest or 'Lösung')}</summary>"
+            return f"<details{' class=' + chr(34) + extra.strip() + chr(34) if extra else ''}><summary>{self.inline(rest or 'Lösung')}</summary>"
         if name == "schritte":
-            return '<div class="schritte">'
+            return f'<div class="schritte{extra}">'
         if name == "varianten":
             return '<div class="both-grid">'
         if name == "variante":
-            v = rest.split()[0] if rest else ""
-            return f'<div class="box how {esc(v)}"><span class="app-label">{esc(self.varianten.get(v, v))}</span>'
+            v, _, label = rest.partition(" ")
+            return f'<div class="box how {esc(v)}"><span class="app-label">{self.inline(label.strip() or self.varianten.get(v, v))}</span>'
         if name == "material":
             datei, _, titel = rest.partition(" ")
-            return f'<div class="box download"><div class="box-title">📥 {self.inline(titel or datei)}</div>'
+            return f'<div class="box download{extra}"><div class="box-title">📥 {self.inline(titel or datei)}</div>'
         return "<div>"
 
     def _zu(self, name, rest):
@@ -101,7 +114,7 @@ class Uebersetzer:
         if name == "loesung":
             return "</details>"
         if name == "material":
-            datei = rest.partition(" ")[0]
+            datei = klassen(rest)[0].partition(" ")[0]
             return (f'<p><a class="btn" href="{esc(datei)}" download>{esc(datei.rsplit("/", 1)[-1])} herunterladen</a></p></div>')
         return "</div>"
 
@@ -166,10 +179,19 @@ class Uebersetzer:
 
     def _kurz(self, z):
         z = re.sub(r"\{\{\s*(.+?)\s*\}\}", lambda m: f'<span class="path">{esc(m.group(1))}</span>', z)
-        z = re.sub(r"\+\+(.+?)\+\+", lambda m: f"<kbd>{esc(m.group(1))}</kbd>", z)
+        z = re.sub(r"\+\+(.+?)\+\+", lambda m: self._tasten(m.group(1)), z)
         return z
 
+    @staticmethod
+    def _tasten(t):
+        """++Strg+C++ → <kbd>Strg</kbd>+<kbd>C</kbd>; einzelne Taste wie gehabt."""
+        teile = t.split("+")
+        if len(teile) > 1 and all(x.strip() for x in teile):
+            return "+".join(f"<kbd>{esc(x.strip())}</kbd>" for x in teile)
+        return f"<kbd>{esc(t)}</kbd>"
+
     def _roh(self, name, rest, inhalt):
+        rest, extra = klassen(rest)
         felder = {}
         for zeile in inhalt.split("\n"):
             k, sep, v = zeile.partition(":")
@@ -186,7 +208,7 @@ class Uebersetzer:
                      "data-caption": felder.get("text", "")}
             return '<figure class="sp" ' + " ".join(f'{k}="{esc(v)}"' for k, v in attrs.items() if v) + "></figure>"
         if name == "screenshot":
-            return f'<figure class="shot" data-src="{esc(rest)}" data-desc="{esc(inhalt)}"></figure>'
+            return f'<figure class="shot{extra}" data-src="{esc(rest)}" data-desc="{esc(inhalt)}"></figure>'
         return f'<div data-lp="{name}"></div>'
 
     # -- Nachbearbeitung
@@ -194,8 +216,8 @@ class Uebersetzer:
         h = re.sub(r"<table>", '<div class="table-wrap"><table>', h)
         h = re.sub(r"</table>", "</table></div>", h)
         h = re.sub(r'href="modul:([\w-]+)"', lambda m: f'href="{self.modul_datei.get(m.group(1), m.group(1) + ".html")}"', h)
-        h = re.sub(r'(<div class="checkliste">(?:<div class="check-title">.*?</div>)?\s*)<ul>', r'\1<ul class="check">', h)
-        h = re.sub(r'(<div class="schritte">\s*)<ol>', r'\1<ol class="steps">', h)
+        h = re.sub(r'(<div class="checkliste[^"]*">(?:<div class="check-title">.*?</div>)?\s*)<ul>', r'\1<ul class="check">', h)
+        h = re.sub(r'(<div class="schritte[^"]*">\s*)<ol>', r'\1<ol class="steps">', h)
         return h
 
     def block(self, text):

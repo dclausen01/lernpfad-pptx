@@ -87,7 +87,7 @@ stehen ab jetzt fest.
 
 Trage die Gliederung in `kurs.yaml` ein und schreibe die Module (`module/<id>.md`) nach
 `referenzen/schema.md` und `referenzen/bausteine.md`. Jedes Modul bleibt `review: entwurf`.
-- Anleitungen Schritt für Schritt, Menüpfade als `{{Start › Neue Folie}}`, Tasten als `++Strg++`.
+- Anleitungen Schritt für Schritt, Menüpfade als `{{Start › Neue Folie}}`, Tasten als `++Strg+C++`.
 - Bei Varianten: Unterschiede in `:::variante <id>`, Gemeinsames einmal.
 - Aufgaben in drei Niveaus, Checklisten zum Abhaken, Lösungen aufklappbar.
 - Kurz-Check: 2–4 Fragen je Modul, falsche Antworten sind typische Fehlvorstellungen, Rückmeldung erklärt.

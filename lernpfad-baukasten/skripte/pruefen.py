@@ -122,6 +122,11 @@ class Pruefer:
                 self.f(wo, f"Zeile {nr}: Variante „{m.group(2)}“ gibt es nicht (vorhanden: {', '.join(sorted(var))})")
             if m and not var:
                 self.f(wo, f"Zeile {nr}: „:::{m.group(1)}“ braucht „varianten“ in kurs.yaml")
+            k = re.match(r"^:{3,}\s*\w+.*\{([\w -]+)\}\s*$", z)
+            if k and var:
+                for v in k.group(1).split():
+                    if v not in var:
+                        self.f(wo, f"Zeile {nr}: Variante „{{{v}}}“ gibt es nicht (vorhanden: {', '.join(sorted(var))})")
             for ziel in re.findall(r"\(modul:([\w-]+)\)", z):
                 if ziel not in self.k.module:
                     self.f(wo, f"Zeile {nr}: Link auf unbekanntes Modul „{ziel}“")
