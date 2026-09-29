@@ -138,6 +138,26 @@
       '<button type="button" data-app="oo">OnlyOffice</button>' +
       '<button type="button" data-app="both" title="Beide Anleitungen nebeneinander">beide</button>' +
       "</div>";
+    // Im Moodle-Paket: Umschalter für den Kompaktmodus (Moodle-Kopf aus-/einblenden)
+    if (NAV && NAV.inMoodle && NAV.inMoodle()) {
+      var kb = el("button", { "class": "kompakt-btn", type: "button" });
+      var paintK = function (on) {
+        kb.textContent = on ? "⤡" : "⤢";
+        kb.title = on ? "Moodle-Kopfzeile wieder einblenden" : "Mehr Platz: Moodle-Kopfzeile ausblenden";
+        kb.setAttribute("aria-label", kb.title);
+        kb.setAttribute("aria-pressed", on ? "true" : "false");
+      };
+      var kOn = NAV.compactWanted();
+      if (kOn) NAV.compact(true);
+      paintK(kOn);
+      kb.addEventListener("click", function () {
+        kOn = !kOn;
+        NAV.compact(kOn);
+        paintK(kOn);
+        try { localStorage.setItem("lp-kompakt", kOn ? "1" : "0"); } catch (e) { /* ignorieren */ }
+      });
+      bar.insertBefore(kb, bar.querySelector(".spacer"));
+    }
     bar.querySelector(".menu-btn").addEventListener("click", function () {
       document.body.classList.toggle("nav-open");
     });

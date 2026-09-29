@@ -191,6 +191,40 @@
     } catch (e) { /* ältere oder andere Plattform: nichts tun */ }
   }
 
+  // Kompaktmodus: Moodle-Kopf (Brotkrumen, Titel, „Beenden“), Fußzeile und Ränder um das Lernpaket ausblenden,
+  // damit es – vor allem auf dem Handy – den ganzen Platz bekommt. Die Moodle-Menüleiste oben bleibt.
+  var KOMPAKT_CSS =
+    "body.path-mod-scorm #page-header, body.path-mod-scorm .activity-header, body.path-mod-scorm #page-footer," +
+    "body.path-mod-scorm .drawer-toggles, body.path-mod-scorm #region-main .d-flex.flex-row-reverse.mb-2" +
+    "{display:none !important}" +
+    "body.path-mod-scorm #topofscroll{padding:0 !important;margin-top:0 !important}" +
+    "body.path-mod-scorm #page-content{padding-bottom:0 !important}";
+  function compact(on) {
+    var t = moodleTop();
+    if (!t) return false;
+    try {
+      var d = t.document, st = d.getElementById("lp-kompakt");
+      if (on && !st) {
+        st = d.createElement("style");
+        st.id = "lp-kompakt";
+        st.textContent = KOMPAKT_CSS;
+        d.head.appendChild(st);
+      } else if (!on && st) {
+        st.parentNode.removeChild(st);
+      }
+      // Moodle berechnet die Höhe des Lernpakets beim Ändern der Fenstergröße neu
+      t.dispatchEvent(new t.Event("resize"));
+      return true;
+    } catch (e) { return false; }
+  }
+  function compactWanted() {
+    var saved = null;
+    try { saved = localStorage.getItem("lp-kompakt"); } catch (e) { /* ignorieren */ }
+    if (saved != null) return saved === "1";
+    var t = moodleTop();
+    return !!t && t.innerWidth < 900; // Standard: auf Handy und kleinem Tablet kompakt
+  }
+
   // Ganze Moodle-Seite wechseln (nicht nur den Rahmen des Pakets); vorher alles speichern
   function go(url) {
     finish();
@@ -205,6 +239,9 @@
     config: cfg,
     courseNav: courseNav,
     refreshMoodle: refreshMoodle,
+    inMoodle: function () { return !!moodleTop(); },
+    compact: compact,
+    compactWanted: compactWanted,
     go: go,
     flushNow: function () { clearTimeout(timer); flush(); },
     load: function () {
