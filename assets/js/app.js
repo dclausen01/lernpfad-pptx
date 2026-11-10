@@ -376,6 +376,26 @@
     }
   }
 
+  // ---------- Plus- und Kreativ-Aufgaben einklappen ----------
+  // Aus <div class="box task plus"> wird <details class="box task plus"> mit dem Kopf als <summary>.
+  // Schon angefangene Aufgaben (ein Häkchen gesetzt) bleiben offen.
+  function buildOptional() {
+    var tasks = document.querySelectorAll("div.task.plus, div.task.kreativ");
+    for (var i = 0; i < tasks.length; i++) {
+      var t = tasks[i], head = t.querySelector(".task-head");
+      if (!head) continue;
+      var d = el("details", { "class": t.className + " optional" });
+      var sum = el("summary");
+      head.insertBefore(el("span", { "class": "lvl opt" }, "freiwillig"), head.querySelector(".lvl.time"));
+      head.appendChild(el("span", { "class": "toggle", "aria-hidden": "true" }));
+      sum.appendChild(head);
+      d.appendChild(sum);
+      while (t.firstChild) d.appendChild(t.firstChild);
+      if (d.querySelector("li.done")) d.open = true;
+      t.parentNode.replaceChild(d, t);
+    }
+  }
+
   // ---------- Kurz-Check (Quiz) ----------
   // <div class="qa" data-right="2"><p class="q">…</p><ol><li>…</li></ol><p class="fb" data-ok="…" data-no="…"></p></div>
   function buildQuiz() {
@@ -503,6 +523,7 @@
     buildShots();
     buildMedia();
     buildChecks(id || currentFile());
+    buildOptional();
     buildQuiz();
     buildProgress();
     buildSelfcheck();
